@@ -12,8 +12,12 @@ gulp.task('copy:normalize', function () {
     return gulp.src(nodeModulesDir + 'normalize.css/normalize.css')
         .pipe(gulp.dest(distDir + 'css/'));
 });
+gulp.task('copy:angular', function () {
+    return gulp.src(nodeModulesDir + 'angular/angular.min.js*')
+        .pipe(gulp.dest(distDir + 'js/modules/'));
+});
 
-gulp.task('copy', ['copy:normalize'], function () {
+gulp.task('copy', ['copy:normalize', 'copy:angular'], function () {
     console.log("Copying files to dist directory")
 });
 
@@ -25,13 +29,13 @@ gulp.task('compile_scss', function () {
 });
 
 gulp.task('compress_js', function () {
-    gulp.src(buildDir + 'js/*.js')
+    gulp.src(buildDir + 'js/**/*.js')
         .pipe(uglify())
         .pipe(gulp.dest(distDir + "js/"))
 });
 
 gulp.task('watch', function () {
-    gulp.watch(buildDir + 'js/*.js', ['compress_js']);
+    gulp.watch(buildDir + 'js/**/*.js', ['compress_js']);
     gulp.watch(buildDir + 'scss/*.scss', ['compile_scss']);
 });
 

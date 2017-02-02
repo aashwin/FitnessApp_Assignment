@@ -1,0 +1,1 @@
+var loginApp=angular.module("loginApp",[]);loginApp.controller("loginController",["$scope",function(n){function o(){return void 0!==n.username&&null!==n.username&&""!=n.username}function r(){return void 0!==n.password&&null!==n.password&&""!=n.password}n.username="",n.password="",n.canLogin=function(){return o()&&r()},n.login=function(){alert(123)}}]);
