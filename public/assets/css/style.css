@@ -20,6 +20,13 @@ html, body {
   animation: fade 1s forwards;
   opacity: 1; }
 
+a {
+  color: #fff;
+  font-size: 90%;
+  padding: 10px;
+  display: block;
+  cursor: pointer; }
+
 .logo {
   background: transparent url("../images/logo_xs.png") no-repeat;
   width: 234px;
@@ -27,9 +34,13 @@ html, body {
   margin: auto;
   padding-top: 10px; }
 
+#signupForm {
+  display: none; }
+
 .login_form {
   width: 300px;
-  margin: auto; }
+  margin: auto;
+  text-align: center; }
 
 .login_form .text {
   padding: 10px;

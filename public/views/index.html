@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/modules/angular.min.js"></script>
+    <script type="text/javascript" src="js/modules/angular-route.min.js"></script>
     <script type="text/javascript" src="js/login_app.js"></script>
 </head>
 <body ng-app="loginApp">
@@ -18,15 +19,7 @@
         <div class="logo"></div>
     </header>
     <div class="container">
-        <form name="loginForm" class="login_form" ng-controller="loginController">
-            <div class="error" ng-if="usernameIsInvalid">Username is invalid, try again!</div>
-            <div class="error" ng-if="passwordIsInvalid">Password cannot be empty, try again!</div>
-            <input type="text" class="text" placeholder="Username..." value="" ng-model="username"/>
-            <input type="password" class="text" placeholder="Password..." value="" ng-model="password"/>
-            <input type="submit" class="button" ng-value="loginButtonText" ng-disabled="!canLogin()" ng-click="login();"
-                   ng-class="{ 'pressed': loginPressed}"/>
-
-        </form>
+        <ng-view></ng-view>
     </div>
 </div>
 </body>

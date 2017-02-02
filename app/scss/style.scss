@@ -12,10 +12,16 @@ html, body {
   height: 100%;
   font-size: 1em;
 }
+
 @keyframes fade {
-  from {opacity:0;}
-  to {opacity:1}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1
+  }
 }
+
 .background {
   background-image: url("../images/cycling_xs.jpg");
   background-repeat: no-repeat;
@@ -25,9 +31,15 @@ html, body {
   width: 100%;
   height: 100%;
   animation: fade 1s forwards;
-  opacity:1;
+  opacity: 1;
 }
-
+a{
+  color:#fff;
+  font-size:90%;
+  padding:10px;
+  display:block;
+  cursor:pointer;
+}
 .logo {
   background: transparent url("../images/logo_xs.png") no-repeat;
   width: 234px;
@@ -36,9 +48,14 @@ html, body {
   padding-top: 10px;
 }
 
+#signupForm {
+  display: none;
+}
+
 .login_form {
   width: 300px;
   margin: auto;
+  text-align: center;
 }
 
 .login_form .text {
@@ -71,6 +88,7 @@ html, body {
   transition: opacity 500ms ease-in-out, color 500ms ease-in-out;
 
 }
+
 .login_form .pressed {
   background: #706c65;
   color: #fff;

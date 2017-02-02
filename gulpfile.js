@@ -13,7 +13,7 @@ gulp.task('copy:normalize', function () {
         .pipe(gulp.dest(distDir + 'css/'));
 });
 gulp.task('copy:angular', function () {
-    return gulp.src(nodeModulesDir + 'angular/angular.min.js*')
+    return gulp.src([nodeModulesDir + 'angular/angular.min.js*', nodeModulesDir + 'angular-route/angular-route.min.js*'])
         .pipe(gulp.dest(distDir + 'js/modules/'));
 });
 

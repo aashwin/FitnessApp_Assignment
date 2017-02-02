@@ -21,6 +21,7 @@
   "homepage": "https://github.com/aashwin/FitnessApp_Assignment#readme",
   "dependencies": {
     "angular": "^1.6.1",
+    "angular-route": "^1.6.1",
     "ejs": "^2.5.5",
     "express": "^4.14.1",
     "normalize.css": "5.0.0"

@@ -1,0 +1,11 @@
+<form name="signupForm" class="login_form" id="signupForm">
+    <div class="error" ng-if="usernameIsInvalid">Username is invalid, try again!</div>
+    <input type="text" class="text" placeholder="Username..." value="" ng-model="username"/>
+    <input type="password" class="text" placeholder="Password..." value="" ng-model="password"/>
+    <input type="password" class="text" placeholder="Confirm Password..." value="" ng-model="confirmPassword"/>
+    <input type="submit" class="button" ng-value="registerButtonText" ng-disabled="!canRegister()"
+           ng-click="register();"
+           ng-class="{ 'pressed': pressed}"/>
+    <a href="#">Already have an account? Login!</a>
+
+</form>
