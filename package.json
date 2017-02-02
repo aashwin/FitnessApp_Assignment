@@ -1,0 +1,36 @@
+{
+  "name": "fitness_application",
+  "version": "1.0.0",
+  "description": "An application for users who want to track their running and cycling and share it with the world",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aashwin/FitnessApp_Assignment.git"
+  },
+  "keywords": [
+    "fitness"
+  ],
+  "author": "Aashwin Mohan",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/aashwin/FitnessApp_Assignment/issues"
+  },
+  "homepage": "https://github.com/aashwin/FitnessApp_Assignment#readme",
+  "dependencies": {
+    "angular": "^1.6.1",
+    "ejs": "^2.5.5",
+    "express": "^4.14.1",
+    "normalize.css": "5.0.0"
+  },
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.0.1",
+    "gulp-util": "^3.0.8",
+    "run-sequence": "^1.2.2"
+  }
+}
