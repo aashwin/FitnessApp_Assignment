@@ -23,7 +23,9 @@
             <div class="error" ng-if="passwordIsInvalid">Password cannot be empty, try again!</div>
             <input type="text" class="text" placeholder="Username..." value="" ng-model="username"/>
             <input type="password" class="text" placeholder="Password..." value="" ng-model="password"/>
-            <input type="submit" class="button" value="Login" ng-disabled="!canLogin()" ng-click="login();"/>
+            <input type="submit" class="button" ng-value="loginButtonText" ng-disabled="!canLogin()" ng-click="login();"
+                   ng-class="{ 'pressed': loginPressed}"/>
+
         </form>
     </div>
 </div>

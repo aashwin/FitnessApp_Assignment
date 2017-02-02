@@ -3,9 +3,14 @@ var loginApp = angular.module("loginApp", []);
 loginApp.controller("loginController", ['$scope', function ($scope) {
     $scope.username = "";
     $scope.password = "";
+    $scope.loginButtonText = "Login";
+    $scope.loginPressed = false;
+
+
     function validUsername() {
         return $scope.username !== undefined && $scope.username !== null && $scope.username != "";
     }
+
     function validPassword() {
         return $scope.password !== undefined && $scope.password !== null && $scope.password != "";
     }
@@ -14,6 +19,7 @@ loginApp.controller("loginController", ['$scope', function ($scope) {
         return validUsername() && validPassword();
     };
     $scope.login = function () {
-        alert(123);
+        $scope.loginPressed = true;
+        $scope.loginButtonText = "Logging in...";
     };
 }]);
