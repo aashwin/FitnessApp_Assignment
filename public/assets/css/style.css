@@ -1,0 +1,92 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  font-size: 1em; }
+
+.background {
+  background-image: url("../images/cycling_xs.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%; }
+
+.logo {
+  background: transparent url("../images/logo_xs.png") no-repeat;
+  width: 234px;
+  height: 66px;
+  margin: auto;
+  padding-top: 10px; }
+
+.login_form {
+  width: 300px;
+  margin: auto; }
+
+.login_form .text {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 90%;
+  width: 280px;
+  background: rgba(255, 255, 255, 0.35);
+  color: #fff;
+  text-shadow: 1px 1px #000;
+  margin-bottom: 10px;
+  text-align: center; }
+
+.login_form .button {
+  width: 300px;
+  outline: none;
+  border: none;
+  background: #fff;
+  font-size: 90%;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer; }
+
+::-webkit-input-placeholder {
+  /* Chrome */
+  color: #ccc;
+  transition: opacity 250ms ease-in-out; }
+
+:focus::-webkit-input-placeholder {
+  opacity: 0.3; }
+
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #ccc;
+  transition: opacity 250ms ease-in-out; }
+
+:focus:-ms-input-placeholder {
+  opacity: 0.3; }
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #ccc;
+  opacity: 1;
+  transition: opacity 250ms ease-in-out; }
+
+:focus::-moz-placeholder {
+  opacity: 0.3; }
+
+:-moz-placeholder {
+  /* Firefox 4 - 18 */
+  color: #ccc;
+  opacity: 1;
+  transition: opacity 250ms ease-in-out; }
+
+:focus:-moz-placeholder {
+  opacity: 0.3; }
+
+@media screen and (min-width: 1024px) {
+  .background {
+    background-image: url("../images/cycling.jpg"); }
+  .logo {
+    background: transparent url("../images/logo.png") no-repeat;
+    width: 332px;
+    height: 82px;
+    padding-top: 30px; } }

@@ -183,5 +183,6 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
+npm-debug.log
 
 # End of https://www.gitignore.io/api/macos,windows,intellij,intellij+iml,node
