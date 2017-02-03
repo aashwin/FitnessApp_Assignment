@@ -1,17 +1,22 @@
 var loginApp = angular.module("loginApp", ['ngRoute']);
-loginApp.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-        .when("/", {
-            templateUrl: "../static_views/login.html",
-            controller: "loginController"
-        })
-        .when("/register", {
-            templateUrl: "../static_views/register.html",
-            controller: "registerController"
-        }).otherwise({
-        redirectTo: "/"
-    });
-}]);
+loginApp
+    .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'static_views/login/login.html'
+            })
+            .when('/register', {
+                templateUrl: 'static_views/login/register.html'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+    }]);
 
 function isEmpty(txt) {
     return txt === undefined || txt === null || txt == "";
@@ -35,7 +40,6 @@ loginApp.controller("loginController", ['$scope', function ($scope) {
 
 
 loginApp.controller("registerController", ['$scope', function ($scope) {
-    alert(123);
     $scope.username = "";
     $scope.password = "";
     $scope.confirmPassword = "";

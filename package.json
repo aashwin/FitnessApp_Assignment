@@ -22,8 +22,10 @@
   "dependencies": {
     "angular": "^1.6.1",
     "angular-route": "^1.6.1",
+    "body-parser": "^1.16.0",
     "ejs": "^2.5.5",
     "express": "^4.14.1",
+    "mongodb": "^2.2.22",
     "normalize.css": "5.0.0"
   },
   "devDependencies": {
