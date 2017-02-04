@@ -3,11 +3,36 @@ html, body {
   height: 100%;
   font-size: 1em; }
 
-@keyframes fade {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
+.error_list {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.success {
+  font-size: 80%;
+  color: #fff;
+  text-shadow: 1px 1px #500;
+  background: #900;
+  padding: 5px;
+  border-radius: 10px;
+  list-style: none;
+  width: 290px;
+  border: 1px solid #b00;
+  margin: 0 0 5px;
+  animation: slideDown 1s forwards; }
+
+.error_list > li {
+  font-size: 80%;
+  color: #fff;
+  text-shadow: 1px 1px #500;
+  background: #900;
+  padding: 5px;
+  border-radius: 10px;
+  list-style: none;
+  width: 290px;
+  border: 1px solid #b00;
+  margin: 0 0 5px;
+  animation: slideDown 1s forwards; }
 
 .background {
   background-image: url("../images/cycling_xs.jpg");
@@ -42,7 +67,7 @@ a {
 .login_form .text {
   padding: 10px;
   border-radius: 10px;
-  border: none;
+  border: 1px solid transparent;
   outline: none;
   font-size: 90%;
   width: 280px;
@@ -50,7 +75,16 @@ a {
   color: #fff;
   text-shadow: 1px 1px #000;
   margin-bottom: 10px;
-  text-align: center; }
+  text-align: center;
+  transition: border 500ms ease-in-out; }
+
+.login_form .ng-dirty.ng-valid {
+  border: 1px solid #0f0;
+  transition: border 500ms ease-in-out; }
+
+.login_form .ng-dirty.ng-invalid, .login_form .ng-dirty.error {
+  border: 1px solid #f00;
+  transition: border 500ms ease-in-out; }
 
 .login_form .button {
   width: 300px;
@@ -120,3 +154,23 @@ a {
     width: 332px;
     height: 82px;
     padding-top: 30px; } }
+
+@keyframes fade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%); }
+  50% {
+    transform: translateY(8%); }
+  65% {
+    transform: translateY(-4%); }
+  80% {
+    transform: translateY(4%); }
+  95% {
+    transform: translateY(-2%); }
+  100% {
+    transform: translateY(0%); } }

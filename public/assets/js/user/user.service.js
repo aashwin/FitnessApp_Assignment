@@ -1,0 +1,1 @@
+"use strict";!function(){var r=angular.module("app");r.factory("userService",["$http",function(r){function t(r){return r.data}function n(r){return function(){return{success:!1,errors:[r]}}}var e={};return e.register=function(e){return r.post("/api/users",e).then(t,n("Could not connect to server, try again!"))},e}])}();

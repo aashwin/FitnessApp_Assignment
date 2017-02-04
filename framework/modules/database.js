@@ -1,5 +1,4 @@
 var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
 var dbConfig = require('../config/db.config');
 var instance = null;
 exports.connect = function (callback) {
@@ -21,12 +20,7 @@ exports.connect = function (callback) {
 
 exports.get = function () {
     if (!instance) {
-        exports.connect(function () {
-            console.log("Connecting to database successful.");
-        });
-    }
-    if (!instance) {
-        console.log("Database connection not successful.");
+        console.log("Database connection was not successful.");
         return false;
     }
     return instance;

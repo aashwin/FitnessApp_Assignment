@@ -1,0 +1,23 @@
+<form name="signupForm" class="login_form" id="signupForm">
+    <ul class="error_list">
+        <li ng-repeat="error in errors">
+            {{error}}
+        </li>
+    </ul>
+    <div class="error" ng-if="usernameIsInvalid">Username is invalid, try again!</div>
+    <input type="text" class="text" placeholder="Username..." value="" name="username" ng-model="username" required
+           ng-minlength="3" ng-maxlength="50" ng-disabled="pressed"/>
+
+    <input type="password" class="text" placeholder="Password..." value="" name="password" ng-model="password"
+           required ng-minlength="6" ng-disabled="pressed"/>
+
+    <input type="password" class="text" placeholder="Confirm Password..." value="" name="confirmPassword"
+           ng-model="confirmPassword" ng-class="{'error': confirmPassword!=password}" required ng-minlength="6"
+           ng-disabled="pressed"/>
+
+    <input type="submit" class="button" ng-value="registerButtonText" ng-disabled="!canRegister()"
+           ng-click="register();"
+           ng-class="{ 'pressed': pressed}"/>
+    <a href="/">Already have an account? Login!</a>
+
+</form>

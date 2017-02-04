@@ -4,7 +4,7 @@
   "description": "An application for users who want to track their running and cycling and share it with the world",
   "main": "index.js",
   "scripts": {
-    "start": "node ./app.js"
+    "start": "DEBUG=fitness.app.aashwin node ./app.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "angular": "^1.6.1",
     "angular-route": "^1.6.1",
     "body-parser": "^1.16.0",
+    "debug": "^2.6.0",
     "ejs": "^2.5.5",
     "express": "^4.14.1",
     "mongodb": "^2.2.22",
