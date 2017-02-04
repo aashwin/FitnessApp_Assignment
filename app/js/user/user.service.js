@@ -4,18 +4,16 @@
     loginApp.factory("userService", ['$http', function ($http) {
         var service = {};
         service.register = function (user) {
-            return $http.post('/api/users', user).then(success, failure('Could not connect to server, try again!'));
+            return $http.post('/api/users', user)
+                .then(function success(response) {
+                    return response.data;
+                }, function error(response) {
+                    if (response.status == 403 || response.status == 409) {
+                        return response.data;
+                    }
+                    return {"success": false, "errors": ["Something went wrong, try again!"]};
+                });
         };
         return service;
-
-        function success(res) {
-            return res.data;
-        }
-
-        function failure(error) {
-            return function () {
-                return {success: false, errors: [error]};
-            };
-        }
     }]);
 })();
