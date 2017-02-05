@@ -1,4 +1,5 @@
 var User = require('../../framework/models/user');
+var UserDAO = require('../../framework/DAO/users.dao');
 var bcrypt = require('bcrypt');
 const config = require('../../config');
 
@@ -18,7 +19,7 @@ exports.validateUser = function (username, password, confirmPassword) {
             errors.push('Passwords must match!');
         }
         if (errors.length === 0) {
-            User.findByUsername(username, function (err, usr) {
+            UserDAO.findByUsername(username, function (err, usr) {
                 var alreadyExists = false;
                 if (err) {
                     errors.push("Something went wrong, try again!")
@@ -58,7 +59,7 @@ exports.createUser = function (username, password) {
         var user = new User();
         user.set("username", username);
         user.set("password", password);
-        user.create(function (err, count) {
+        UserDAO.create(user, function (err, count) {
             if (err || count.insertedCount !== 1) {
                 reject(err);
             } else {
