@@ -12,7 +12,7 @@ UserDAO.findByUsername = function (username, callback) {
     });
 };
 UserDAO.findById = function (id, callback) {
-    db.get().collection(COLLECTION).findOne({_id: id}, function (err, data) {
+    db.get().collection(COLLECTION).findOne({_id: new db.ObjectID(id)}, function (err, data) {
         if (err) {
             return callback(err);
         }

@@ -1,4 +1,5 @@
-var MongoClient = require('mongodb').MongoClient;
+var MongoDB = require('mongodb');
+var MongoClient = MongoDB.MongoClient;
 var dbConfig = require('../config/db.config');
 var instance = null;
 exports.connect = function (callback) {
@@ -17,6 +18,7 @@ exports.connect = function (callback) {
 
     });
 };
+exports.ObjectID = MongoDB.ObjectID;
 
 exports.get = function () {
     if (!instance) {

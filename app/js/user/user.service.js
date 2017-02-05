@@ -14,6 +14,21 @@
                     return {"success": false, "errors": ["Something went wrong, try again!"]};
                 });
         };
+        service.authenticate = function (username, password) {
+            var user = {
+                "username": username,
+                "password": password
+            };
+            return $http.post('/api/authenticate', user)
+                .then(function success(response) {
+                    return response.data;
+                }, function error(response) {
+                    if (response.status == 403) {
+                        return response.data;
+                    }
+                    return {"success": false, "errors": ["Something went wrong, try again!"]};
+                });
+        };
         return service;
     }]);
 })();

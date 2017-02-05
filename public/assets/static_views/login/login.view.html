@@ -1,7 +1,14 @@
 <form name="loginForm" class="login_form">
-    <div class="error" ng-if="usernameIsInvalid">Username is invalid, try again!</div>
-    <input type="text" class="text" placeholder="Username..." value="" ng-model="username"/>
-    <input type="password" class="text" placeholder="Password..." value="" ng-model="password"/>
+    <ul class="error_list">
+        <li ng-repeat="error in errors">
+            {{error}}
+        </li>
+    </ul>
+    <input type="text" class="text" placeholder="Username..." value="" name="username" ng-model="username" required
+           ng-minlength="3" ng-maxlength="50" ng-disabled="pressed"/>
+
+    <input type="password" class="text" placeholder="Password..." value="" name="password" ng-model="password"
+           required ng-minlength="6" ng-disabled="pressed"/>
     <input type="submit" class="button" ng-value="loginButtonText" ng-disabled="!canLogin()" ng-click="login();"
            ng-class="{ 'pressed': loginPressed}"/>
     <a href="/register">No Account Yet? Signup</a>

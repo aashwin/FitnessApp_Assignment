@@ -3,8 +3,52 @@ var UserDAO = require('../../framework/DAO/users.dao');
 var bcrypt = require('bcrypt');
 const config = require('../../config');
 var jwt = require('jwt-simple');
+var auth = function (decoded) {
+    if (decoded) {
+        if (decoded.expiry && decoded.expiry > (new Date).getTime()) {
+            if (decoded.user) {
+                return true;
+            }
 
+        }
+    }
+    return false;
+};
+exports.APIRequiresAuthentication = function (req, res, next) {
+    var decoded = jwt.decode(req.get("X_AUTH_TOKEN"), config.application.jwt_token_secret);
+    if (auth(decoded)) {
+        next();
+    } else {
+        res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
+    }
 
+};
+exports.getLoggedInUser = function (req) {
+    return new Promise(function (resolve, reject) {
+        var decoded = jwt.decode(req.get("X_AUTH_TOKEN"), config.application.jwt_token_secret);
+
+        if (decoded) {
+            if (decoded.expiry && decoded.expiry > (new Date).getTime()) {
+                if (decoded.user) {
+                    UserDAO.findById(decoded.user, function (err, usr) {
+                        if (err || !usr || !usr.data) {
+                            reject();
+                            return;
+                        }
+                        resolve(usr);
+                        return;
+                    });
+                } else {
+                    reject();
+                }
+            } else {
+                reject();
+            }
+        } else {
+            reject();
+        }
+    });
+};
 exports.validateUser = function (username, password, confirmPassword) {
     var errors = [];
     username = username.toLowerCase();

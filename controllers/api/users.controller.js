@@ -1,8 +1,12 @@
 var UserSystem = require('../../framework/modules/user_system');
 const config = require('../../config');
 const debug = require('debug')(config.application.namespace);
-exports.getAllUsers = function (req, res, next) {
-    res.send("GOT A GET REQUEST");
+exports.getUser = function (req, res, next) {
+    UserSystem.getLoggedInUser(req).then(function (usr) {
+        res.status(200).json({"success": true, errors: [], "user": usr.get(null, true)});
+    }, function () {
+        res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
+    });
 };
 exports.authenticateUser = function (req, res, next) {
     const username = req.body.username.toLowerCase();
@@ -11,7 +15,7 @@ exports.authenticateUser = function (req, res, next) {
     UserSystem.authenticateUser(username, password).then(function (user) {
         debug("Authenticated User: %s", username);
         response.success = true;
-        response.token = UserSystem.generateJWT(user["_id"]);
+        response.token = UserSystem.generateJWT(user.get("_id"));
         response.user = user.get(null, true);
         res.status(200).json(response);
     }, function (err) {
