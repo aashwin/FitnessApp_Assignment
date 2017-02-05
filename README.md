@@ -1,4 +1,5 @@
 # FitnessApp_Assignment
+[![Build Status](https://travis-ci.com/aashwin/FitnessApp_Assignment.svg?token=QpWRxcsRng9ACRYUVjUW&branch=master)](https://travis-ci.com/aashwin/FitnessApp_Assignment)
 Fitness Application built using Node.JS, AngularJS, MongoDB for an assignment at university for Application: Architectures and Frameworks
 
 ##File Structure
