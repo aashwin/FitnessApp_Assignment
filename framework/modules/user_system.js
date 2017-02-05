@@ -1,6 +1,6 @@
 var User = require('../../framework/models/user');
+var bcrypt = require('bcrypt');
 const config = require('../../config');
-const debug = require('debug')(config.application.namespace);
 
 exports.validateUser = function (username, password, confirmPassword) {
     var errors = [];
@@ -39,6 +39,19 @@ exports.validateUser = function (username, password, confirmPassword) {
         }
     });
 };
+//Source: https://github.com/kelektiv/node.bcrypt.js
+exports.hashPassword = function (password) {
+    return new Promise(function (resolve, reject) {
+        bcrypt.hash(password, config.application.hashing.salt_work_factor, function (err, hash) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve(hash);
+        });
+    });
+
+};
 
 exports.createUser = function (username, password) {
     return new Promise(function (resolve, reject) {
@@ -47,9 +60,8 @@ exports.createUser = function (username, password) {
         user.set("password", password);
         user.create(function (err, count) {
             if (err || count.insertedCount !== 1) {
-                reject();
+                reject(err);
             } else {
-                debug("Created User: %s", username);
                 resolve();
             }
         });
