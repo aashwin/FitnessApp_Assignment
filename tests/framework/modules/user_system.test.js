@@ -5,6 +5,7 @@ var chaiAsPromised = require('chai-as-promised');
 var UserSystem = require('../../../framework/modules/user_system');
 var UserDAO = require('../../../framework/DAO/users.dao');
 var User = require('../../../framework/models/user');
+var bcrypt = require('bcrypt');
 chai.use(chaiAsPromised);
 
 const GOOD_STRONG_PASSWORD = "Y@rdNB@!A$jj";
@@ -41,7 +42,10 @@ describe('Framework -> User System Tests', function () {
         return expect(validationPromise).to.be.rejected.and.become(expectedReturn);
     });
     it('validateUser() should reject invalid characters in username with 1 error message.', function () {
-        const expectedReturn = {"errors": ["Username can only contain alphanumerics, underscores and hyphens"], "alreadyExists": false};
+        const expectedReturn = {
+            "errors": ["Username can only contain alphanumerics, underscores and hyphens"],
+            "alreadyExists": false
+        };
         var validationPromise = UserSystem.validateUser(INVALID_USERNAME, GOOD_STRONG_PASSWORD, GOOD_STRONG_PASSWORD);
         return expect(validationPromise).to.be.rejected.and.become(expectedReturn);
     });
@@ -57,5 +61,21 @@ describe('Framework -> User System Tests', function () {
         findByUsernameStub.yields(null, new User({"username": GOOD_USERNAME}));
         var validationPromise = UserSystem.validateUser(GOOD_USERNAME, GOOD_STRONG_PASSWORD, GOOD_STRONG_PASSWORD);
         return expect(validationPromise).to.be.rejected.and.become(expectedReturn);
+    });
+
+    it('authenticateUser() should accept user in the database with matching password', function () {
+        var expected = new User({"username": GOOD_USERNAME});
+        var findByUsernameStub = sandbox.stub(UserDAO, 'findByUsername');
+        var bycryptStub = sandbox.stub(bcrypt, 'compare');
+        findByUsernameStub.yields(null, expected);
+        bycryptStub.yields(null, true);
+        var authenticationPromise = UserSystem.authenticateUser(GOOD_USERNAME, GOOD_STRONG_PASSWORD);
+        return expect(authenticationPromise).to.be.fulfilled.and.become(expected);
+    });
+    it('authenticateUser() should reject user who is not in database', function () {
+        var findByUsernameStub = sandbox.stub(UserDAO, 'findByUsername');
+        findByUsernameStub.yields(null, new User(null));
+        var authenticationPromise = UserSystem.authenticateUser(GOOD_USERNAME, "");
+        return expect(authenticationPromise).to.be.rejected.and.become(null);
     });
 });
