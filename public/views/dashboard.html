@@ -6,21 +6,32 @@
     <title><%= title %> </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/dashboard_style.css">
     <script type="text/javascript" src="js/modules/angular.min.js"></script>
     <script type="text/javascript" src="js/modules/angular-route.min.js"></script>
+    <script type="text/javascript" src="js/dashboard/dashboard_app.js"></script>
+    <script type="text/javascript" src="js/user/user.service.js"></script>
+    <script type="text/javascript" src="js/dashboard/header.controller.js"></script>
 
 </head>
 <body ng-app="app">
-<div class="background">
-    <header>
-        <div class="logo"></div>
-    </header>
+<nav ng-controller="headerController">
     <div class="container">
-        <ng-view></ng-view>
+        <a href="" class="menu_button"><i class="fa fa-bars"></i></a>
+        <a href="/" class="logo"><img src="images/logo_2_xs.png" alt="FitnessApp" width="200" height="50"/> </a>
+        <ul>
+            <li><a href="">My Activities</a></li>
+            <li><a href="">Search</a></li>
+            <li><a href=""><i class="fa fa-plus-circle"></i> Create Activity</a></li>
+            <li><a href=""><i class="fa fa-user"></i> Hey {{user.username}}</a></li>
+        </ul>
     </div>
+</nav>
+<div class="container">
+    <ng-view></ng-view>
 </div>
 </body>
 </html>

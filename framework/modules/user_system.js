@@ -15,29 +15,35 @@ var auth = function (decoded) {
     return false;
 };
 exports.APIRequiresAuthentication = function (req, res, next) {
-    var decoded = jwt.decode(req.get("X_AUTH_TOKEN"), config.application.jwt_token_secret);
-    if (auth(decoded)) {
-        next();
-    } else {
-        res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
+    if (req.get("X_AUTH_TOKEN")) {
+        var decoded = jwt.decode(req.get("X_AUTH_TOKEN"), config.application.jwt_token_secret);
+        if (auth(decoded)) {
+            next();
+            return;
+        }
     }
+    res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
+
 
 };
 exports.getLoggedInUser = function (req) {
     return new Promise(function (resolve, reject) {
-        var decoded = jwt.decode(req.get("X_AUTH_TOKEN"), config.application.jwt_token_secret);
-
-        if (decoded) {
-            if (decoded.expiry && decoded.expiry > (new Date).getTime()) {
-                if (decoded.user) {
-                    UserDAO.findById(decoded.user, function (err, usr) {
-                        if (err || !usr || !usr.data) {
-                            reject();
+        if (req.get("X_AUTH_TOKEN")) {
+            var decoded = jwt.decode(req.get("X_AUTH_TOKEN"), config.application.jwt_token_secret);
+            if (decoded) {
+                if (decoded.expiry && decoded.expiry > (new Date).getTime()) {
+                    if (decoded.user) {
+                        UserDAO.findById(decoded.user, function (err, usr) {
+                            if (err || !usr || !usr.data) {
+                                reject();
+                                return;
+                            }
+                            resolve(usr);
                             return;
-                        }
-                        resolve(usr);
-                        return;
-                    });
+                        });
+                    } else {
+                        reject();
+                    }
                 } else {
                     reject();
                 }

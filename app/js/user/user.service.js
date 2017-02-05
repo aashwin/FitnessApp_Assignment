@@ -3,6 +3,17 @@
     var loginApp = angular.module("app");
     loginApp.factory("userService", ['$http', function ($http) {
         var service = {};
+        service.getLoggedInUser = function () {
+            return $http.get('/api/users')
+                .then(function success(response) {
+                    return response.data;
+                }, function error(response) {
+                    if (response.status == 401) {
+                        return {"success": false, "unauthorised": true};
+                    }
+                    return {"success": false, "errors": ["Something went wrong, try again!"]};
+                });
+        };
         service.register = function (user) {
             return $http.post('/api/users', user)
                 .then(function success(response) {
