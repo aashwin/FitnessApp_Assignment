@@ -4,7 +4,8 @@
   "description": "An application for users who want to track their running and cycling and share it with the world",
   "main": "index.js",
   "scripts": {
-    "start": "DEBUG=fitness.app.aashwin node ./app.js"
+    "start": "DEBUG=fitness.app.aashwin node ./app.js",
+    "test": "nyc --reporter=html mocha \"./tests/**/*.test.js\""
   },
   "repository": {
     "type": "git",
@@ -31,11 +32,15 @@
     "normalize.css": "5.0.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.0.1",
     "gulp-util": "^3.0.8",
+    "mocha": "^3.2.0",
+    "nyc": "^10.1.2",
     "run-sequence": "^1.2.2"
   }
 }

@@ -36,3 +36,4 @@ Fitness Application built using Node.JS, AngularJS, MongoDB for an assignment at
     - Run command: 'npm install' - to install all modules
     - Run command: 'gulp' - To process css/js and setup the system
     - Run command: 'npm start' - To start the server.
+    - To Run Tests, Run command 'npm test'.

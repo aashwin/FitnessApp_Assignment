@@ -5,6 +5,7 @@ const config = require('../../config');
 
 exports.validateUser = function (username, password, confirmPassword) {
     var errors = [];
+    username = username.toLowerCase();
     return new Promise(function (resolve, reject) {
         if (username.length < 3 || username > 50) {
             errors.push('Username has to be between 3-50 characters');
