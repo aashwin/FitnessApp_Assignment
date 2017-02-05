@@ -9,8 +9,3 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-install:
-  - npm install -g codecov
-  - npm install
-after_success:
-  - codecov
