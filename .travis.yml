@@ -12,6 +12,5 @@ addons:
 install:
   - npm install -g codecov
 after_success:
-  - nyc npm test
   - nyc report --reporter=text-lcov > coverage.lcov
   - codecov
