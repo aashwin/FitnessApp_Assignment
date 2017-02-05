@@ -4,7 +4,27 @@ const debug = require('debug')(config.application.namespace);
 exports.getAllUsers = function (req, res, next) {
     res.send("GOT A GET REQUEST");
 };
+exports.authenticateUser = function (req, res, next) {
+    const username = req.body.username.toLowerCase();
+    const password = req.body.password;
+    var response = {errors: [], success: false, token: null, user: null};
+    UserSystem.authenticateUser(username, password).then(function (user) {
+        debug("Authenticated User: %s", username);
+        response.success = true;
+        response.token = UserSystem.generateJWT(user["_id"]);
+        response.user = user.get(null, true);
+        res.status(200).json(response);
+    }, function (err) {
+        if (err) {
+            debug("Authenticating user: %s failed because: " + err, username);
+        } else {
+            debug("Authentication failed for user %s", username);
+        }
+        response.errors.push("Username/Password incorrect, try again!");
+        res.status(403).json(response);
+    });
 
+};
 exports.createUser = function (req, res, next) {
     const username = req.body.username.toLowerCase();
     const password = req.body.password;

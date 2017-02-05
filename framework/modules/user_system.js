@@ -2,6 +2,8 @@ var User = require('../../framework/models/user');
 var UserDAO = require('../../framework/DAO/users.dao');
 var bcrypt = require('bcrypt');
 const config = require('../../config');
+var jwt = require('jwt-simple');
+
 
 exports.validateUser = function (username, password, confirmPassword) {
     var errors = [];
@@ -68,4 +70,38 @@ exports.createUser = function (username, password) {
             }
         });
     });
+};
+
+exports.authenticateUser = function (username, password) {
+    return new Promise(function (resolve, reject) {
+        UserDAO.findByUsername(username, function (err, usr) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            if (usr && usr.data) {
+                bcrypt.compare(password, usr.data.password, function (err, res) {
+                    if (err) {
+                        reject(err);
+                        return;
+                    }
+                    if (res) {
+                        resolve(usr);
+                    } else {
+                        reject(null);
+                    }
+                    return;
+                });
+            } else {
+                reject(null);
+                return;
+            }
+        });
+    });
+};
+
+exports.generateJWT = function (_id, expiry) {
+    expiry = expiry || (new Date).getTime() + (86400 * 1000); //Defaults to 1 day.
+    var token = {"user": _id, "expiry": expiry};
+    return jwt.encode(token, config.application.jwt_token_secret);
 };

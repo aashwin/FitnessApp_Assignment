@@ -20,7 +20,6 @@ UserDAO.findById = function (id, callback) {
     });
 };
 UserDAO.create = function (user, callback) {
-
     db.get().collection(COLLECTION).insertOne(user.data, function (err, count) {
         if (err) {
             return callback(err);
