@@ -12,6 +12,17 @@ exports.getAll = function (userId) {
         });
     });
 };
+exports.getOne = function (id) {
+    return new Promise(function (resolve, reject) {
+        ActivityDAO.findById(id, function (activity) {
+            if (!activity) {
+                reject();
+                return;
+            }
+            resolve(activity);
+        });
+    });
+};
 
 exports.createActivity = function (activity) {
     var activity2 = new Activity(activity);

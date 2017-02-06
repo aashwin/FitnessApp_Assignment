@@ -1,7 +1,7 @@
 'use strict';
 (function () {
     var app = angular.module("app");
-    app.controller("createActivityController", ['userService', 'activityService', '$scope', '$routeParams', function (userService, activityService, $scope, $routeParams) {
+    app.controller("createActivityController", ['userService', 'activityService', '$location', '$scope', '$routeParams', function (userService, activityService, $location, $scope, $routeParams) {
         $scope.entryMode = 0;
         $scope.errored = false;
         if ($routeParams.method == 'manual') {
@@ -31,6 +31,8 @@
             activityService.create($scope.manualEntryModel).then(function (res) {
                 if (res.success) {
                     $scope.errored = false;
+                    $location.path('/app/activity/' + res.object._id);
+                    
                 } else {
                     $scope.manualEntryModel.errors = res.errors;
                     $scope.errored = true;

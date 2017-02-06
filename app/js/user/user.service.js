@@ -14,6 +14,15 @@
                     return {"success": false, "errors": ["Something went wrong, try again!"]};
                 });
         };
+        service.get = function (id) {
+            console.log(123);
+            return $http.get('/api/users/' + id)
+                .then(function success(response) {
+                    return response.data;
+                }, function error(response) {
+                    return {"success": false, "errors": ["Something went wrong, try again!"]};
+                });
+        };
         service.register = function (user) {
             return $http.post('/api/users', user)
                 .then(function success(response) {

@@ -4,23 +4,20 @@ const User = mongoose.model('User');
 var UserDAO = {};
 UserDAO.findByUsername = function (username, showPassword, callback) {
     showPassword = showPassword || false;
-    var q = User.findOne({username: username});
-    if (showPassword) {
-        q.select("+hashed_password");
-    }
-    q.exec(function (err, data) {
+    User.findOne({username: username}, showPassword ? '+hashed_password' : '', function (err, data) {
         if (err) {
-            return callback(err);
+            return callback();
         }
-        callback(null, data);
+        callback(data);
     });
 };
-UserDAO.findById = function (id, callback) {
-    User.findById(id, function (err, data) {
+UserDAO.findById = function (id, callback, internal) {
+    internal = internal || false;
+    User.findById(id, !internal ? 'name username' : '', function (err, data) {
         if (err) {
-            return callback(err);
+            return callback();
         }
-        callback(null, data);
+        callback(data);
     });
 };
 module.exports = UserDAO;

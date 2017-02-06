@@ -37,7 +37,11 @@
                 templateUrl: 'static_views/dashboard/create_activity.view.html',
                 controller: 'createActivityController'
 
-            })
+            }).when('/app/activity/:id?', {
+            templateUrl: 'static_views/dashboard/activity.view.html',
+            controller: 'activityController'
+
+        })
             .otherwise({
                 redirectTo: '/app'
             });

@@ -8,6 +8,13 @@ exports.getUser = function (req, res, next) {
     }
     res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
 };
+exports.getOne = function (req, res, next) {
+    UserSystem.getOne(req.params.id).then(function (user) {
+        res.status(200).json({"success": true, errors: [], "object": user});
+    }, function () {
+        res.status(404).json({"success": false, errors: ["No user found."]});
+    });
+};
 
 exports.APIRequiresAuthentication = function (req, res, next) {
     var decodedToken = UserSystem.getDecodedToken(req.get(config.application.auth_token_header));

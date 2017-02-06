@@ -27,19 +27,30 @@ exports.getDecodedToken = function (encodedToken) {
     }
     return null;
 };
-
+exports.getOne = function (id) {
+    return new Promise(function (resolve, reject) {
+        UserDAO.findById(id, function (usr) {
+            if (!usr) {
+                reject();
+                return;
+            }
+            resolve(usr);
+            return;
+        });
+    });
+};
 exports.getLoggedInUser = function (encodedToken) {
     return new Promise(function (resolve, reject) {
         var decodedToken = exports.getDecodedToken(encodedToken);
         if (decodedToken.user) {
-            UserDAO.findById(decodedToken.user, function (err, usr) {
-                if (err || !usr) {
+            UserDAO.findById(decodedToken.user, function (usr) {
+                if (!usr) {
                     reject();
                     return;
                 }
                 resolve(usr);
                 return;
-            });
+            }, true);
         } else {
             reject();
         }
@@ -61,15 +72,12 @@ exports.validateUser = function (username, password, confirmPassword) {
             errors.push('Passwords must match!');
         }
         if (errors.length === 0) {
-            UserDAO.findByUsername(username, false, function (err, usr) {
+            UserDAO.findByUsername(username, false, function (usr) {
                 var alreadyExists = false;
-                if (err) {
-                    errors.push("Something went wrong, try again!")
-                } else {
-                    if (usr) {
-                        errors.push("Username already exists, try another!");
-                        alreadyExists = true;
-                    }
+
+                if (usr) {
+                    errors.push("Username already exists, try another!");
+                    alreadyExists = true;
                 }
                 if (errors.length === 0) {
                     resolve();
@@ -106,11 +114,8 @@ exports.createUser = function (username, password) {
 
 exports.authenticateUser = function (username, password) {
     return new Promise(function (resolve, reject) {
-        UserDAO.findByUsername(username, true, function (err, usr) {
-            if (err) {
-                reject(err);
-                return;
-            }
+        UserDAO.findByUsername(username, true, function (usr) {
+
             if (usr) {
                 bcrypt.compare(password, usr.hashed_password, function (err, res) {
                     if (err) {

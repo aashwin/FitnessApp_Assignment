@@ -4,15 +4,15 @@ var ActivityDAO = {};
 ActivityDAO.findById = function (id, callback) {
     Activity.findById(id, function (err, data) {
         if (err) {
-            return callback(err);
+            return callback(null);
         }
-        callback(null, data);
+        callback(data);
     });
 };
 ActivityDAO.findByUserId = function (user_id, callback) {
     Activity.find({"createdBy": user_id}, function (err, data) {
         if (err) {
-            return callback();
+            return callback(null);
         }
         callback(data);
     });
