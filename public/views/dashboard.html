@@ -6,32 +6,38 @@
     <title><%= title %> </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
-    <link rel="stylesheet" href="css/dashboard_style.css">
-    <script type="text/javascript" src="js/modules/angular.min.js"></script>
-    <script type="text/javascript" src="js/modules/angular-route.min.js"></script>
-    <script type="text/javascript" src="js/dashboard/dashboard_app.js"></script>
-    <script type="text/javascript" src="js/user/user.service.js"></script>
-    <script type="text/javascript" src="js/dashboard/header.controller.js"></script>
+    <base href="/">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/font-awesome.css">
+    <link rel="stylesheet" href="/css/dashboard_style.css">
+    <link rel="stylesheet" href="/css/angular-moment-picker.min.css">
+    <script type="text/javascript" src="/js/modules/angular.min.js"></script>
+    <script type="text/javascript" src="/js/modules/angular-route.min.js"></script>
+    <script type="text/javascript" src="/js/modules/moment.min.js"></script>
+    <script type="text/javascript" src="/js/modules/angular-moment-picker.min.js"></script>
+    <script type="text/javascript" src="/js/dashboard/dashboard_app.js"></script>
+    <script type="text/javascript" src="/js/user/user.service.js"></script>
+    <script type="text/javascript" src="/js/dashboard/header.controller.js"></script>
+    <script type="text/javascript" src="/js/dashboard/home.controller.js"></script>
+    <script type="text/javascript" src="/js/dashboard/create_activity.controller.js"></script>
 
 </head>
 <body ng-app="app">
 <nav ng-controller="headerController">
     <div class="container">
         <a href="" class="menu_button"><i class="fa fa-bars"></i></a>
-        <a href="/" class="logo"><img src="images/logo_2_xs.png" alt="FitnessApp" width="200" height="50"/> </a>
+        <a href="/app" class="logo"><img src="images/logo_2_xs.png" alt="FitnessApp" width="200" height="50"/> </a>
         <ul>
-            <li><a href="">My Activities</a></li>
-            <li><a href="">Search</a></li>
-            <li><a href=""><i class="fa fa-plus-circle"></i> Create Activity</a></li>
+            <li><a href=""><i class="fa fa-bar-chart"></i> My Activities</a></li>
+            <li><a href=""><i class="fa fa-search"></i> Search</a></li>
+            <li><a href="/app/create-activity"><i class="fa fa-plus-circle"></i> Create Activity</a></li>
             <li><a href=""><i class="fa fa-user"></i> Hey {{user.username}}</a></li>
         </ul>
+        <div class="clear"></div>
     </div>
 </nav>
 <div class="container">
-    <ng-view></ng-view>
+    <ng-view class="enter"></ng-view>
 </div>
 </body>
 </html>

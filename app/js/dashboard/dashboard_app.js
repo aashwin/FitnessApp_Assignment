@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-    var app = angular.module("app", ['ngRoute']);
+    var app = angular.module("app", ['ngRoute', 'moment-picker']);
     app.factory('httpRequestInterceptor',
         ['$rootScope', function ($rootScope) {
             return {
@@ -24,6 +24,24 @@
         }]);
     app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
         $httpProvider.interceptors.push('httpRequestInterceptor');
+        $routeProvider
+            .when('/app', {
+                templateUrl: 'static_views/dashboard/home.view.html',
+                controller: 'homeController'
+            })
+            .when('/app/create-activity/:method?', {
+                templateUrl: 'static_views/dashboard/create_activity.view.html',
+                controller: 'createActivityController'
+
+            })
+            .otherwise({
+                redirectTo: '/app'
+            });
+
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
     }]);
 })();
 

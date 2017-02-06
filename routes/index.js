@@ -4,7 +4,7 @@ var router = express.Router();
 router.get(['/', '/register'], function (req, res, next) {
     res.render('index', {title: 'Fitness Tracker'});
 });
-router.get('/dashboard', function (req, res, next) {
+router.get(['/app', '/app*'], function (req, res, next) {
     res.render('dashboard', {title: 'Dashboard'});
 });
 

@@ -22,6 +22,7 @@
   "homepage": "https://github.com/aashwin/FitnessApp_Assignment#readme",
   "dependencies": {
     "angular": "^1.6.1",
+    "angular-moment-picker": "^0.9.5",
     "angular-route": "^1.6.1",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.16.0",
@@ -29,6 +30,7 @@
     "ejs": "^2.5.5",
     "express": "^4.14.1",
     "jwt-simple": "^0.5.1",
+    "moment": "^2.17.1",
     "mongodb": "^2.2.22",
     "normalize.css": "5.0.0"
   },

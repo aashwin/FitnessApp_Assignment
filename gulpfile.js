@@ -13,12 +13,20 @@ gulp.task('copy:normalize', function () {
         .pipe(gulp.dest(distDir + 'css/'));
 });
 gulp.task('copy:angular', function () {
-    return gulp.src([nodeModulesDir + 'angular/angular.min.js*',
+    return gulp.src([
+        nodeModulesDir + 'angular/angular.min.js*',
+        nodeModulesDir + 'moment/min/moment.min.js',
+        nodeModulesDir + 'angular-moment-picker/dist/angular-moment-picker.min.js',
         nodeModulesDir + 'angular-route/angular-route.min.js*'])
         .pipe(gulp.dest(distDir + 'js/modules/'));
 });
+gulp.task('copy:angular_css', function () {
+    return gulp.src([
+        nodeModulesDir + 'angular-moment-picker/dist/angular-moment-picker.min.css'])
+        .pipe(gulp.dest(distDir + 'css/'));
+});
 
-gulp.task('copy', ['copy:normalize', 'copy:angular'], function () {
+gulp.task('copy', ['copy:normalize', 'copy:angular', 'copy:angular_css'], function () {
     console.log("Copying files to dist directory")
 });
 
