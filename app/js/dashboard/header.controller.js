@@ -6,8 +6,6 @@
         userService.getLoggedInUser().then(function (res) {
             if (res.success) {
                 $scope.user = res.user;
-            } else {
-                location.href = "/?unauthorised=true";
             }
         });
     }]);

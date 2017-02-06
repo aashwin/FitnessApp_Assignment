@@ -14,7 +14,10 @@
                     return $config;
                 },
                 responseError: function (response) {
-                    console.log(response);
+                    if (response && response.status == 401) {
+                        localStorage.removeItem("AUTH_TOKEN");
+                        location.href = "/?unauthorised=true";
+                    }
                     return response;
                 }
             };
