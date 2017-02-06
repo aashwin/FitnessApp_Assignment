@@ -1,1 +1,1 @@
-"use strict";!function(){var e=angular.module("app");e.controller("headerController",["userService","$scope",function(e,r){r.user={},e.getLoggedInUser().then(function(e){e.success?r.user=e.user:location.href="/?unauthorised=true"},function(e){location.href="/?unauthorised=true"})}])}();
+"use strict";!function(){var e=angular.module("app");e.controller("headerController",["userService","$scope",function(e,r){r.user={},e.getLoggedInUser().then(function(e){e.success?r.user=e.user:location.href="/?unauthorised=true"})}])}();

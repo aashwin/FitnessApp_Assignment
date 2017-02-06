@@ -9,9 +9,6 @@
             } else {
                 location.href = "/?unauthorised=true";
             }
-        }, function (res) {
-            location.href = "/?unauthorised=true";
-
         });
     }]);
 

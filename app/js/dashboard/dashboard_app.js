@@ -12,6 +12,10 @@
                         location.href = "/?unauthorised=true";
                     }
                     return $config;
+                },
+                responseError: function (response) {
+                    console.log(response);
+                    return response;
                 }
             };
         }]);

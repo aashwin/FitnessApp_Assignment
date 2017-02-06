@@ -2,8 +2,9 @@ var User = require('../../framework/models/user');
 var UserDAO = require('../../framework/DAO/users.dao');
 var bcrypt = require('bcrypt');
 const config = require('../../config');
+const debug = require('debug')(config.application.namespace);
 var jwt = require('jwt-simple');
-var auth = function (decoded) {
+exports.isAuthorised = function (decoded) {
     if (decoded) {
         if (decoded.expiry && decoded.expiry > (new Date).getTime()) {
             if (decoded.user) {
@@ -14,42 +15,29 @@ var auth = function (decoded) {
     }
     return false;
 };
-exports.APIRequiresAuthentication = function (req, res, next) {
-    if (req.get("X_AUTH_TOKEN")) {
-        var decoded = jwt.decode(req.get("X_AUTH_TOKEN"), config.application.jwt_token_secret);
-        if (auth(decoded)) {
-            next();
-            return;
+exports.getDecodedToken = function (encodedToken) {
+    try {
+        if (encodedToken) {
+            return jwt.decode(encodedToken, config.application.jwt_token_secret);
         }
+    } catch (e) {
+        debug("Failed decoding %s auth token.", encodedToken, e);
     }
-    res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
-
-
+    return null;
 };
-exports.getLoggedInUser = function (req) {
+
+exports.getLoggedInUser = function (encodedToken) {
     return new Promise(function (resolve, reject) {
-        if (req.get("X_AUTH_TOKEN")) {
-            var decoded = jwt.decode(req.get("X_AUTH_TOKEN"), config.application.jwt_token_secret);
-            if (decoded) {
-                if (decoded.expiry && decoded.expiry > (new Date).getTime()) {
-                    if (decoded.user) {
-                        UserDAO.findById(decoded.user, function (err, usr) {
-                            if (err || !usr || !usr.data) {
-                                reject();
-                                return;
-                            }
-                            resolve(usr);
-                            return;
-                        });
-                    } else {
-                        reject();
-                    }
-                } else {
+        var decodedToken = exports.getDecodedToken(encodedToken);
+        if (decodedToken.user) {
+            UserDAO.findById(decodedToken.user, function (err, usr) {
+                if (err || !usr || !usr.data) {
                     reject();
+                    return;
                 }
-            } else {
-                reject();
-            }
+                resolve(usr);
+                return;
+            });
         } else {
             reject();
         }
