@@ -1,10 +1,12 @@
 var chai = require('chai');
+var mongoose = require('mongoose');
 var expect = chai.expect;
 var sinon = require('sinon');
 var chaiAsPromised = require('chai-as-promised');
+require('../../../framework/bootstrap');
 var UserSystem = require('../../../framework/modules/user_system');
 var UserDAO = require('../../../framework/DAO/users.dao');
-var User = require('../../../framework/models/user');
+var User = mongoose.model("User");
 var bcrypt = require('bcrypt');
 chai.use(chaiAsPromised);
 
@@ -51,7 +53,7 @@ describe('Framework -> User System Tests', function () {
     });
     it('validateUser() should resolve when all validations passes', function () {
         var findByUsernameStub = sandbox.stub(UserDAO, 'findByUsername');
-        findByUsernameStub.yields(null, new User(null));
+        findByUsernameStub.yields(null, null);
         var validationPromise = UserSystem.validateUser(GOOD_USERNAME, GOOD_STRONG_PASSWORD, GOOD_STRONG_PASSWORD);
         return expect(validationPromise).to.be.fulfilled;
     });

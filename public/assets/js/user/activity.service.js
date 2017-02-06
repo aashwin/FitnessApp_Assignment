@@ -1,0 +1,1 @@
+"use strict";!function(){var t=angular.module("app");t.factory("activityService",["$http",function(t){var n={};return n.create=function(n){return t.post("/api/activities/",n).then(function(t){return t.data},function(t){return 400==t.status?t.data:{success:!1,errors:["Something went wrong, try again!"]}})},n}])}();

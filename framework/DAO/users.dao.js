@@ -1,30 +1,26 @@
-var db = require("../modules/database");
-var User = require('../../framework/models/user');
-const COLLECTION = 'users';
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
 
 var UserDAO = {};
-UserDAO.findByUsername = function (username, callback) {
-    db.get().collection(COLLECTION).findOne({username: username}, function (err, data) {
+UserDAO.findByUsername = function (username, showPassword, callback) {
+    showPassword = showPassword || false;
+    var q = User.findOne({username: username});
+    if (showPassword) {
+        q.select("+hashed_password");
+    }
+    q.exec(function (err, data) {
         if (err) {
             return callback(err);
         }
-        callback(null, new User(data));
+        callback(null, data);
     });
 };
 UserDAO.findById = function (id, callback) {
-    db.get().collection(COLLECTION).findOne({_id: new db.ObjectID(id)}, function (err, data) {
+    User.findById(id, function (err, data) {
         if (err) {
             return callback(err);
         }
-        callback(null, new User(data));
-    });
-};
-UserDAO.create = function (user, callback) {
-    db.get().collection(COLLECTION).insertOne(user.data, function (err, count) {
-        if (err) {
-            return callback(err);
-        }
-        callback(null, count);
+        callback(null, data);
     });
 };
 module.exports = UserDAO;

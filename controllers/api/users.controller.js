@@ -2,20 +2,25 @@ var UserSystem = require('../../framework/modules/user_system');
 const config = require('../../config');
 const debug = require('debug')(config.application.namespace);
 exports.getUser = function (req, res, next) {
-    UserSystem.getLoggedInUser(req.get("X_AUTH_TOKEN")).then(function (usr) {
-        res.status(200).json({"success": true, errors: [], "user": usr.get(null, true)});
-    }, function () {
-        res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
-    });
-};
-
-exports.APIRequiresAuthentication = function (req, res, next) {
-    var decodedToken = UserSystem.getDecodedToken(req.get("X_AUTH_TOKEN"));
-    if (decodedToken && UserSystem.isAuthorised(decodedToken)) {
-        next();
+    if (req.currentUser) {
+        res.status(200).json({"success": true, errors: [], "user": req.currentUser});
         return;
     }
     res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
+};
+
+exports.APIRequiresAuthentication = function (req, res, next) {
+    var decodedToken = UserSystem.getDecodedToken(req.get(config.application.auth_token_header));
+    if (decodedToken && UserSystem.isAuthorised(decodedToken)) {
+        UserSystem.getLoggedInUser(req.get(config.application.auth_token_header)).then(function (currentUser) {
+            req.currentUser = currentUser;
+            next();
+        }, function () {
+            res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
+        });
+    } else {
+        res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
+    }
 };
 exports.authenticateUser = function (req, res, next) {
     const username = req.body.username.toLowerCase();
@@ -24,8 +29,8 @@ exports.authenticateUser = function (req, res, next) {
     UserSystem.authenticateUser(username, password).then(function (user) {
         debug("Authenticated User: %s", username);
         response.success = true;
-        response.token = UserSystem.generateJWT(user.get("_id"));
-        response.user = user.get(null, true);
+        response.token = UserSystem.generateJWT(user._id);
+        response.user = user;
         res.status(200).json(response);
     }, function (err) {
         if (err) {
@@ -46,18 +51,9 @@ exports.createUser = function (req, res, next) {
     UserSystem.validateUser(username, password, confirmPassword)
         .then(function () {
             UserSystem.hashPassword(password).then(function (hash) {
-                UserSystem.createUser(username, hash)
-                    .then(function () {
-                        debug("Created User: %s", username);
-                        response.success = true;
-                        res.status(201).json(response);
-
-                    }, function (err) {
-                        debug("Create user error: ", error);
-
-                        response.errors.push("Something went wrong, try again!");
-                        res.status(500).json(response);
-                    });
+                UserSystem.createUser(username, hash);
+                response.success = true;
+                res.status(201).json(response);
             }, function (error) {
                 debug("Password hashing error: ", error);
                 response.errors.push("Something went wrong, try again!");

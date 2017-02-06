@@ -22,7 +22,11 @@
                 }
             };
         }]);
-    app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
+    app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'momentPickerProvider', function ($routeProvider, $locationProvider, $httpProvider, momentPickerProvider) {
+        momentPickerProvider.options({
+            startView: 'month',
+            today: true
+        });
         $httpProvider.interceptors.push('httpRequestInterceptor');
         $routeProvider
             .when('/app', {
