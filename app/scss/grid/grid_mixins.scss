@@ -1,0 +1,7 @@
+@mixin columns($size) {
+  @for $i from 1 through 12 {
+    .col.#{$size}-#{$i} {
+      width: 100% / 12 * $i;
+    }
+  }
+}

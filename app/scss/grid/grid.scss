@@ -1,0 +1,27 @@
+@import 'grid_mixins';
+@import '../misc/variables';
+
+.col {
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: all .5s ease-in-out;
+
+}
+
+@include columns('xs');
+
+@media #{$small-screen-min-width}{
+  @include columns('s');
+}
+
+@media #{$medium-screen-min-width} {
+  @include columns('md');
+
+}
+
+@media #{$large-screen-min-width}{
+  @include columns('lg');
+}

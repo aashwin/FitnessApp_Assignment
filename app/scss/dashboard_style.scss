@@ -1,3 +1,4 @@
+@import 'misc/variables';
 html, body {
   width: 100%;
   height: 100%;
@@ -7,7 +8,6 @@ html, body {
   font-size: 100%;
   background: #f0f0f0;
 }
-
 *,
 *:before,
 *:after {
@@ -15,7 +15,6 @@ html, body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 .error_list {
   list-style: none;
   margin: 0;
@@ -27,10 +26,9 @@ html, body {
   color: #fff;
   text-shadow: 1px 1px #500;
   background: #900;
-  padding: 5px;
+  padding: 10px;
   border-radius: 10px;
   list-style: none;
-  width: 290px;
   border: 1px solid #b00;
   margin: 0 0 5px;
   animation: slideDown 1s forwards;
@@ -41,10 +39,9 @@ html, body {
   color: #fff;
   text-shadow: 1px 1px #500;
   background: #900;
-  padding: 5px;
+  padding: 10px;
   border-radius: 10px;
   list-style: none;
-  width: 290px;
   border: 1px solid #b00;
   margin: 0 0 5px;
   animation: slideDown 1s forwards;
@@ -232,20 +229,8 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
   margin-right: -15px;
 }
 
-.col {
-  float: left;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.col.xs-6 {
-  width: 50%;
-}
-
-.col.xs-12 {
-  width: 100%;
+.bottom-margin {
+  margin-bottom: 15px;
 }
 
 .clear {
@@ -263,6 +248,50 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
   border-radius: .3rem
 }
 
+.user_card {
+  text-align: center;
+}
+
+.user_card img {
+  width: 50%;
+}
+
+.user_card .title {
+  text-transform: uppercase;
+  font-size: 130%;
+  color: #333;
+  font-weight: 400;
+  padding: 5px;
+
+}
+
+.dash_card {
+  text-align: center;
+
+}
+
+.dash_card .title {
+  text-transform: uppercase;
+  font-size: 110%;
+  color: #666;
+  font-weight: 200;
+  padding: 5px;
+  text-align: center;
+
+}
+
+.dash_card .value {
+  text-transform: uppercase;
+  font-size: 135%;
+  color: #333;
+  padding: 5px;
+  text-align: center;
+}
+
+.dash_card .value .units {
+  font-size: 65%;
+}
+
 h1, h2 {
   text-transform: uppercase;
   border-bottom: 1px solid #ddd;
@@ -270,9 +299,10 @@ h1, h2 {
   padding-bottom: 10px;
   font-weight: 500;
   width: 100%;
+  font-size: 1.45em;
 }
 
-@media screen and (min-width: 650px) {
+@media #{$small-screen-min-width}{
 
   .button.s-large {
     padding: .75rem 1.5rem;
@@ -281,27 +311,12 @@ h1, h2 {
   }
 }
 
-@media screen and (min-width: 900px) {
-  .col.md-2 {
-    width: 16.6666667%;
-  }
-  .col.md-3 {
-    width: 25%;
+@media #{$medium-screen-min-width} {
+
+  h1, h2 {
+    font-size: 2em;
   }
 
-  .col.md-4 {
-    width: 33.3333334%;
-  }
-  .col.md-6 {
-    width: 50%;
-  }
-
-  .col.md-8 {
-    width: 66.6666667%;
-  }
-  .col.md-12 {
-    width: 100%;
-  }
   .button.md-large {
     padding: .75rem 1.5rem;
     font-size: 1.25rem;
@@ -310,10 +325,7 @@ h1, h2 {
   .menu_button {
     display: none
   }
-  .container {
-    width: 900px;
-    margin: auto;
-  }
+
   .logo {
     width: 200px;
   }
@@ -323,13 +335,8 @@ h1, h2 {
   }
 }
 
-@media screen and (min-width: 1024px) {
-  .container {
-    width: 1024px;
-  }
-  nav ul {
-    width: 820px;
-  }
+@media #{$large-screen-min-width}{
+
 }
 
 @keyframes fade {
@@ -361,3 +368,4 @@ h1, h2 {
     transform: translateY(0%);
   }
 }
+@import 'grid/grid';
