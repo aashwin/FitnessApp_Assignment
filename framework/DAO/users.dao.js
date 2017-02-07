@@ -4,7 +4,7 @@ const User = mongoose.model('User');
 var UserDAO = {};
 UserDAO.findByUsername = function (username, showPassword, callback) {
     showPassword = showPassword || false;
-    User.find({username: username}, showPassword ? '+hashed_password' : '', function (err, data) {
+    User.findOne({username: username}, showPassword ? '+hashed_password' : '', function (err, data) {
         if (err) {
             return callback();
         }
