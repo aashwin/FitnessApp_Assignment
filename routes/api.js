@@ -5,11 +5,11 @@ var router = express.Router();
 
 router.post('/users', userController.createUser);
 router.get('/users/', userController.APIRequiresAuthentication, userController.getUser);
-router.get('/users/:id', userController.APIRequiresAuthentication, userController.getOne);
+router.get('/users/:id([A-z0-9]+)', userController.APIRequiresAuthentication, userController.getOne);
 router.post('/authenticate', userController.authenticateUser);
 
 router.get('/activities/', userController.APIRequiresAuthentication, activityController.getAll);
-router.get('/activities/:id', userController.APIRequiresAuthentication, activityController.getOne);
+router.get('/activities/:id([A-z0-9]+)', userController.APIRequiresAuthentication, activityController.getOne);
 router.post('/activities/', userController.APIRequiresAuthentication, activityController.createActivity);
 
 module.exports = router;
