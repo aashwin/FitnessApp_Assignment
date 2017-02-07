@@ -8,6 +8,8 @@ var gutil = require('gulp-util');
 var distDir = 'public/assets/';
 var buildDir = 'app/';
 var nodeModulesDir = 'node_modules/';
+var cleanCSS = require('gulp-clean-css');
+
 gulp.task('copy:normalize', function () {
     return gulp.src(nodeModulesDir + 'normalize.css/normalize.css')
         .pipe(gulp.dest(distDir + 'css/'));
@@ -37,6 +39,12 @@ gulp.task('compile_scss', function () {
         .pipe(gulp.dest(distDir + "css/"))
 });
 
+gulp.task('minify_css', function() {
+    return gulp.src(distDir+'css/*.css')
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(gulp.dest(distDir+'css/'));
+});
+
 gulp.task('compress_js', function () {
     gulp.src(buildDir + 'js/**/*.js')
         .pipe(uglify())
@@ -46,8 +54,9 @@ gulp.task('compress_js', function () {
 gulp.task('watch', function () {
     gulp.watch(buildDir + 'js/**/*.js', ['compress_js']);
     gulp.watch(buildDir + 'scss/*.scss', ['compile_scss']);
+    gulp.watch(distDir + 'css/*.css', ['minify_css']);
 });
 
 gulp.task('default', function (callback) {
-    runSequence('copy', ['compile_scss', 'compress_js'], callback);
+    runSequence('copy', ['compile_scss', 'compress_js'], 'minify_css', callback);
 });
