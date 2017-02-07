@@ -1,9 +1,9 @@
+require('../../../framework/bootstrap');
 var chai = require('chai');
 var mongoose = require('mongoose');
 var expect = chai.expect;
 var sinon = require('sinon');
 var chaiAsPromised = require('chai-as-promised');
-require('../../../framework/bootstrap');
 var UserSystem = require('../../../framework/modules/user_system');
 var UserDAO = require('../../../framework/DAO/users.dao');
 var User = mongoose.model("User");
@@ -57,26 +57,28 @@ describe('Framework -> User System Tests', function () {
         var validationPromise = UserSystem.validateUser(GOOD_USERNAME, GOOD_STRONG_PASSWORD, GOOD_STRONG_PASSWORD);
         return expect(validationPromise).to.be.fulfilled;
     });
-    it('validateUser() should reject and alreadyExists should be false when username already exists', function () {
+    it('validateUser() should reject and alreadyExists should be true when username already exists', function () {
         const expectedReturn = {"errors": ["Username already exists, try another!"], "alreadyExists": true};
-        var findByUsernameStub = sandbox.stub(UserDAO, 'findByUsername');
-        findByUsernameStub.yields(null, new User({"username": GOOD_USERNAME}));
+        var findByUsernameStub = sandbox.stub(UserDAO, 'findByUsername', function (username, showPassword, callback) {
+            callback(new User({"username": GOOD_USERNAME, "hashed_password": "hash"}));
+        });
         var validationPromise = UserSystem.validateUser(GOOD_USERNAME, GOOD_STRONG_PASSWORD, GOOD_STRONG_PASSWORD);
         return expect(validationPromise).to.be.rejected.and.become(expectedReturn);
     });
 
     it('authenticateUser() should accept user in the database with matching password', function () {
-        var expected = new User({"username": GOOD_USERNAME});
-        var findByUsernameStub = sandbox.stub(UserDAO, 'findByUsername');
+        var expected = new User({"username": GOOD_USERNAME, "hashed_password": "hash"});
+        var findByUsernameStub = sandbox.stub(UserDAO, 'findByUsername', function (username, showPassword, callback) {
+            callback(expected);
+        });
         var bycryptStub = sandbox.stub(bcrypt, 'compare');
-        findByUsernameStub.yields(null, expected);
         bycryptStub.yields(null, true);
         var authenticationPromise = UserSystem.authenticateUser(GOOD_USERNAME, GOOD_STRONG_PASSWORD);
         return expect(authenticationPromise).to.be.fulfilled.and.become(expected);
     });
     it('authenticateUser() should reject user who is not in database', function () {
         var findByUsernameStub = sandbox.stub(UserDAO, 'findByUsername');
-        findByUsernameStub.yields(null, new User(null));
+        findByUsernameStub.yields(null, null);
         var authenticationPromise = UserSystem.authenticateUser(GOOD_USERNAME, "");
         return expect(authenticationPromise).to.be.rejected.and.become(null);
     });
