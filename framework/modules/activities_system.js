@@ -2,7 +2,8 @@ var ActivityDAO = require('../../framework/DAO/activities.dao');
 const mongoose = require('mongoose');
 const Activity = mongoose.model('Activity');
 const validator = require('validator');
-
+var parseGpx = require('../../framework/modules/parse-gpx/parse-gpx');
+var CustomMath = require('../../framework/modules/custom_math');
 exports.getAll = function (userId) {
     return new Promise(function (resolve, reject) {
         ActivityDAO.findByUserId(userId, function (activitiesList) {
@@ -99,3 +100,75 @@ exports.validateAndClean = function (data, user) {
         }
     );
 };
+
+exports.validateAndProcessGPXFile = function (file) {
+    var errors = [];
+    return new Promise(function (resolve, reject) {
+            if (file) {
+                if (file.size > 2097152) {
+                    errors.push("GPX file is too big, try a smaller one!");
+                }
+            }
+            else {
+                errors.push('Malformed data');
+            }
+            if (errors.length === 0) {
+                var gpxData = {
+                    minElevation: null,
+                    maxElevation: null,
+                    startTime: null,
+                    endTime: null,
+                    durationH: 0,
+                    durationM: 0,
+                    durationS: 0,
+                    distance: 0
+                };
+                parseGpx.parseGpx(file.path, function (error, data) {
+                        if (error) {
+                            errors.push("The GPX file you uploaded cannot be parsed.");
+                            reject({"errors": errors});
+                        } else {
+                            for (var i = 0; i < data.trackPoints.length; i++) {
+                                var currentTrackPoint = data.trackPoints[i];
+
+                                if (!gpxData.minElevation || gpxData.minElevation > currentTrackPoint.ele) {
+                                    gpxData.minElevation = currentTrackPoint.ele;
+                                }
+                                if (!gpxData.maxElevation || gpxData.maxElevation < currentTrackPoint.ele) {
+                                    gpxData.maxElevation = currentTrackPoint.ele;
+                                }
+                                var currentTime = Date.parse(currentTrackPoint.time);
+                                if (!gpxData.startTime || gpxData.startTime > currentTime) {
+                                    gpxData.startTime = currentTime;
+                                }
+                                if (!gpxData.endTime || gpxData.endTime < currentTime) {
+                                    gpxData.endTime = currentTime;
+                                }
+                                if (i > 0) {
+                                    var previousTrackPoint = data.trackPoints[i - 1];
+                                    gpxData.distance += CustomMath.distanceBetween(previousTrackPoint.lat, previousTrackPoint.long, currentTrackPoint.lat, currentTrackPoint.long);
+                                }
+                            }
+
+                            if (gpxData.endTime !== null && gpxData.startTime !== null) {
+                                var leftOver = gpxData.endTime / 1000 - gpxData.startTime / 1000;
+                                gpxData.durationH = Math.floor(leftOver / 3600);
+                                leftOver %= 3600;
+                                gpxData.durationM = Math.floor(leftOver / 60);
+                                leftOver %= 60;
+                                gpxData.durationS = Math.round(leftOver);
+                            }
+                            gpxData.elevation = (!gpxData.maxElevation || !gpxData.minElevation ? 0 : gpxData.maxElevation - gpxData.minElevation);
+                            resolve(gpxData);
+                        }
+                    }
+                );
+            }
+            else {
+                reject({"errors": errors});
+            }
+        }
+    )
+        ;
+}
+;

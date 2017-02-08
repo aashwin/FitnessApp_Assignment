@@ -2,7 +2,6 @@ var ActivitySystem = require('../../framework/modules/activities_system');
 var ActivityCommentSystem = require('../../framework/modules/activity_comments_system');
 const config = require('../../config');
 const debug = require('debug')(config.application.namespace);
-
 exports.getAll = function (req, res, next) {
     if (req.currentUser) {
         ActivitySystem.getAll(req.currentUser.get("_id")).then(function (list) {
@@ -47,15 +46,39 @@ exports.createActivity = function (req, res, next) {
     if (req.currentUser) {
 
         var response = {errors: [], success: false, object: null};
-        ActivitySystem.validateAndClean(req.body, req.currentUser).then(function (activity) {
-            activity = ActivitySystem.createActivity(activity);
-            response.success = true;
-            response.object = activity;
-            res.status(201).json(response);
-        }, function (ret) {
-            response.errors = ret.errors || ["Something went wrong!"];
-            res.status(400).json(response);
-        });
+        if (req.file) {
+            ActivitySystem.validateAndProcessGPXFile(req.file).then(function (gpxData) {
+                req.body.distance = Number(gpxData.distance.toFixed(2));
+                req.body.dateTime = Math.round(gpxData.startTime / 1000);
+                req.body.distanceType = {"value": 1, "label": "Meters"};
+                req.body.elevation = Number(gpxData.elevation.toFixed(2));
+                req.body.durationH = gpxData.durationH;
+                req.body.durationM = gpxData.durationM;
+                req.body.durationS = gpxData.durationS;
+                ActivitySystem.validateAndClean(req.body, req.currentUser).then(function (activity) {
+                    activity = ActivitySystem.createActivity(activity);
+                    response.success = true;
+                    response.object = activity;
+                    res.status(201).json(response);
+                }, function (ret) {
+                    response.errors = ret.errors || ["Something went wrong!"];
+                    res.status(400).json(response);
+                });
+
+            });
+
+        } else {
+            ActivitySystem.validateAndClean(req.body, req.currentUser).then(function (activity) {
+                activity = ActivitySystem.createActivity(activity);
+                response.success = true;
+                response.object = activity;
+                res.status(201).json(response);
+            }, function (ret) {
+                response.errors = ret.errors || ["Something went wrong!"];
+                res.status(400).json(response);
+            });
+        }
 
     }
-};
+}
+;

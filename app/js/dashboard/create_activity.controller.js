@@ -25,6 +25,10 @@
             distanceType: $scope.measurementTypes[0],
             dateTimeObj: moment(date)
         };
+        $scope.gpxUploadModel = {
+            errors: [],
+            activityType: $scope.activityTypes[0]
+        };
         $scope.addActivityManual = function () {
             $scope.manualEntryModel.errors = [];
             $scope.manualEntryModel.dateTime = Math.round($scope.manualEntryModel.dateTimeObj.valueOf() / 1000);
@@ -32,7 +36,7 @@
                 if (res.success) {
                     $scope.errored = false;
                     $location.path('/app/activity/' + res.object._id);
-                    
+
                 } else {
                     $scope.manualEntryModel.errors = res.errors;
                     $scope.errored = true;
@@ -42,9 +46,34 @@
                 $scope.errored = true;
 
             });
-            console.log($scope);
+        };
+        $scope.uploadPercent = null;
+        $scope.uploadGpx = function () {
+            if ($scope.gpxUpload.$invalid) {
+                $scope.gpxUploadModel.errors = ['Fix the highlighted issues before continuing...'];
+                $scope.errored = true;
+                return;
+            }
+            $scope.gpxUploadModel.errors = [];
+            activityService.createUploader($scope.gpxUploadModel).then(function (resp) {
+                $scope.uploadPercent = null;
+                if (resp.success) {
+                    $scope.errored = false;
+                    $location.path('/app/activity/' + resp.object._id);
+                } else {
+                    $scope.gpxUploadModel.errors = resp.errors;
+                    $scope.errored = true;
+                }
+            }, function (resp) {
+                $scope.gpxUploadModel.errors = ['Something went wrong, try again!'];
+                $scope.errored = true;
+
+            }, function (progressPercent) {
+                $scope.uploadPercent = progressPercent + "%";
+            });
         };
 
     }]);
+
 
 })();

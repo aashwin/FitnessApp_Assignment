@@ -1,7 +1,7 @@
 'use strict';
 (function () {
     var app = angular.module("app");
-    app.factory("activityService", ['$http', function ($http) {
+    app.factory("activityService", ['$http', 'Upload', function ($http, Upload) {
         var service = {};
         service.get = function (id) {
             return $http.get('/api/activities/' + id)
@@ -29,6 +29,18 @@
                     }
                     return {"success": false, "errors": ["Something went wrong, try again!"]};
                 });
+        };
+        service.createUploader = function (activity) {
+            return Upload.upload({
+                url: '/api/activities/',
+                data: activity
+            }).then(function (resp) {
+                return resp.data;
+            }, function (resp) {
+                return resp;
+            }, function (evt) {
+                return parseInt(100.0 * evt.loaded / evt.total);
+            });
         };
         service.addComment = function (comment) {
             return $http.post('/api/activities/' + comment.activityId + "/comments", comment)

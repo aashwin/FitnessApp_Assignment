@@ -36,7 +36,8 @@
             <label for="dateTimeObj">Date & Time
                 <small class="red">*</small>
             </label>
-            <input class="form-input validation" id="dateTimeObj" ng-model="manualEntryModel.dateTimeObj" placeholder="Date"
+            <input class="form-input validation" id="dateTimeObj" ng-model="manualEntryModel.dateTimeObj"
+                   placeholder="Date"
                    moment-picker="manualEntryModel.dateTimeObj"
                    format="DD-MM-YYYY HH:mm:ss" today="true" required>
         </div>
@@ -89,7 +90,44 @@
 </div>
 <div ng-show="entryMode==2">
     <h1>GPX Upload</h1>
-    <form name="gpxUpload">
-        <input type="file">
+    <form name="gpxUpload" class="form-background grid" ng-class="{'errored': errored}">
+        <ul class="error_list">
+            <li ng-repeat="error in gpxUploadModel.errors">
+                {{error}}
+            </li>
+        </ul>
+        <div class="form-group col xs-12">
+            <label for="name">Activity Name
+                <small class="red">*</small>
+            </label>
+            <input type="text" class="form-input validation" id="name" ng-model="gpxUploadModel.name"
+                   placeholder="Describe the activity in a few words..." required
+                   ng-minlength="3" ng-maxlength="50">
+        </div>
+        <div class="form-group col xs-12 md-5">
+            <label for="activityType">Activity Type
+                <small class="red">*</small>
+            </label>
+            <select id="activityType" ng-model="gpxUploadModel.activityType" class="form-input validation"
+                    ng-options="aT.label for aT in activityTypes" required>
+            </select>
+        </div>
+        <div class="form-group col xs-12 md-7">
+            <label for="file">GPX File
+                <small class="red">*</small>
+            </label>
+            <div class="file_upload" ngf-select ng-required ngf-drop ng-model="gpxUploadModel.file" id="file"
+                 ngf-accept="'.gpx'" ngf-pattern="'.gpx'" ngf-max-size="2MB">
+                {{gpxUploadModel.file.name || 'Drag a file here or click to upload'}}
+            </div>
+        </div>
+        <div class="form-group col xs-12 md-12">
+            <label for="notes">Notes</label>
+            <textarea id="notes" ng-model="gpxUploadModel.notes" placeholder="Say something about your activity..."
+                      class="form-input validation"></textarea>
+        </div>
+        <input type="button" ng-click="uploadGpx();" class="button xs-large col xs-12 orange"
+               value="{{uploadPercent ||'Upload Activity >>'}}">
+        <div class="clear"></div>
     </form>
 </div>
