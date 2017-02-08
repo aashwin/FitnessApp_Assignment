@@ -2,6 +2,8 @@ var ActivitySystem = require('../../framework/modules/activities_system');
 var ActivityCommentSystem = require('../../framework/modules/activity_comments_system');
 const config = require('../../config');
 const debug = require('debug')(config.application.namespace);
+var fs = require('fs');
+
 exports.getAll = function (req, res, next) {
     if (req.currentUser) {
         ActivitySystem.getAll(req.currentUser.get("_id")).then(function (list) {
@@ -66,7 +68,7 @@ exports.createActivity = function (req, res, next) {
                 });
 
             });
-
+            fs.unlink(req.file.path);
         } else {
             ActivitySystem.validateAndClean(req.body, req.currentUser).then(function (activity) {
                 activity = ActivitySystem.createActivity(activity);
