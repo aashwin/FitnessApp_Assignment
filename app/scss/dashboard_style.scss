@@ -250,10 +250,13 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
 
 .user_card {
   text-align: center;
+  color: #333;
+  font-size:105%;
 }
 
 .user_card img {
-  width: 50%;
+  width: 35%;
+  margin-bottom:3px;
 }
 
 .user_card .title {
@@ -264,10 +267,9 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
   padding: 5px;
 
 }
-
 .dash_card {
   text-align: center;
-
+  padding:10px;
 }
 
 .dash_card .title {
