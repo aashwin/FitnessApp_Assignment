@@ -1,6 +1,7 @@
 var ActivityDAO = require('../../framework/DAO/activities.dao');
 const mongoose = require('mongoose');
 const Activity = mongoose.model('Activity');
+const ActivityTrackPoint = mongoose.model('ActivityTrackPoint');
 const validator = require('validator');
 var parseGpx = require('../../framework/modules/parse-gpx/parse-gpx');
 var CustomMath = require('../../framework/modules/custom_math');
@@ -121,7 +122,8 @@ exports.validateAndProcessGPXFile = function (file) {
                     durationH: 0,
                     durationM: 0,
                     durationS: 0,
-                    distance: 0
+                    distance: 0,
+                    trackPoints: []
                 };
                 parseGpx.parseGpx(file.path, function (error, data) {
                         if (error) {
@@ -148,6 +150,12 @@ exports.validateAndProcessGPXFile = function (file) {
                                     var previousTrackPoint = data.trackPoints[i - 1];
                                     gpxData.distance += CustomMath.distanceBetween(previousTrackPoint.lat, previousTrackPoint.long, currentTrackPoint.lat, currentTrackPoint.long);
                                 }
+                                var tp = new ActivityTrackPoint();
+                                tp.lat = currentTrackPoint.lat;
+                                tp.long = currentTrackPoint.long;
+                                tp.elevation = currentTrackPoint.ele;
+                                tp.dateTime = new Date(currentTime);
+                                gpxData.trackPoints.push(tp);
                             }
 
                             if (gpxData.endTime !== null && gpxData.startTime !== null) {

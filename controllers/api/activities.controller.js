@@ -1,5 +1,6 @@
 var ActivitySystem = require('../../framework/modules/activities_system');
 var ActivityCommentSystem = require('../../framework/modules/activity_comments_system');
+var ActivityTrackPointSystem = require('../../framework/modules/activity_trackpoints_system');
 const config = require('../../config');
 const debug = require('debug')(config.application.namespace);
 var fs = require('fs');
@@ -59,9 +60,14 @@ exports.createActivity = function (req, res, next) {
                 req.body.durationS = gpxData.durationS;
                 ActivitySystem.validateAndClean(req.body, req.currentUser).then(function (activity) {
                     activity = ActivitySystem.createActivity(activity);
-                    response.success = true;
-                    response.object = activity;
-                    res.status(201).json(response);
+                    for (var i = 0; i < gpxData.trackPoints.length; i++) {
+                        gpxData.trackPoints[i].activityId = activity._id;
+                    }
+                    ActivityTrackPointSystem.createTrackpoints(gpxData.trackPoints, function (err, points) {
+                        response.success = true;
+                        response.object = activity;
+                        res.status(201).json(response);
+                    });
                 }, function (ret) {
                     response.errors = ret.errors || ["Something went wrong!"];
                     res.status(400).json(response);
