@@ -6,7 +6,12 @@ ActivityDAO.findById = function (id, callback) {
         if (err) {
             return callback(null);
         }
-        callback(data);
+        Activity.populate(data, {"path":"createdBy"}, function(err, popData){
+            if (err) {
+                return callback(null);
+            }
+            callback(popData);
+        });
     });
 };
 ActivityDAO.findByUserId = function (user_id, callback) {

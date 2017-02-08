@@ -1,6 +1,8 @@
 var ActivityDAO = require('../../framework/DAO/activities.dao');
 const mongoose = require('mongoose');
 const Activity = mongoose.model('Activity');
+const validator = require('validator');
+
 exports.getAll = function (userId) {
     return new Promise(function (resolve, reject) {
         ActivityDAO.findByUserId(userId, function (activitiesList) {
@@ -33,7 +35,7 @@ exports.validateAndClean = function (data, user) {
     var errors = [];
     return new Promise(function (resolve, reject) {
             if (data) {
-                data.name = data.name || "";
+                data.name = validator.trim(data.name) || "";
                 data.distance = data.distance || 0;
                 data.distanceType = data.distanceType || {"value": 0};
                 data.distanceType.value = data.distanceType.value || 0;
@@ -82,20 +84,18 @@ exports.validateAndClean = function (data, user) {
             if (errors.length === 0) {
 
                 var activity = {
-                    name: data.name,
+                    name: validator.escape(data.name),
                     createdBy: user._id,
                     dateTime: data.dateTime,
                     distanceInMeters: data.distance * data.distanceType.value,
                     elevationInMeters: data.elevation,
                     durationInSeconds: data.durationH * 3600 + data.durationM * 60 + data.durationS,
-                    notes: data.notes
+                    notes: validator.escape(validator.trim(data.notes))
                 };
                 resolve(activity);
             } else {
                 reject({"errors": errors});
             }
         }
-    )
-        ;
-}
-;
+    );
+};

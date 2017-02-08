@@ -2,6 +2,7 @@
 
 (function () {
     var app = angular.module("app", ['ngRoute', 'moment-picker']);
+    app.constant('defaultProfilePic', "images/default_avatar.png");
     app.factory('httpRequestInterceptor',
         ['$rootScope', function ($rootScope) {
             return {
@@ -32,6 +33,12 @@
             var suffix = 'kmb'[base - 1];
             var prec = Math.pow(10, precision);
             return suffix ? Math.round((number / Math.pow(1000, base) * prec)) / prec + suffix : '' + n;
+
+        };
+    });
+    app.filter('timeAgo', function () {
+        return function (val) {
+            return moment(val).fromNow();
 
         };
     });

@@ -10,6 +10,8 @@ router.post('/authenticate', userController.authenticateUser);
 
 router.get('/activities/', userController.APIRequiresAuthentication, activityController.getAll);
 router.get('/activities/:id([A-z0-9]+)', userController.APIRequiresAuthentication, activityController.getOne);
+router.get('/activities/:id([A-z0-9]+)/comments', userController.APIRequiresAuthentication, activityController.getActivityComments);
+router.post('/activities/:id([A-z0-9]+)/comments', userController.APIRequiresAuthentication, activityController.addComment);
 router.post('/activities/', userController.APIRequiresAuthentication, activityController.createActivity);
 
 module.exports = router;

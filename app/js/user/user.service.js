@@ -3,9 +3,14 @@
     var loginApp = angular.module("app");
     loginApp.factory("userService", ['$http', function ($http) {
         var service = {};
+        var currentUser = {};
+        service.getCurrentUser = function () {
+            return currentUser;
+        };
         service.getLoggedInUser = function () {
             return $http.get('/api/users')
                 .then(function success(response) {
+                    currentUser = response.data.user;
                     return response.data;
                 }, function error(response) {
                     if (response.status == 401) {
@@ -15,7 +20,6 @@
                 });
         };
         service.get = function (id) {
-            console.log(123);
             return $http.get('/api/users/' + id)
                 .then(function success(response) {
                     return response.data;

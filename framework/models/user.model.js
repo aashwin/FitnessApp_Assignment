@@ -5,7 +5,7 @@ const UserSchema = new Schema({
     name: {type: String, default: ''},
     username: {type: String, required: true},
     hashed_password: {type: String, required: true, select: false},
-    email: {type: String},
+    email: {type: String, select: false},
     profile_pic: {type: String}
 }, {
     timestamps: true

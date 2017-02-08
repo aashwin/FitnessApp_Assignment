@@ -257,6 +257,7 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
 .user_card img {
   width: 35%;
   margin-bottom:3px;
+  border-radius:10px;
 }
 
 .user_card .title {
@@ -293,7 +294,27 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
 .dash_card .value .units {
   font-size: 65%;
 }
-
+.comments{
+  padding:10px 0 !important;
+  border-bottom:1px solid #eee;
+  text-transform: capitalize;
+}
+.comments .avatar{
+  padding:0 !important;
+}
+.comments .avatar img{
+  border-radius:10px;
+}
+.comments .posted_at{
+  display:inline;
+  color:#999;
+  font-size:90%;
+}
+.comments .username{
+  color:#333;
+  font-weight:bold;
+  display:inline;
+}
 h1, h2 {
   text-transform: uppercase;
   border-bottom: 1px solid #ddd;
