@@ -17,6 +17,7 @@ router.get('/activities/', userController.APIRequiresAuthentication, activityCon
 router.post('/activities/', userController.APIRequiresAuthentication, upload.single('file'), activityController.createActivity);
 router.get('/activities/:id([A-z0-9]+)', userController.APIRequiresAuthentication, activityController.getOne);
 router.get('/activities/:id([A-z0-9]+)/comments', userController.APIRequiresAuthentication, activityController.getActivityComments);
+router.get('/activities/:id([A-z0-9]+)/trackpoints', userController.APIRequiresAuthentication, activityController.getActivityTrackPoints);
 router.post('/activities/:id([A-z0-9]+)/comments', userController.APIRequiresAuthentication, activityController.addComment);
 
 module.exports = router;

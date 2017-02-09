@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-    var app = angular.module("app", ['ngRoute', 'moment-picker','ngFileUpload']);
+    var app = angular.module("app", ['ngRoute', 'moment-picker','ngFileUpload', 'ngMap']);
     app.constant('defaultProfilePic', "images/default_avatar.png");
     app.factory('httpRequestInterceptor',
         ['$rootScope', function ($rootScope) {

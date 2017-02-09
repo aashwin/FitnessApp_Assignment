@@ -28,6 +28,13 @@ exports.getActivityComments = function (req, res, next) {
         res.status(404).json({"success": false, errors: ["Something went wrong!"], "object": []});
     });
 };
+exports.getActivityTrackPoints = function (req, res, next) {
+    ActivityTrackPointSystem.getAllForActivity(req.params.id).then(function (obj) {
+        res.status(200).json({"success": true, errors: [], "object": obj});
+    }, function () {
+        res.status(404).json({"success": false, errors: ["Something went wrong!"], "object": []});
+    });
+};
 
 exports.addComment = function (req, res, next) {
     if (req.currentUser) {

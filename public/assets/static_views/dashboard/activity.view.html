@@ -33,7 +33,26 @@
         </div>
     </div>
     <div class="clear"></div>
+    <div class="col xs-12 bottom-margin" ng-if="mapPathData.length>1">
+        <div class="form-background ">
+            <div class="form-group">
+                <div map-lazy-load="https://maps.google.com/maps/api/js?key=AIzaSyCiyhT-dNsM3BGxQn1pvlKj4H3291D3-_A">
+                    <ng-map zoom-to-include-markers="true" center="{{mapPathData[0][0]}}, {{mapPathData[0][1]}}" zoom="3">
 
+                        <marker position="{{mapPathData[0][0]}}, {{mapPathData[0][1]}}" title="Start"></marker>
+                        <marker position="{{mapPathData[mapPathData.length-1][0]}}, {{mapPathData[mapPathData.length-1][1]}}" title="End"></marker>
+                        <shape name="polyline"
+                               path="{{mapPathData}}"
+                               geodesic="true"
+                               stroke-color="#FF0000"
+                               stroke-opacity="1.0"
+                               stroke-weight="4">
+                        </shape>
+                    </ng-map>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col xs-12 bottom-margin">
         <div class="form-background ">
             <div class="form-group">

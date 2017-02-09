@@ -19,6 +19,14 @@
                     return {"success": false, "errors": ["Something went wrong, try again!"]};
                 });
         };
+        service.getTrackPoints = function (id) {
+            return $http.get('/api/activities/' + id + '/trackpoints')
+                .then(function success(response) {
+                    return response.data;
+                }, function error(response) {
+                    return {"success": false, "errors": ["Something went wrong, try again!"]};
+                });
+        };
         service.create = function (activity) {
             return $http.post('/api/activities/', activity)
                 .then(function success(response) {

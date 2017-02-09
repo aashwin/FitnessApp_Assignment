@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const ActivityTrackPoint = mongoose.model('ActivityTrackPoint');
+var ActivityTrackPointDAO = require('../../framework/DAO/activity_trackpoints.dao');
 
 exports.createTrackpoints = function (trackpoints, callback) {
     ActivityTrackPoint.create(trackpoints, function (err, points) {
@@ -7,5 +8,16 @@ exports.createTrackpoints = function (trackpoints, callback) {
             callback(err);
         }
         callback(null, points);
+    });
+};
+exports.getAllForActivity = function (id) {
+    return new Promise(function (resolve, reject) {
+        ActivityTrackPointDAO.findByActivityId(id, function (activitiesList) {
+            if (!activitiesList || !(activitiesList instanceof Array)) {
+                reject();
+                return;
+            }
+            resolve(activitiesList);
+        });
     });
 };

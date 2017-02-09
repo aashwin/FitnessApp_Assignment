@@ -20,6 +20,7 @@ gulp.task('copy:angular', function () {
         nodeModulesDir + 'moment/min/moment.min.js',
         nodeModulesDir + 'angular-moment-picker/dist/angular-moment-picker.min.js',
         nodeModulesDir + 'ng-file-upload/dist/ng-file-upload-all.min.js',
+        nodeModulesDir + 'ngmap/build/scripts/ng-map.min.js',
         nodeModulesDir + 'angular-route/angular-route.min.js*'])
         .pipe(gulp.dest(distDir + 'js/modules/'));
 });

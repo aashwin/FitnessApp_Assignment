@@ -7,6 +7,7 @@
         $scope.currentUser = {};
         $scope.comments = {errors: [], list: []};
         $scope.comment = "";
+        $scope.mapPathData = [];
         $scope.$watch(userService.getCurrentUser(), function (currentUser) {
             $scope.currentUser = userService.getCurrentUser();
         });
@@ -19,6 +20,13 @@
             }
         }, function () {
             location.href = "/404/";
+        });
+        activityService.getTrackPoints($routeParams.id).then(function (res) {
+            if (res.success && res.object && res.object instanceof Array) {
+                for (var i = 0; i < res.object.length; i++) {
+                    $scope.mapPathData.push([res.object[i].lat, res.object[i].long]);
+                }
+            }
         });
         activityService.getComments($routeParams.id).then(function (res) {
             if (res.success && res.object && res.object instanceof Array) {
