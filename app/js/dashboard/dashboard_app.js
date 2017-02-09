@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-    var app = angular.module("app", ['ngRoute', 'moment-picker','ngFileUpload', 'ngMap']);
+    var app = angular.module("app", ['ngRoute', 'moment-picker', 'ngFileUpload', 'ngMap']);
     app.constant('defaultProfilePic', "images/default_avatar.png");
     app.factory('httpRequestInterceptor',
         ['$rootScope', function ($rootScope) {
@@ -115,6 +115,16 @@
             controller: 'activityController'
 
         })
+            .when('/app/activity/:id?', {
+                templateUrl: 'static_views/dashboard/activity.view.html',
+                controller: 'activityController'
+
+            })
+            .when('/app/users/edit-profile', {
+                templateUrl: 'static_views/dashboard/edit_profile.view.html',
+                controller: 'editProfileController'
+
+            })
             .otherwise({
                 redirectTo: '/app'
             });

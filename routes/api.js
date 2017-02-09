@@ -11,6 +11,8 @@ var upload = multer({
 router.post('/users', userController.createUser);
 router.get('/users/', userController.APIRequiresAuthentication, userController.getUser);
 router.get('/users/:id([A-z0-9]+)', userController.APIRequiresAuthentication, userController.getOne);
+router.put('/users/:id([A-z0-9]+)', userController.APIRequiresAuthentication, userController.updateUser);
+router.put('/users/:id([A-z0-9]+)/profile_pic', userController.APIRequiresAuthentication, upload.single('file'), userController.updateProfilePic);
 router.post('/authenticate', userController.authenticateUser);
 
 router.get('/activities/', userController.APIRequiresAuthentication, activityController.getAll);

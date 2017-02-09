@@ -5,6 +5,7 @@ const debug = require('debug')(config.application.namespace);
 var jwt = require('jwt-simple');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+var validator = require('validator');
 
 exports.isAuthorised = function (decoded) {
     if (decoded) {
@@ -56,35 +57,68 @@ exports.getLoggedInUser = function (encodedToken) {
         }
     });
 };
-exports.validateUser = function (username, password, confirmPassword) {
+exports.validateUser = function (data, isUpdate) {
     var errors = [];
-    username = username.toLowerCase();
+    if (!isUpdate) {
+        data.username = data.username.toLowerCase();
+    }
     return new Promise(function (resolve, reject) {
-        if (!username || username.length < 3 || username > 50) {
-            errors.push('Username has to be between 3-50 characters');
-        } else if (!username.match(/^[a-z0-9_-]+$/)) {
-            errors.push('Username can only contain alphanumerics, underscores and hyphens');
+        const now = (new Date).getTime() / 1000;
+        if (!isUpdate) {
+            if (!data.username || data.username.length < 3 || data.username > 50) {
+                errors.push('Username has to be between 3-50 characters');
+            } else if (!data.username.match(/^[a-z0-9_-]+$/)) {
+                errors.push('Username can only contain alphanumerics, underscores and hyphens');
+            }
         }
-        if (!password || password.length < 6) {
-            errors.push('Password has to be atleast 6 characters');
+        if ((isUpdate && data.password) || (!isUpdate)) {
+            if (!data.password || data.password.length < 6) {
+                errors.push('Password has to be atleast 6 characters');
+            }
+            if (data.password != data.confirmPassword) {
+                errors.push('Passwords must match!');
+            }
         }
-        if (password != confirmPassword) {
-            errors.push('Passwords must match!');
+        if (data.name && data.name.length > 50) {
+            errors.push("Name has to be less than 50 characters")
         }
-        if (errors.length === 0) {
-            UserDAO.findByUsername(username, false, function (usr) {
-                var alreadyExists = false;
+        if (data.name && !data.name.match(/^[A-z0-9 ]+$/)) {
+            errors.push('Name can only contain alphanumerics and spaces');
+        }
+        if (data.email && !validator.isEmail(data.email)) {
+            errors.push('Email is not valid, try again');
+        }
+        if (data.gender && (data.gender !== 0 && data.gender !== 1 && data.gender !== 2)) {
+            errors.push('Gender is not valid. [0 = Undefined, 1 = Male and 2 = Female]');
+        }
+        if (data.dob && (!data.dob.toString().match(/^[0-9\.]+$/) || data.dob > now)) {
+            errors.push('Date of Birth cannot be in the future');
+        }
+        if (data.weight && !validator.isNumeric("" + data.weight)) { //validator validates string only...
+            errors.push("Weight must be numeric");
+        }
 
-                if (usr) {
-                    errors.push("Username already exists, try another!");
-                    alreadyExists = true;
-                }
-                if (errors.length === 0) {
-                    resolve();
-                } else {
-                    reject({"errors": errors, "alreadyExists": alreadyExists});
-                }
-            });
+        if (errors.length === 0) {
+            if (data.dob) {
+                data.dob = new Date(data.dob * 1000);
+            }
+            if (!isUpdate) {
+                UserDAO.findByUsername(data.username, false, function (usr) {
+                    var alreadyExists = false;
+
+                    if (usr) {
+                        errors.push("Username already exists, try another!");
+                        alreadyExists = true;
+                    }
+                    if (errors.length === 0) {
+                        resolve();
+                    } else {
+                        reject({"errors": errors, "alreadyExists": alreadyExists});
+                    }
+                });
+            } else {
+                resolve();
+            }
         } else {
             reject({"errors": errors, "alreadyExists": false});
         }
@@ -110,6 +144,29 @@ exports.createUser = function (username, password) {
     user.hashed_password = password;
     user.save();
     return user;
+};
+
+exports.updateUser = function (id, data, onlyProfilePic) {
+    onlyProfilePic = onlyProfilePic || false;
+    delete data.createdAt;
+    delete data.username;
+    delete data._id;
+    delete data.__v;
+    delete data.updatedAt;
+    if (!onlyProfilePic) {
+        delete data.profile_pic;
+    }
+    if (!data.hashed_password) {
+        delete data.hashed_password;
+    }
+    return new Promise(function (resolve, reject) {
+        UserDAO.updateById(id, data, function (err, user) {
+            if (err) {
+                reject(err);
+            }
+            resolve(user);
+        });
+    });
 };
 
 exports.authenticateUser = function (username, password) {

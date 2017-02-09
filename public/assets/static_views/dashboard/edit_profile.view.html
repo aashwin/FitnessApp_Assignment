@@ -1,0 +1,61 @@
+<h1>Your Profile</h1>
+
+<form name="editProfileForm" class="form-background grid" ng-class="{'errored': errored}">
+    <ul class="error_list">
+        <li ng-repeat="error in entryModel.errors">
+            {{error}}
+        </li>
+    </ul>
+    <div class="form-group col xs-4 md-2 xs-x3field md-x2field profile_pic_upload">
+        <img style="display: block !important;" ngf-thumbnail="fileUploadFile"
+
+             ng-src="{{entryModel.profile_pic || default_profile_pic}}" class="col xs-12"
+        />
+        <div class="uploader" ngf-select="upload($file)" ngf-drop="upload($file)" ng-model="fileUploadFile" id="file"
+             ngf-pattern="image/*" accept="image/*" ngf-max-size="2MB">{{uploaderText || 'Click to change'}}
+        </div>
+    </div>
+    <div class="form-group col xs-8 md-10">
+        <label for="name">Full Name</label>
+        <input type="text" class="form-input validation" id="name" ng-model="entryModel.name"
+               placeholder="What is your name?" ng-maxlength="50">
+    </div>
+    <div class="form-group col xs-8 md-5">
+        <label for="password">Password</label>
+        <input type="password" class="form-input validation" id="password" ng-model="entryModel.password"
+               placeholder="Leave blank to keep it the same" ng-maxlength="50">
+    </div>
+    <div class="form-group col xs-8 md-5">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-input validation" id="confirmPassword" ng-model="entryModel.confirmPassword"
+               placeholder="Leave blank to keep it the same" ng-maxlength="50">
+    </div>
+    <div class="form-group col xs-12">
+        <label for="email">Email</label>
+        <input type="email" class="form-input validation" id="email" ng-model="entryModel.email"
+               placeholder="Your email address" ng-maxlength="300">
+    </div>
+    <div class="form-group col xs-12 md-4">
+        <label for="gender">Gender
+        </label>
+        <select id="gender" ng-model="entryModel.genderObj" class="form-input validation"
+                ng-options="aT.label for aT in genders">
+        </select>
+    </div>
+    <div class="form-group col xs-12 md-4">
+        <label for="dobObj">Date of Birth
+        </label>
+        <input class="form-input validation" id="dobObj" ng-model="entryModel.dobObj"
+               placeholder="DOB"
+               moment-picker="entryModel.dobObj"
+               format="DD-MM-YYYY" today="true">
+    </div>
+    <div class="form-group col xs-12 md-4">
+        <label for="weightInKg">Weight</label>
+        <input type="number" class="form-input validation" id="weightInKg" ng-model="entryModel.weightInKg"
+               placeholder="in KG" ng-maxlength="4">
+    </div>
+    <input type="button" ng-click="editProfile();" class="button xs-large col xs-12 orange"
+           value="Update Profile >>">
+    <div class="clear"></div>
+</form>

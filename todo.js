@@ -5,6 +5,7 @@
     ● Manual
         - Done
     ● GPX
+        - Done
  ● Searching, sorting and comparing of stored activities.
 
  ● Sharing of activities amongst users.

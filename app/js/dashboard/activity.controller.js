@@ -8,8 +8,8 @@
         $scope.comments = {errors: [], list: []};
         $scope.comment = "";
         $scope.mapPathData = [];
-        $scope.$watch(userService.getCurrentUser(), function (currentUser) {
-            $scope.currentUser = userService.getCurrentUser();
+        $scope.$watch(userService.currentUser, function (currentUser) {
+            $scope.currentUser = userService.currentUser;
         });
         activityService.get($routeParams.id).then(function (response) {
             if (response.success && response.object) {
