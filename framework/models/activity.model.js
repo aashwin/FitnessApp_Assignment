@@ -8,7 +8,9 @@ const ActivitySchema = new Schema({
     distanceInMeters: {type: Number, default: 0},
     elevationInMeters: {type: Number, default: 0},
     durationInSeconds: {type: Number, default: 0},
-    notes: {type: String}
+    notes: {type: String},
+    visibility: {type: Number, enum: [0, 1, 2], select: true},
+    shared_with: [{type: mongoose.Schema.Types.ObjectId, ref: 'User', select: true}]
 }, {
     timestamps: true
 });

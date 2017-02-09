@@ -11,6 +11,14 @@ UserDAO.findByUsername = function (username, showPassword, callback) {
         callback(data);
     });
 };
+UserDAO.findByListOfUsername = function (listOfUsernames, callback) {
+    User.find({username: {$in: listOfUsernames}}, function (err, data) {
+        if (err) {
+            return callback();
+        }
+        callback(data);
+    });
+};
 UserDAO.findById = function (id, callback, internal) {
     internal = internal || false;
     User.findById(id, !internal ? 'name username' : 'name username dob weightInKg email profile_pic gender', function (err, data) {

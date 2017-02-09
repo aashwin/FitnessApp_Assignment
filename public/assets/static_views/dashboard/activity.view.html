@@ -4,9 +4,11 @@
         <div class="form-background">
             <div class="form-group">
                 <div class="user_card">
+                    <img ng-src="{{activity.createdBy.profile_pic || default_profile_pic}}"/>
                     <div class="title">{{activity.createdBy.name || activity.createdBy.username}}</div>
-                    <img ng-src="{{activity.createdBy.profile_pic || default_profile_pic}}"/><br/>
-                    at {{activity.dateTime*1000 | date:'dd/MM/yyyy @ h:mma'}}
+                    at {{activity.dateTime*1000 | date:'dd/MM/yyyy @ h:mma'}}<br/><br/>
+                    <strong>Shared with:</strong> {{activity.visibility == 1 ? 'Friends': activity.visibility ==
+                    2 ? 'Me': 'Public'}}
                 </div>
             </div>
         </div>

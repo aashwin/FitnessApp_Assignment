@@ -1,4 +1,5 @@
 var ActivityDAO = require('../../framework/DAO/activities.dao');
+var UserDAO = require('../../framework/DAO/users.dao');
 const mongoose = require('mongoose');
 const Activity = mongoose.model('Activity');
 const ActivityTrackPoint = mongoose.model('ActivityTrackPoint');
@@ -37,7 +38,7 @@ exports.validateAndClean = function (data, user) {
     var errors = [];
     return new Promise(function (resolve, reject) {
             if (data) {
-                data.name = validator.trim(data.name) || "";
+                data.name = validator.trim(data.name || "");
                 data.distance = data.distance || 0;
                 data.distanceType = data.distanceType || {"value": 0};
                 data.distanceType.value = data.distanceType.value || 0;
@@ -45,7 +46,10 @@ exports.validateAndClean = function (data, user) {
                 data.durationH = data.durationH || 0;
                 data.durationM = data.durationM || 0;
                 data.durationS = data.durationS || 0;
+                data.visibility = parseInt(data.visibility || 0);
                 data.notes = data.notes || "";
+                data.shared_with = data.shared_with || "";
+                data.shared_with_processed = [];
                 const now = (new Date).getTime() / 1000;
                 if (data.name.length < 3 || data.name > 50) {
                     errors.push('Activity name has to be between 3-50 characters');
@@ -59,7 +63,9 @@ exports.validateAndClean = function (data, user) {
                     errors.push('Date Time cannot be in the future or very old');
                 }
 
-
+                if (data.visibility !== 0 && data.visibility !== 1 && data.visibility !== 2) {
+                    errors.push("Visibility is not valid");
+                }
                 if (!data.distanceType.value.toString().match(/^[0-9\.]+$/) || data.distanceType.value > 2000 || data.distanceType.value <= 0) {
                     errors.push('Distance Type not correct, try again!');
 
@@ -79,22 +85,39 @@ exports.validateAndClean = function (data, user) {
                 if (!data.durationS.toString().match(/^[0-9\.]+$/) || data.durationS < 0 || data.durationS > 59) {
                     errors.push('Seconds must be between 0-59');
                 }
+                if (data.visibility === 1 && data.shared_with.length > 0) {
+                    var arrayOfShared = data.shared_with.split(",");
+                    for (var i = 0; i < arrayOfShared.length; i++) {
+                        var sharedUser = validator.trim(arrayOfShared[i] || "").toLowerCase();
+                        if (sharedUser.match(/^[a-z0-9_-]+$/)) {
+                            data.shared_with_processed.push(sharedUser);
+                        }
+                    }
+                }
             }
             else {
                 errors.push('Malformed data');
             }
             if (errors.length === 0) {
-
-                var activity = {
-                    name: validator.escape(data.name),
-                    createdBy: user._id,
-                    dateTime: data.dateTime,
-                    distanceInMeters: data.distance * data.distanceType.value,
-                    elevationInMeters: data.elevation,
-                    durationInSeconds: data.durationH * 3600 + data.durationM * 60 + data.durationS,
-                    notes: validator.escape(validator.trim(data.notes))
-                };
-                resolve(activity);
+                UserDAO.findByListOfUsername(data.shared_with_processed, function (users) {
+                    var activity = {
+                        name: validator.escape(data.name),
+                        createdBy: user._id,
+                        dateTime: data.dateTime,
+                        distanceInMeters: data.distance * data.distanceType.value,
+                        elevationInMeters: data.elevation,
+                        durationInSeconds: data.durationH * 3600 + data.durationM * 60 + data.durationS,
+                        notes: validator.escape(validator.trim(data.notes)),
+                        visibility: data.visibility,
+                        shared_with: []
+                    };
+                    if (users && users.length > 0) {
+                        for (var i = 0; i < users.length; i++) {
+                            activity.shared_with.push(users[i]._id);
+                        }
+                    }
+                    resolve(activity);
+                });
             } else {
                 reject({"errors": errors});
             }

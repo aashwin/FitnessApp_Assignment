@@ -124,7 +124,11 @@
                 templateUrl: 'static_views/dashboard/edit_profile.view.html',
                 controller: 'editProfileController'
 
-            })
+            }).when('/app/404', {
+            templateUrl: 'static_views/dashboard/404.view.html',
+            controller: 'ErrorController'
+
+        })
             .otherwise({
                 redirectTo: '/app'
             });
