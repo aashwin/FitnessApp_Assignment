@@ -1,11 +1,9 @@
 //Load all needed modules
-require('./framework/bootstrap');
+var framework = require('./framework/bootstrap');
 var express = require('express');
 var path = require('path');
 var ejs = require('ejs');
 var bodyParser = require('body-parser');
-var indexRouter = require('./routes/index');
-var apiRouter = require('./routes/api');
 const config = require('./config');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
@@ -13,7 +11,6 @@ const debug = require('debug')(config.application.namespace);
 var app = express();
 //Configure our Application
 mongoose.connect(config.database.url);
-
 app.set('views', path.join(__dirname, 'public/views'));
 app.use(express.static(path.join(__dirname, 'public/assets')));
 app.engine('html', ejs.renderFile);
@@ -21,15 +18,12 @@ app.set('view engine', 'html');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+framework.init(app);
 //Source: http://expressjs.com/en/api.html#req.query
 app.use(function (req, res, next) {
     debug("%s %s by %s", req.method, req.originalUrl, req.ip);
     next();
 });
-
-app.use('/', indexRouter);
-app.use('/api', apiRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -44,9 +38,9 @@ app.use(function (err, req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
     res.status(err.status || 500);
-    if(req.originalUrl.startsWith("/api")) {
-        res.json({"success":false, "object":null, "errors":["Resource not found."]});
-    }else{
+    if (req.originalUrl.startsWith("/api")) {
+        res.json({"success": false, "object": null, "errors": ["Resource not found."]});
+    } else {
         res.render('error');
     }
 });
