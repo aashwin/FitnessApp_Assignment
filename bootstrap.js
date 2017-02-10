@@ -22,7 +22,7 @@ var init = function (app) {
             debug("%s %s by %s", req.method, req.originalUrl, req.ip);
             next();
         });
-        app.use(framework.Authenticator.authenticatorMW(config.authentication, require("./services/users").getOne));
+        app.use(framework.Authenticator.authenticatorMW(config.authentication, require("./services/users").getOnePrivate));
 
         files = [];
         i = 0;

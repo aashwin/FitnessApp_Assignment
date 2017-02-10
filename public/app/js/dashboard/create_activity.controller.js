@@ -1,7 +1,7 @@
 'use strict';
 (function () {
     var app = angular.module("app");
-    app.controller("createActivityController", ['userService', 'activityService', '$location', '$scope', '$routeParams', function (userService, activityService, $location, $scope, $routeParams) {
+    app.controller("createActivityController", ['userService', 'Notification', 'activityService', '$location', '$scope', '$routeParams', function (userService, Notification, activityService, $location, $scope, $routeParams) {
         $scope.entryMode = 0;
         $scope.errored = false;
         if ($routeParams.method == 'manual') {
@@ -36,6 +36,7 @@
                 if (res.success) {
                     $scope.errored = false;
                     $location.path('/app/activity/' + res.object._id);
+                    Notification.success({message: 'Successfully created activity', delay: 5000});
 
                 } else {
                     $scope.manualEntryModel.errors = res.errors;
@@ -60,6 +61,7 @@
                 if (resp.success) {
                     $scope.errored = false;
                     $location.path('/app/activity/' + resp.object._id);
+                    Notification.success({message: 'Successfully created activity', delay: 5000});
                 } else {
                     $scope.gpxUploadModel.errors = resp.errors;
                     $scope.errored = true;

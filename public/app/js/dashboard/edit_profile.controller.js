@@ -1,7 +1,7 @@
 'use strict';
 (function () {
     var app = angular.module("app");
-    app.controller("editProfileController", ['userService', 'defaultProfilePic', '$location', '$scope', '$routeParams', function (userService, defaultProfilePic, $location, $scope, $routeParams) {
+    app.controller("editProfileController", ['userService', 'defaultProfilePic', 'Notification', '$location', '$scope', '$routeParams', function (userService, defaultProfilePic, Notification, $location, $scope, $routeParams) {
         $scope.default_profile_pic = defaultProfilePic;
         $scope.errored = false;
         $scope.entryModel = {};
@@ -42,11 +42,13 @@
             $scope.entryModel.errors = [];
             var model = $scope.entryModel;
             model.gender = $scope.entryModel.genderObj.value;
-            model.dob = Math.round($scope.entryModel.dobObj.valueOf() / 1000);
+            if ($scope.entryModel.dobObj) {
+                model.dob = Math.round($scope.entryModel.dobObj.valueOf() / 1000);
+            }
             delete model.errors;
             userService.edit(model).then(function (res) {
                 if (res.success) {
-                    $location.path("app/users/edit-profile");
+                    Notification.success({message: 'Successfully updated your profile', delay: 5000});
                 } else {
                     $scope.entryModel.errors = res.errors;
                 }
@@ -57,7 +59,8 @@
             userService.uploadProfilePic(file).then(function (resp) {
                 $scope.uploaderText = null;
                 if (resp.success) {
-                    $scope.uploaderText
+                    Notification.success({message: 'Successfully updated your picture', delay: 5000});
+                    $scope.uploaderText = null;
                 } else {
                     $scope.uploaderText = resp.errors;
                 }

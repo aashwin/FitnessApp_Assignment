@@ -41,21 +41,16 @@ exports.getOne = function (id) {
         });
     });
 };
-exports.getLoggedInUser = function (encodedToken) {
+exports.getOnePrivate = function (id) {
     return new Promise(function (resolve, reject) {
-        var decodedToken = exports.getDecodedToken(encodedToken);
-        if (decodedToken.user) {
-            UserDAO.findById(decodedToken.user, function (usr) {
-                if (!usr) {
-                    reject();
-                    return;
-                }
-                resolve(usr);
+        UserDAO.findById(id, function (usr) {
+            if (!usr) {
+                reject();
                 return;
-            }, true);
-        } else {
-            reject();
-        }
+            }
+            resolve(usr);
+            return;
+        }, true);
     });
 };
 exports.validateUser = function (data, isUpdate) {

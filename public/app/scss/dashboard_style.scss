@@ -24,7 +24,7 @@ html, body {
   padding: 0;
 }
 
-.success {
+ul.success {
   font-size: 80%;
   color: #fff;
   text-shadow: 1px 1px #500;
@@ -490,3 +490,4 @@ h1, h2 {
 }
 
 @import 'grid/grid';
+@import 'misc/notifications';
