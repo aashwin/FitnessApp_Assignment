@@ -16,24 +16,8 @@ exports.getAll = function (req, res, next) {
 };
 exports.getOne = function (req, res, next) {
     ActivitySystem.getOne(req.params.id).then(function (obj) {
-            var canSee = (req.currentUser._id.toString() == obj.createdBy._id.toString()) || (obj.visibility === 0);
-            if (!canSee && obj.visibility === 1) {
-                for (var i = 0; i < obj.shared_with.length; i++) {
-                    if (obj.shared_with[i].toString() == req.currentUser._id.toString()) {
-                        canSee = true;
-                        break;
-                    }
-                }
-            }
-            if (canSee) {
-                res.status(200).json({"success": true, errors: [], "object": obj});
-            } else {
-                res.status(403).json({
-                    "success": false,
-                    errors: ["Your not authorised to view this activity"],
-                    "object": null
-                });
-            }
+            res.status(200).json({"success": true, errors: [], "object": obj});
+
         },
         function () {
             res.status(404).json({"success": false, errors: ["Something went wrong!"], "object": []});
@@ -44,48 +28,14 @@ exports.getOne = function (req, res, next) {
 ;
 exports.getActivityComments = function (req, res, next) {
     ActivityCommentSystem.getAllForActivity(req.params.id).then(function (obj) {
-        var canSee = (req.currentUser._id.toString() == obj.createdBy._id.toString()) || (obj.visibility === 0);
-        if (!canSee && obj.visibility === 1) {
-            for (var i = 0; i < obj.shared_with.length; i++) {
-                if (obj.shared_with[i].toString() == req.currentUser._id.toString()) {
-                    canSee = true;
-                    break;
-                }
-            }
-        }
-        if (canSee) {
-            res.status(200).json({"success": true, errors: [], "object": obj});
-        } else {
-            res.status(403).json({
-                "success": false,
-                errors: ["Your not authorised to view this activity"],
-                "object": null
-            });
-        }
+        res.status(200).json({"success": true, errors: [], "object": obj});
     }, function () {
         res.status(404).json({"success": false, errors: ["Something went wrong!"], "object": []});
     });
 };
 exports.getActivityTrackPoints = function (req, res, next) {
     ActivityTrackPointSystem.getAllForActivity(req.params.id).then(function (obj) {
-        var canSee = (req.currentUser._id.toString() == obj.createdBy._id.toString()) || (obj.visibility === 0);
-        if (!canSee && obj.visibility === 1) {
-            for (var i = 0; i < obj.shared_with.length; i++) {
-                if (obj.shared_with[i].toString() == req.currentUser._id.toString()) {
-                    canSee = true;
-                    break;
-                }
-            }
-        }
-        if (canSee) {
-            res.status(200).json({"success": true, errors: [], "object": obj});
-        } else {
-            res.status(403).json({
-                "success": false,
-                errors: ["Your not authorised to view this activity"],
-                "object": null
-            });
-        }
+        res.status(200).json({"success": true, errors: [], "object": obj});
     }, function () {
         res.status(404).json({"success": false, errors: ["Something went wrong!"], "object": []});
     });
@@ -149,4 +99,48 @@ exports.createActivity = function (req, res, next) {
         }
 
     }
+};
+
+exports.canSee = function (req, res, next) {
+    var user = req.currentUser;
+    if (!user || !user._id) {
+        res.status(403).json({
+            "success": false,
+            errors: ["Your not authorised to view this activity"],
+            "object": null
+        });
+    }
+
+    ActivitySystem.getOne(req.params.id).then(function (activity) {
+            if (!activity) {
+                res.status(403).json({
+                    "success": false,
+                    errors: ["Your not authorised to view this activity"],
+                    "object": null
+                });
+            }
+
+            var canSee = (user._id.toString() == activity.createdBy._id.toString()) || (activity.visibility === 0);
+            if (!canSee && activity.visibility === 1) {
+                for (var i = 0; i < activity.shared_with.length; i++) {
+                    if (activity.shared_with[i].toString() == user._id.toString()) {
+                        canSee = true;
+                        break;
+                    }
+                }
+            }
+            if (canSee) {
+                next()
+            } else {
+                res.status(403).json({
+                    "success": false,
+                    errors: ["Your not authorised to view this activity"],
+                    "object": null
+                });
+            }
+        },
+        function () {
+            res.status(404).json({"success": false, errors: ["Something went wrong!"], "object": []});
+        }
+    );
 };

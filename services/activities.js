@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const Activity = mongoose.model('Activity');
 const ActivityTrackPoint = mongoose.model('ActivityTrackPoint');
 const validator = require('validator');
-var parseGpx = require('./../framework/modules/parse-gpx/parse-gpx');
-var CustomMath = require('./../framework/modules/custom_math');
+var parseGpx = require('../framework/modules/parse-gpx/parse-gpx');
+var CustomMath = require('../framework/modules/custom_math');
 exports.getAll = function (userId) {
     return new Promise(function (resolve, reject) {
         ActivityDAO.findByUserId(userId, function (activitiesList) {

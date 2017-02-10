@@ -130,7 +130,7 @@
 
         })
             .otherwise({
-                redirectTo: '/app'
+                redirectTo: '/app/404'
             });
 
         $locationProvider.html5Mode({
