@@ -7,9 +7,19 @@ const Activity = mongoose.model('Activity');
 const validator = require('validator');
 var parseGpx = require('../framework/modules/parse-gpx/parse-gpx');
 var CustomMath = require('../framework/modules/custom_math');
-exports.getAll = function (userId) {
+exports.getAll = function (userId, query) {
     return new Promise(function (resolve, reject) {
-        ActivityDAO.findByUserId(userId, function (activitiesList) {
+        var queryNew = [];
+        if (query) {
+            for (var q in query) {
+                if (query.hasOwnProperty(q)) {
+                    var obj = {};
+                    obj[q] = query[q];
+                    queryNew.push(obj);
+                }
+            }
+        }
+        ActivityDAO.findAll(userId, queryNew, function (activitiesList) {
             if (!activitiesList || !(activitiesList instanceof Array)) {
                 reject();
                 return;
@@ -112,6 +122,10 @@ exports.validateAndClean = function (data, user) {
                         visibility: data.visibility,
                         shared_with: []
                     };
+                    if (user.weightInKg && user.weightInKg > 0) {
+                        activity.kCalBurnt = CustomMath.calculateCalories(user.weightInKg, activity.distanceInMeters, activity.durationInSeconds);
+                    }
+
                     if (users && users.length > 0) {
                         for (var i = 0; i < users.length; i++) {
                             activity.shared_with.push(users[i]._id);

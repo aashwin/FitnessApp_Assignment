@@ -28,7 +28,7 @@
                 <dash-card title="Type" value="Run" class="col xs-4"></dash-card>
                 <dash-card title="Elevation" value="{{activity.elevationInMeters}}" units="m"
                            class="col xs-4"></dash-card>
-                <dash-card title="Cal Burn" value="111" units="kCal"
+                <dash-card title="Cal Burn" value="{{activity.kCalBurnt | number: 0}}" units="kCal"
                            class="col xs-4"></dash-card>
                 <div class="clear"></div>
             </div>

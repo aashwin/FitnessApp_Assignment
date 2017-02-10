@@ -1,31 +1,15 @@
 'use strict';
 (function () {
-    var loginApp = angular.module("app");
-    loginApp.controller("homeController", ['userService', '$scope', function (userService, $scope) {
-        $scope.username = "";
-        $scope.password = "";
-        $scope.loginButtonText = "Login";
-        $scope.loginPressed = false;
+    var app = angular.module("app");
+    app.controller("homeController", ['activityService', 'userService', '$scope', function (activityService, userService, $scope) {
+        $scope.myActivityList = [];
+        activityService.getAll({createdBy: 'me'}).then(function (res) {
+            if (res.success && res.object && res.object instanceof Array) {
+                $scope.myActivityList = res.object;
+            }
+        }, function () {
 
-        $scope.canLogin = function () {
-            return !isEmpty($scope.username) && !isEmpty($scope.password);
-        };
-        $scope.login = function () {
-            $scope.loginPressed = true;
-            $scope.loginButtonText = "Logging in...";
-
-            userService.authenticate($scope.username, $scope.password).then(function (res) {
-                if (res.success) {
-                    localStorage.setItem("AUTH_TOKEN", res.token);
-                    location.href = "/app";
-                    
-                } else {
-                    $scope.errors = res.errors;
-                    $scope.loginPressed = false;
-                    $scope.loginButtonText = "Login";
-                }
-            });
-        };
+        });
     }]);
 
 })();

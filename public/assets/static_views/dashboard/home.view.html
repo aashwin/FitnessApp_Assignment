@@ -1,2 +1,30 @@
 <h1>My Activities</h1>
-<a href="/app/activity/589afa5e8b95702de0073d06">Activity</a>
+<div class="col xs-12 bottom-margin" ng-if="myActivityList.length===0">
+
+    <div class="form-background ">
+        <div class="form-group">
+            You have no activities, create some!
+        </div>
+    </div>
+</div>
+<a href="app/activity/{{activity._id}}" class="home_card col xs-12 bottom-margin" ng-repeat="activity in myActivityList">
+
+    <div class="form-background ">
+        <div class="form-group">
+            <h2>{{activity.name}}</h2>
+            <dash-card title="Distance" value="{{activity.distanceInMeters/1000 | number:2}}" units="km"
+                       class="col xs-4"></dash-card>
+            <dash-card title="Duration" value="{{activity.durationInSeconds}}" format="HH:MM:SS" type="timeValue"
+                       class="col xs-4"></dash-card>
+            <dash-card title="Avg. Pace" value="{{activity.durationInSeconds/(activity.distanceInMeters/1000 )}}"
+                       format="MM:SS" type="timeValue" units="/km"
+                       class="col xs-4"></dash-card>
+            <dash-card title="Type" value="Run" class="col xs-4"></dash-card>
+            <dash-card title="Elevation" value="{{activity.elevationInMeters}}" units="m"
+                       class="col xs-4"></dash-card>
+            <dash-card title="Cal Burn" value="{{activity.kCalBurnt | number: 0}}" units="kCal"
+                       class="col xs-4"></dash-card>
+            <div class="clear"></div>
+        </div>
+    </div>
+</a>

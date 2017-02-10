@@ -422,6 +422,22 @@ h1, h2 {
   width: 100%;
   font-size: 1.45em;
 }
+a.home_card{
+  text-decoration: none;
+}
+.home_card h2 {
+  margin: 0;
+  padding: 5px;
+  color: #555;
+
+  text-transform: uppercase
+}
+
+a.home_card:hover .form-background{
+  background: #fdfdfd;
+  transition: all .5s ease-in-out;
+
+}
 
 @media #{$small-screen-min-width}{
 
@@ -436,7 +452,7 @@ h1, h2 {
   .md-x2field {
     height: 162px;
   }
-  h1, h2 {
+  h1 {
     font-size: 2em;
   }
 

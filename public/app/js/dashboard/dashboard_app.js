@@ -61,32 +61,31 @@
                 scope.$watchGroup(['units', 'type', 'value'], function (newValues, oldValues, scope) {
                     if (scope.type == 'timeValue' && scope.value) {
                         var leftOver = scope.value;
-                        var hour = 0, minutes = 0, seconds = 0;
-                        if (scope.format.indexOf("HH") !== -1) {
-                            hour = Math.floor(leftOver / 3600);
-                            leftOver %= 3600;
-                        }
-                        if (scope.format.indexOf("MM") !== -1) {
-                            minutes = Math.floor(leftOver / 60);
-                            leftOver %= 60;
-                        }
-                        seconds = Math.round(leftOver);
-                        // if (scope.format.indexOf("HH") === -1 && scope.format.indexOf("MM") !== -1) {
-                        //     minutes = window.Math.round((scope.value) / 60);
-                        // }
-                        // if (scope.format.indexOf("MM") === -1 && scope.format.indexOf("SS") !== -1) {
-                        //     seconds = window.Math.round((scope.value / 60));
-                        // }
 
-                        scope.displayVal = scope.format.replace("HH", hour > 0 && hour < 10 ? "0" + hour : hour > 9 ? hour : "00");
-                        scope.displayVal = scope.displayVal.replace("MM", minutes > 0 && minutes < 10 ? "0" + minutes : minutes > 9 ? minutes : "00");
-                        scope.displayVal = scope.displayVal.replace("SS", seconds > 0 && seconds < 10 ? "0" + seconds : seconds > 9 ? seconds : "00");
+                        if (leftOver && leftOver > 0) {
+                            var hour = 0, minutes = 0, seconds = 0;
+                            if (scope.format.indexOf("HH") !== -1) {
+                                hour = Math.floor(leftOver / 3600);
+                                leftOver %= 3600;
+                            }
+                            if (scope.format.indexOf("MM") !== -1) {
+                                minutes = Math.floor(leftOver / 60);
+                                leftOver %= 60;
+                            }
+                            seconds = Math.round(leftOver);
+
+                            scope.displayVal = scope.format.replace("HH", hour > 0 && hour < 10 ? "0" + hour : hour > 9 ? hour : "00");
+                            scope.displayVal = scope.displayVal.replace("MM", minutes > 0 && minutes < 10 ? "0" + minutes : minutes > 9 ? minutes : "00");
+                            scope.displayVal = scope.displayVal.replace("SS", seconds > 0 && seconds < 10 ? "0" + seconds : seconds > 9 ? seconds : "00");
+                        } else {
+                            scope.displayVal = "--";
+                            scope.displayUnits = ""
+                        }
                     } else {
-                        scope.displayVal = scope.value ? scope.value : "--";
-
+                        scope.displayVal = !scope.value || scope.value === 0 || scope.value === '0' || scope.value === '0.00' ? "--" : scope.value;
                     }
                     scope.displayUnits = scope.units;
-                    if (!scope.value) {
+                    if (!scope.value || scope.value === 0 || scope.value === '0' || scope.value === '0.00') {
                         scope.displayUnits = "";
                     }
                 });

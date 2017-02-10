@@ -6,13 +6,15 @@ const debug = require('debug')(config.application.namespace);
 var fs = require('fs');
 
 exports.getAll = function (req, res, next) {
-    if (req.currentUser) {
-        ActivitySystem.getAll(req.currentUser.get("_id")).then(function (list) {
-            res.status(200).json({"success": true, errors: [], "object": list});
-        }, function () {
-            res.status(404).json({"success": false, errors: ["Something went wrong!"], "object": []});
-        });
+    var user = req.currentUser.get("_id") ? req.currentUser.get("_id") : null;
+    if (req.query && req.query.createdBy === 'me') {
+        req.query.createdBy = req.currentUser._id;
     }
+    ActivitySystem.getAll(user, req.query).then(function (list) {
+        res.status(200).json({"success": true, errors: [], "object": list});
+    }, function () {
+        res.status(404).json({"success": false, errors: ["Something went wrong!"], "object": []});
+    });
 };
 exports.getOne = function (req, res, next) {
     ActivitySystem.getOne(req.params.id).then(function (obj) {
@@ -24,8 +26,8 @@ exports.getOne = function (req, res, next) {
         }
     )
     ;
-}
-;
+};
+
 exports.getActivityComments = function (req, res, next) {
     ActivityCommentSystem.getAllForActivity(req.params.id).then(function (obj) {
         res.status(200).json({"success": true, errors: [], "object": obj});
