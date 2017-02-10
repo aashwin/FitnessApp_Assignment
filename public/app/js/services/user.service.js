@@ -47,6 +47,17 @@
                     return {"success": false, "errors": ["Something went wrong, try again!"]};
                 });
         };
+        service.delete = function (user) {
+            return $http.delete('/api/users/' + user)
+                .then(function success(response) {
+                    return response.data;
+                }, function error(response) {
+                    if (response.status == 403 || response.status == 409 || response.status == 401) {
+                        return response.data;
+                    }
+                    return {"success": false, "errors": ["Something went wrong, try again!"]};
+                });
+        };
         service.uploadProfilePic = function (file) {
             return Upload.upload({
                 url: 'api/users/' + service.currentUser._id + '/profile_pic',

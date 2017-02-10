@@ -13,6 +13,7 @@ router.get('/users/', userController.getUser);
 router.post('/users', userController.createUser);
 router.get('/users/:id([A-z0-9]+)', userController.getOne);
 router.put('/users/:id([A-z0-9]+)', userController.updateUser);
+router.delete('/users/:id([A-z0-9]+)', userController.deleteUser);
 router.put('/users/:id([A-z0-9]+)/profile_pic', upload.single('file'), userController.updateProfilePic);
 
 router.get('/activities/', activityController.getAll);

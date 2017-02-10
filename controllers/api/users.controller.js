@@ -18,19 +18,6 @@ exports.getOne = function (req, res, next) {
     });
 };
 
-exports.APIRequiresAuthentication = function (req, res, next) {
-    var decodedToken = UserSystem.getDecodedToken(req.get(config.application.auth_token_header));
-    if (decodedToken && UserSystem.isAuthorised(decodedToken)) {
-        UserSystem.getLoggedInUser(req.get(config.application.auth_token_header)).then(function (currentUser) {
-            req.currentUser = currentUser;
-            next();
-        }, function () {
-            res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
-        });
-    } else {
-        res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
-    }
-};
 exports.authenticateUser = function (req, res, next) {
     const username = req.body.username.toLowerCase();
     const password = req.body.password;
@@ -57,7 +44,7 @@ exports.createUser = function (req, res, next) {
     UserSystem.validateUser(req.body, false)
         .then(function () {
             UserSystem.hashPassword(req.body.password).then(function (hash) {
-                UserSystem.createUser(req.body.username, hash);
+                UserSystem.createUser(req.body.username.toLowerCase(), hash);
                 response.success = true;
                 res.status(201).json(response);
             }, function (error) {
@@ -150,4 +137,20 @@ exports.updateUser = function (req, res, next) {
             response.errors = ret.errors || ["Something went wrong!"];
             res.status(statusCode).json(response);
         });
+};
+exports.deleteUser = function (req, res, next) {
+    var response = {errors: [], success: false};
+    if (req.currentUser._id.toString() !== req.params.id) {
+        response.errors.push("You are not authorized to delete this user!");
+        res.status(403).json(response);
+        return;
+    }
+    UserSystem.deleteUser(req.currentUser._id).then(function () {
+        response.success = true;
+        response.object = null;
+        res.status(200).json(response);
+    }, function () {
+        response.errors.push("Something went wrong, try again!");
+        res.status(500).json(response);
+    });
 };

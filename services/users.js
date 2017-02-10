@@ -1,4 +1,5 @@
-var UserDAO = require('../DAO/users.dao.js');
+var UserDAO = require('../DAO/users.dao');
+var ActivityService = require('../services/activities');
 var bcrypt = require('bcrypt');
 const config = require('../config');
 const debug = require('debug')(config.application.namespace);
@@ -168,6 +169,22 @@ exports.updateUser = function (id, data, onlyProfilePic) {
         });
     });
 };
+
+exports.deleteUser = function (id) {
+    return new Promise(function (resolve, reject) {
+        ActivityService.deleteByUserId(id).then(function () {
+            UserDAO.deleteById(id, function (err) {
+                if (err) {
+                    reject();
+                }
+                resolve();
+            });
+        }, function () {
+            reject();
+        });
+    });
+}
+;
 
 exports.authenticateUser = function (username, password) {
     return new Promise(function (resolve, reject) {

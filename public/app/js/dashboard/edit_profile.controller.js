@@ -27,6 +27,17 @@
                 }
             }
         );
+        $scope.deleteAccount = function () {
+            var con = confirm("Are you sure you want to delete the account? Everything will be erased.");
+            if (con) {
+                userService.delete($scope.entryModel._id).then(function () {
+                    alert("Account Deleted");
+                    location.href = "/";
+                }, function () {
+                    $scope.entryModel.errors = ["Something went wrong "];
+                });
+            }
+        };
         $scope.editProfile = function () {
             $scope.entryModel.errors = [];
             var model = $scope.entryModel;

@@ -1,8 +1,9 @@
 var ActivityDAO = require('../DAO/activities.dao.js');
+var ActivityTrackPointService = require("../services/activity_trackpoints")
+var ActivityCommentService = require("../services/activity_comments")
 var UserDAO = require('../DAO/users.dao.js');
 const mongoose = require('mongoose');
 const Activity = mongoose.model('Activity');
-const ActivityTrackPoint = mongoose.model('ActivityTrackPoint');
 const validator = require('validator');
 var parseGpx = require('../framework/modules/parse-gpx/parse-gpx');
 var CustomMath = require('../framework/modules/custom_math');
@@ -173,11 +174,7 @@ exports.validateAndProcessGPXFile = function (file) {
                                     var previousTrackPoint = data.trackPoints[i - 1];
                                     gpxData.distance += CustomMath.distanceBetween(previousTrackPoint.lat, previousTrackPoint.long, currentTrackPoint.lat, currentTrackPoint.long);
                                 }
-                                var tp = new ActivityTrackPoint();
-                                tp.lat = currentTrackPoint.lat;
-                                tp.long = currentTrackPoint.long;
-                                tp.elevation = currentTrackPoint.ele;
-                                tp.dateTime = new Date(currentTime);
+                                var tp = ActivityTrackPointService.new(currentTrackPoint.lat, currentTrackPoint.long, currentTrackPoint.ele, new Date(currentTime));
                                 gpxData.trackPoints.push(tp);
                             }
 
@@ -201,5 +198,48 @@ exports.validateAndProcessGPXFile = function (file) {
         }
     )
         ;
-}
-;
+};
+
+exports.deleteByUserId = function (user_id) {
+    return new Promise(function (resolve, reject) {
+        exports.getAll(user_id).then(function (listOfActivities) {
+                if (!listOfActivities || !(listOfActivities instanceof Array)) {
+                    reject();
+                    return;
+                }
+                var activityIdList = [];
+                for (var i = 0; i < listOfActivities.length; i++) {
+                    activityIdList.push(listOfActivities[i]._id);
+                }
+                exports.delete(activityIdList).then(function () {
+                    resolve(1);
+                }, function () {
+                    reject();
+                });
+
+            }, function () {
+                reject();
+            }
+        );
+
+    });
+};
+exports.delete = function (ids) {
+    return new Promise(function (resolve, reject) {
+        ActivityTrackPointService.deleteByActivityId(ids).then(function () {
+            ActivityCommentService.deleteByActivityId(ids).then(function () {
+                ActivityDAO.delete(ids, function (err) {
+                    if (err) {
+                        reject();
+                    }
+                    resolve();
+                });
+            }, function () {
+                reject();
+
+            });
+        }, function () {
+            reject();
+        });
+    });
+};

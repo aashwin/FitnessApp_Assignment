@@ -143,21 +143,34 @@ nav ul li a.active, nav ul li a:hover {
   text-decoration: none;
 }
 
+.button.small {
+  font-size: 0.3em;
+  padding: .2rem 0.7rem;
+}
+
 .button.orange {
   color: #fff;
   background: #ff3a00;
   border: 1px solid #a02500;
 }
 
-.button.orange:hover {
+.button.red {
   color: #fff;
-  background: #ff4c05;
-  border: 1px solid #a02500;
+  text-shadow: 1px 1px #a00;
+  border: 1px solid #a00;
+  background: #ff0000;
+
 }
 
 .button:hover {
   background-color: #eee;
   color: #222;
+}
+
+.button.orange:hover {
+  color: #fff;
+  background: #ff4c05;
+  border: 1px solid #a02500;
 }
 
 .button.selected, button.selected:hover {
@@ -209,16 +222,16 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  padding:5px;
-  background:#000;
-  border-radius:40px;
-  width:10px;
-}
-.form-group input[type=radio]:checked.form-input{
-  transition: all .4s ease-in-out;
-  background:#00ff00;
+  padding: 5px;
+  background: #000;
+  border-radius: 40px;
+  width: 10px;
 }
 
+.form-group input[type=radio]:checked.form-input {
+  transition: all .4s ease-in-out;
+  background: #00ff00;
+}
 
 .file_upload {
   border: 3px dashed #ddd;

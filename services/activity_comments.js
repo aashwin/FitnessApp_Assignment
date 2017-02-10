@@ -75,3 +75,13 @@ exports.validateAndClean = function (activityId, data, user) {
         }
     });
 };
+exports.deleteByActivityId = function (ids) {
+    return new Promise(function (resolve, reject) {
+        ActivityCommentDAO.deleteByActivityId(ids, function (err) {
+            if (err) {
+                reject();
+            }
+            resolve();
+        });
+    });
+};

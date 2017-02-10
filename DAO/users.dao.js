@@ -37,4 +37,13 @@ UserDAO.updateById = function (id, data, callback) {
     });
 
 };
+UserDAO.deleteById = function (id, callback) {
+    User.remove({_id: id}, function (err, doc) {
+        if (err) {
+            callback(err);
+        }
+        callback(null, doc);
+    });
+
+};
 module.exports = UserDAO;
