@@ -15,11 +15,11 @@
             if (response.success && response.object) {
                 $scope.activity = response.object;
             } else {
-                location.href = "app/404/";
+                location.href = "../..//404/";
                 return;
             }
         }, function () {
-            location.href = "app/404/";
+            location.href = "../..//404/";
         });
         activityService.getTrackPoints($routeParams.id).then(function (res) {
             if (res.success && res.object && res.object instanceof Array) {

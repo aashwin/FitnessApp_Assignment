@@ -6,7 +6,7 @@ var gutil = require('gulp-util');
 
 
 var distDir = 'public/assets/';
-var buildDir = 'app/';
+var buildDir = 'public/app/';
 var nodeModulesDir = 'node_modules/';
 var cleanCSS = require('gulp-clean-css');
 

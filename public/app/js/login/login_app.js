@@ -4,7 +4,7 @@ const isEmpty = function (txt) {
 };
 (function () {
     if (localStorage.getItem("AUTH_TOKEN")) {
-        location.href = "/app";
+        location.href = "/public/app";
     }
     var loginApp = angular.module("app", ['ngRoute']);
     loginApp

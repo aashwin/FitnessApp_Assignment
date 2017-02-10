@@ -1,12 +1,15 @@
 'use strict';
 (function () {
     var loginApp = angular.module("app");
-    loginApp.controller("homeController", ['userService', '$scope', function (userService, $scope) {
+    loginApp.controller("loginController", ['userService', '$scope', '$location', function (userService, $scope, $location) {
         $scope.username = "";
         $scope.password = "";
         $scope.loginButtonText = "Login";
         $scope.loginPressed = false;
-
+        $scope.errors = [];
+        if ($location.search()["unauthorised"]) {
+            $scope.errors.push("You need to login to continue...");
+        }
         $scope.canLogin = function () {
             return !isEmpty($scope.username) && !isEmpty($scope.password);
         };
@@ -17,8 +20,8 @@
             userService.authenticate($scope.username, $scope.password).then(function (res) {
                 if (res.success) {
                     localStorage.setItem("AUTH_TOKEN", res.token);
-                    location.href = "/app";
-                    
+                    location.href = "/public/app/";
+
                 } else {
                     $scope.errors = res.errors;
                     $scope.loginPressed = false;
