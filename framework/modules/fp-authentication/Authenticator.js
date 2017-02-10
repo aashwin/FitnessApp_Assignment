@@ -16,15 +16,18 @@ var authenticatorMW = function (options, usrObjFunction) {
         req.isAuthorised = false;
         if (options.whitelist) {
             var currentUrl = req.originalUrl.split("?")[0].replace(/\/+$/, "");
+            var matchRegex;
             for (var i = 0; i < options.whitelist.length; i++) {
                 if (typeof options.whitelist[i] == 'string') {
-                    if (options.whitelist[i].replace(/\/+$/, "") === currentUrl) {
+                    matchRegex = new RegExp("^" + options.whitelist[i].replace("/", "\/") + "\/?$");
+                    if (currentUrl.match(matchRegex)) {
                         next();
                         return;
                     }
                 } else {
                     if (options.whitelist[i].path && options.whitelist[i].method) {
-                        if (options.whitelist[i].path.replace(/\/+$/, "") === currentUrl && options.whitelist[i].method.toLowerCase() === req.method.toLowerCase()) {
+                        matchRegex = new RegExp("^" + options.whitelist[i].path.replace("/", "\/") + "\/?");
+                        if (currentUrl.match(matchRegex) && options.whitelist[i].method.toLowerCase() === req.method.toLowerCase()) {
                             next();
                             return;
                         }
