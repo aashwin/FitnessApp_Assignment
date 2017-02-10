@@ -20,7 +20,7 @@
             userService.authenticate($scope.username, $scope.password).then(function (res) {
                 if (res.success) {
                     localStorage.setItem("AUTH_TOKEN", res.token);
-                    location.href = "/public/app/";
+                    location.href = "/app/";
 
                 } else {
                     $scope.errors = res.errors;
