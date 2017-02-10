@@ -56,8 +56,8 @@ exports.createUser = function (req, res, next) {
     var response = {errors: [], success: false};
     UserSystem.validateUser(req.body, false)
         .then(function () {
-            UserSystem.hashPassword(password).then(function (hash) {
-                UserSystem.createUser(username, hash);
+            UserSystem.hashPassword(req.body.password).then(function (hash) {
+                UserSystem.createUser(req.body.username, hash);
                 response.success = true;
                 res.status(201).json(response);
             }, function (error) {

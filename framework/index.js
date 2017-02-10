@@ -1,0 +1,1 @@
+module.exports = {"Authenticator": require("./modules/fp-authentication/Authenticator")};

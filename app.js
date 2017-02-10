@@ -8,16 +8,19 @@ const config = require('./config');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 const debug = require('debug')(config.application.namespace);
+
 var app = express();
+
 //Configure our Application
 mongoose.connect(config.database.url);
+
+
 app.set('views', path.join(__dirname, 'public/views'));
 app.use(express.static(path.join(__dirname, 'public/assets')));
 app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
 appBootstrap.init(app);
 
 debug('Booting up %s', config.application.name);

@@ -3,6 +3,8 @@ const path = require('path');
 const modelsDirectory = path.join(__dirname, 'models/');
 const routersDirectory = path.join(__dirname, 'routes/');
 const debug = require('debug')("fitness.app.aashwin");
+const config = require('./config');
+var framework = require("./framework");
 
 var init = function (app) {
     debug("Framework Bootstrapping has begun...");
@@ -20,6 +22,8 @@ var init = function (app) {
             debug("%s %s by %s", req.method, req.originalUrl, req.ip);
             next();
         });
+        app.use(framework.Authenticator.authenticatorMW(config.authentication, require("./services/users").getOne));
+
         files = [];
         i = 0;
         files = fs.readdirSync(routersDirectory);
@@ -48,7 +52,11 @@ var init = function (app) {
             res.locals.error = req.app.get('env') === 'development' ? err : {};
             res.status(err.status || 500);
             if (req.originalUrl.startsWith("/api")) {
-                res.json({"success": false, "object": null, "errors": ["Resource not found."]});
+                if (err.status == 401) {
+                    res.json({"success": false, "object": null, "errors": ["Not authorised"]});
+                } else {
+                    res.json({"success": false, "object": null, "errors": ["Resource not found."]});
+                }
             } else {
                 res.render('error');
             }

@@ -9,6 +9,11 @@ exports.application = {
     "unauthorised_return_url": "/",
     "auth_token_header": "X_AUTH_TOKEN"
 };
+exports.authentication = {
+    "token_field": "X_AUTH_TOKEN",
+    "jwt_token_secret": "&Ce#!mjPM$zV^SCSR#!%uV!r",
+    "whitelist": ['/', '/index', '/api/authenticate', {path: '/api/users', method: 'POST'}]
+};
 exports.database = {
     'url': 'mongodb://localhost:27017/fitness'
 };
