@@ -15,7 +15,7 @@ var authenticatorMW = function (options, usrObjFunction) {
     return function (req, res, next) {
         req.isAuthorised = false;
         if (options.whitelist) {
-            var currentUrl = req.originalUrl.replace(/\/+$/, "");
+            var currentUrl = req.originalUrl.split("?")[0].replace(/\/+$/, "");
             for (var i = 0; i < options.whitelist.length; i++) {
                 if (typeof options.whitelist[i] == 'string') {
                     if (options.whitelist[i].replace(/\/+$/, "") === currentUrl) {

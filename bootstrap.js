@@ -53,7 +53,11 @@ var init = function (app) {
             res.status(err.status || 500);
             if (req.originalUrl.startsWith("/api")) {
                 if (err.status == 401) {
-                    res.json({"success": false, "object": null, "errors": ["Not authorised"]});
+                    res.json({
+                        "success": false,
+                        "object": null,
+                        "errors": ["You are not authorized to request this information."]
+                    });
                 } else {
                     res.json({"success": false, "object": null, "errors": ["Resource not found."]});
                 }
