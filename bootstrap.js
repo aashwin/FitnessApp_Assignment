@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const modelsDirectory = path.join(__dirname, 'framework/models/');
+const modelsDirectory = path.join(__dirname, 'models/');
 const routersDirectory = path.join(__dirname, 'routes/');
 const debug = require('debug')("fitness.app.aashwin");
 

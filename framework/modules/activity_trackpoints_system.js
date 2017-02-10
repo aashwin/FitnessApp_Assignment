@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const ActivityTrackPoint = mongoose.model('ActivityTrackPoint');
-var ActivityTrackPointDAO = require('../../framework/DAO/activity_trackpoints.dao');
+var ActivityTrackPointDAO = require('../../DAO/activity_trackpoints.dao');
 
 exports.createTrackpoints = function (trackpoints, callback) {
     ActivityTrackPoint.create(trackpoints, function (err, points) {

@@ -5,7 +5,7 @@ var expect = chai.expect;
 var sinon = require('sinon');
 var chaiAsPromised = require('chai-as-promised');
 var UserSystem = require('../../../framework/modules/user_system');
-var UserDAO = require('../../../framework/DAO/users.dao');
+var UserDAO = require('../../../DAO/users.dao');
 var User = mongoose.model("User"); //we are only including it to mock it with sinon
 var bcrypt = require('bcrypt');
 chai.use(chaiAsPromised);

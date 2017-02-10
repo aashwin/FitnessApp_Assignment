@@ -1,11 +1,11 @@
-var ActivityDAO = require('../../framework/DAO/activities.dao');
-var UserDAO = require('../../framework/DAO/users.dao');
+var ActivityDAO = require('../../DAO/activities.dao');
+var UserDAO = require('../../DAO/users.dao');
 const mongoose = require('mongoose');
 const Activity = mongoose.model('Activity');
 const ActivityTrackPoint = mongoose.model('ActivityTrackPoint');
 const validator = require('validator');
-var parseGpx = require('../../framework/modules/parse-gpx/parse-gpx');
-var CustomMath = require('../../framework/modules/custom_math');
+var parseGpx = require('./parse-gpx/parse-gpx');
+var CustomMath = require('./custom_math');
 exports.getAll = function (userId) {
     return new Promise(function (resolve, reject) {
         ActivityDAO.findByUserId(userId, function (activitiesList) {

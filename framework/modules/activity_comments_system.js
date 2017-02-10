@@ -1,5 +1,5 @@
-var ActivityCommentDAO = require('../../framework/DAO/activity_comments.dao');
-var ActivityDAO = require('../../framework/DAO/activities.dao');
+var ActivityCommentDAO = require('../../DAO/activity_comments.dao');
+var ActivityDAO = require('../../DAO/activities.dao');
 const mongoose = require('mongoose');
 const ActivityComment = mongoose.model('ActivityComment');
 var validator = require('validator');

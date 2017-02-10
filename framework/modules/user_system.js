@@ -1,4 +1,4 @@
-var UserDAO = require('../../framework/DAO/users.dao');
+var UserDAO = require('../../DAO/users.dao');
 var bcrypt = require('bcrypt');
 const config = require('../../config');
 const debug = require('debug')(config.application.namespace);
