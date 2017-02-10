@@ -1,4 +1,4 @@
-var UserSystem = require('../../framework/modules/user_system');
+var UserSystem = require('../../services/users');
 const config = require('../../config');
 const debug = require('debug')(config.application.namespace);
 const fs = require('fs');
