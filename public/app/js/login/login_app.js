@@ -6,7 +6,7 @@ const isEmpty = function (txt) {
     if (localStorage.getItem("AUTH_TOKEN")) {
         location.href = "/app";
     }
-    var loginApp = angular.module("app", ['ngRoute']);
+    var loginApp = angular.module("app", ['ngFileUpload', 'ngRoute']);
     loginApp
         .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
             $routeProvider
