@@ -3,32 +3,10 @@ var ActivityService = require('../services/activities');
 var bcrypt = require('bcrypt');
 const config = require('../config');
 const debug = require('debug')(config.application.namespace);
-var jwt = require('jwt-simple');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 var validator = require('validator');
 
-exports.isAuthorised = function (decoded) {
-    if (decoded) {
-        if (decoded.expiry && decoded.expiry > (new Date).getTime()) {
-            if (decoded.user) {
-                return true;
-            }
-
-        }
-    }
-    return false;
-};
-exports.getDecodedToken = function (encodedToken) {
-    try {
-        if (encodedToken) {
-            return jwt.decode(encodedToken, config.application.jwt_token_secret);
-        }
-    } catch (e) {
-        debug("Failed decoding %s auth token.", encodedToken, e);
-    }
-    return null;
-};
 exports.getOne = function (id) {
     return new Promise(function (resolve, reject) {
         UserDAO.findById(id, function (usr) {
@@ -204,10 +182,4 @@ exports.authenticateUser = function (username, password) {
             }
         });
     });
-};
-
-exports.generateJWT = function (_id, expiry) {
-    expiry = expiry || (new Date).getTime() + (86400 * 1000); //Defaults to 1 day.
-    var token = {"user": _id, "expiry": expiry};
-    return jwt.encode(token, config.application.jwt_token_secret);
 };

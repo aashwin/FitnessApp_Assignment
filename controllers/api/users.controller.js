@@ -3,6 +3,7 @@ const config = require('../../config');
 const debug = require('debug')(config.application.namespace);
 const fs = require('fs');
 const path = require('path');
+var framework = require('../../framework/');
 exports.getUser = function (req, res, next) {
     if (req.currentUser) {
         res.status(200).json({"success": true, errors: [], "user": req.currentUser});
@@ -25,7 +26,7 @@ exports.authenticateUser = function (req, res, next) {
     UserSystem.authenticateUser(username, password).then(function (user) {
         debug("Authenticated User: %s", username);
         response.success = true;
-        response.token = UserSystem.generateJWT(user._id);
+        response.token = framework.Authenticator.tokenGenerator(user._id);
         response.user = user;
         res.status(200).json(response);
     }, function (err) {
