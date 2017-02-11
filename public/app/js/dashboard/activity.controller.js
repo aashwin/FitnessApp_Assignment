@@ -31,7 +31,7 @@
         var limit = 5;
         var page = 1;
         $scope.loadMoreComments = function () {
-            activityService.getComments($routeParams.id, {limit: limit, page: page}).then(function (res) {
+            activityService.getComments($routeParams.id, {limit: limit, page: page, sort_field:"created_at", "sort_by":"asc"}).then(function (res) {
                 if (res.success && res.object && res.object instanceof Array) {
 
                     $scope.comments.list=$scope.comments.list.concat(res.object);
