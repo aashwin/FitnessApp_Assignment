@@ -1,5 +1,16 @@
 <h1>{{activity.name}}</h1>
 <div class="grid-inner">
+    <div class=" col xs-12 md-12 bottom-margin" ng-show="activity.createdBy._id == currentUser._id">
+        <div class="form-background">
+            <div class="form-group">
+                <input type="button" ng-click="editActivity();" class="button col xs-8"
+                       value="Edit Activity">
+                <input type="button" ng-click="deleteActivity();" class="button red col xs-4"
+                       value="Delete Activity">
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
     <div class=" col xs-12 md-3 bottom-margin">
         <div class="form-background">
             <div class="form-group">

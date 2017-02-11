@@ -4,13 +4,10 @@
     app.controller("activityController", ['activityService', 'userService', 'defaultProfilePic', '$scope', '$routeParams', function (activityService, userService, defaultProfilePic, $scope, $routeParams) {
         $scope.activity = {name: "Loading..."};
         $scope.default_profile_pic = defaultProfilePic;
-        $scope.currentUser = {};
         $scope.comments = {errors: [], list: [], count: 0};
         $scope.comment = "";
         $scope.mapPathData = [];
-        $scope.$watch(userService.currentUser, function (currentUser) {
-            $scope.currentUser = userService.currentUser;
-        });
+
         activityService.get($routeParams.id).then(function (response) {
             if (response.success && response.object) {
                 $scope.activity = response.object;

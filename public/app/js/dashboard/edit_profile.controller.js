@@ -10,20 +10,10 @@
             "value": 2
         }];
 
-        $scope.$watch(userService.currentUser, function (currentUser) {
-                $scope.entryModel = userService.currentUser;
+        $scope.$watch($scope.currentUser, function (newUser, oldUser, x) {
+                $scope.entryModel = $scope.currentUser;
                 if ($scope.entryModel.dob) {
                     $scope.entryModel.dobObj = moment($scope.entryModel.dob);
-                }
-                if ($scope.entryModel.gender) {
-                    for (var i = 0; i < $scope.genders.length; i++) {
-                        if ($scope.entryModel.gender == $scope.genders[i].value) {
-                            $scope.entryModel.genderObj = $scope.genders[i];
-                            break;
-                        }
-                    }
-                } else {
-                    $scope.entryModel.genderObj = $scope.genders[0];
                 }
             }
         );

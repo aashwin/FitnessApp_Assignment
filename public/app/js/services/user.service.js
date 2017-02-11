@@ -1,14 +1,14 @@
 'use strict';
 (function () {
     var loginApp = angular.module("app");
-    loginApp.factory("userService", ['$http', 'Upload', function ($http, Upload) {
+    loginApp.factory("userService", ['$http', 'Upload', '$rootScope', function ($http, Upload, $rootScope) {
         var service = {};
-        service.currentUser = {};
+        $rootScope.currentUser = {};
 
         service.getLoggedInUser = function () {
             return $http.get('/api/users')
                 .then(function success(response) {
-                    service.currentUser = response.data.user;
+                    $rootScope.currentUser = response.data.user;
                     return response.data;
                 }, function error(response) {
                     if (response.status == 401) {
