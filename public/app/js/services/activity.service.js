@@ -20,6 +20,14 @@
                     return {"success": false, "errors": ["Something went wrong, try again!"]};
                 });
         };
+        service.delete = function (id) {
+            return $http.delete('/api/activities/' + id)
+                .then(function success(response) {
+                    return response.data;
+                }, function error(response) {
+                    return {"success": false, "errors": ["Something went wrong, try again!"]};
+                });
+        };
         service.getComments = function (id, query) {
             return $http.get('/api/activities/' + id + '/comments' + toQuery(query))
                 .then(function success(response) {

@@ -1,7 +1,7 @@
 'use strict';
 (function () {
     var app = angular.module("app");
-    app.controller("activityController", ['activityService', 'userService', 'defaultProfilePic', '$scope', '$routeParams', function (activityService, userService, defaultProfilePic, $scope, $routeParams) {
+    app.controller("activityController", ['activityService', 'userService', 'Notification', 'defaultProfilePic', '$location', '$scope', '$routeParams', function (activityService, userService, Notification, defaultProfilePic, $location, $scope, $routeParams) {
         $scope.activity = {name: "Loading..."};
         $scope.default_profile_pic = defaultProfilePic;
         $scope.comments = {errors: [], list: [], count: 0};
@@ -28,10 +28,15 @@
         var limit = 5;
         var page = 1;
         $scope.loadMoreComments = function () {
-            activityService.getComments($routeParams.id, {limit: limit, page: page, sort_field:"created_at", "sort_by":"asc"}).then(function (res) {
+            activityService.getComments($routeParams.id, {
+                limit: limit,
+                page: page,
+                sort_field: "created_at",
+                "sort_by": "asc"
+            }).then(function (res) {
                 if (res.success && res.object && res.object instanceof Array) {
 
-                    $scope.comments.list=$scope.comments.list.concat(res.object);
+                    $scope.comments.list = $scope.comments.list.concat(res.object);
                     $scope.comments.count = res.count || 0;
                     page++;
                 }
@@ -58,6 +63,23 @@
                 $scope.comments.errors = res.errors;
                 $scope.errored = true;
             });
+        };
+        $scope.deleteActivity = function () {
+            var con = confirm("Are you sure you want to delete the activity? Everything will be erased.");
+            if (con) {
+                activityService.delete($scope.activity._id).then(function (res) {
+
+                    if(res.success) {
+                        $location.path('/app/');
+                        Notification.success({message: 'Successfully deleted activity', delay: 5000});
+                    }else{
+                        Notification.error({message: 'Something went wrong', delay: 5000});
+                    }
+                }, function () {
+                    Notification.error({message: 'Something went wrong', delay: 5000});
+
+                });
+            }
         };
     }]);
 

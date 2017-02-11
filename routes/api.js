@@ -19,6 +19,7 @@ router.put('/users/:id([A-z0-9]+)/profile_pic', upload.single('file'), userContr
 router.get('/activities/', activityController.getAll);
 router.post('/activities/', upload.single('file'), activityController.createActivity);
 router.get('/activities/:id([A-z0-9]+)', activityController.canSee, activityController.getOne);
+router.delete('/activities/:id([A-z0-9]+)', activityController.canSee, activityController.deleteOne);
 router.get('/activities/:id([A-z0-9]+)/comments', activityController.canSee, activityController.getActivityComments);
 router.post('/activities/:id([A-z0-9]+)/comments', activityController.canSee, activityController.addComment);
 router.get('/activities/:id([A-z0-9]+)/trackpoints', activityController.canSee, activityController.getActivityTrackPoints);
