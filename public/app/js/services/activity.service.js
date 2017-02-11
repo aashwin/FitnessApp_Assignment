@@ -12,21 +12,16 @@
                 });
         };
         service.getAll = function (query) {
-            var parts = [];
-            for (var i in query) {
-                if (query.hasOwnProperty(i)) {
-                    parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(query[i]));
-                }
-            }
-            return $http.get('/api/activities/?' + parts.join("&"))
+
+            return $http.get('/api/activities/' + toQuery(query))
                 .then(function success(response) {
                     return response.data;
                 }, function error(response) {
                     return {"success": false, "errors": ["Something went wrong, try again!"]};
                 });
         };
-        service.getComments = function (id) {
-            return $http.get('/api/activities/' + id + '/comments')
+        service.getComments = function (id, query) {
+            return $http.get('/api/activities/' + id + '/comments' + toQuery(query))
                 .then(function success(response) {
                     return response.data;
                 }, function error(response) {

@@ -20,7 +20,7 @@ router.get('/activities/', activityController.getAll);
 router.post('/activities/', upload.single('file'), activityController.createActivity);
 router.get('/activities/:id([A-z0-9]+)', activityController.canSee, activityController.getOne);
 router.get('/activities/:id([A-z0-9]+)/comments', activityController.canSee, activityController.getActivityComments);
-router.get('/activities/:id([A-z0-9]+)/trackpoints', activityController.canSee, activityController.getActivityTrackPoints);
 router.post('/activities/:id([A-z0-9]+)/comments', activityController.canSee, activityController.addComment);
+router.get('/activities/:id([A-z0-9]+)/trackpoints', activityController.canSee, activityController.getActivityTrackPoints);
 
 module.exports = router;

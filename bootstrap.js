@@ -18,12 +18,8 @@ var init = function (app) {
         }
     }
     if (app) {
-        app.use(function (req, res, next) {
-            debug("%s %s by %s", req.method, req.originalUrl, req.ip);
-            next();
-        });
         framework.Authenticator.init(config.authentication);
-        app.use(framework.Authenticator.authenticatorMW(require("./services/users").getOnePrivate));
+        app.use(framework.Authenticator.authenticatorMW(require("./services/users").getOnePrivate), framework.BaseController(config.application.data_handling));
 
         files = [];
         i = 0;

@@ -1,4 +1,13 @@
 'use strict';
+var toQuery = function (query) {
+    var parts = [];
+    for (var i in query) {
+        if (query.hasOwnProperty(i)) {
+            parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(query[i]));
+        }
+    }
+    return "?" + parts.join("&");
+};
 
 (function () {
     var app = angular.module("app", ['ui-notification', 'ngRoute', 'moment-picker', 'ngFileUpload', 'ngMap']);
@@ -32,7 +41,7 @@
             var base = Math.floor(Math.log(Math.abs(number)) / Math.log(1000));
             var suffix = 'kmb'[base - 1];
             var prec = Math.pow(10, precision);
-            return suffix ? Math.round((number / Math.pow(1000, base) * prec)) / prec + suffix : '' + n;
+            return suffix ? Math.round((number / Math.pow(1000, base) * prec)) / prec + suffix : number;
 
         };
     });

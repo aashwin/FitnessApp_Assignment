@@ -7,7 +7,11 @@ exports.application = {
     "hashing": {"salt_work_factor": 10},
     "jwt_token_secret": "&Ce#!mjPM$zV^SCSR#!%uV!r",
     "unauthorised_return_url": "/",
-    "auth_token_header": "X_AUTH_TOKEN"
+    "auth_token_header": "X_AUTH_TOKEN",
+    "data_handling": {
+        "max_limit_per_page": 1000,
+        "default_limit_per_page": 5
+    }
 };
 exports.authentication = {
     "token_field": "X_AUTH_TOKEN",

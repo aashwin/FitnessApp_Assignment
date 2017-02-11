@@ -29,8 +29,8 @@ exports.getOne = function (req, res, next) {
 };
 
 exports.getActivityComments = function (req, res, next) {
-    ActivityCommentSystem.getAllForActivity(req.params.id).then(function (obj) {
-        res.status(200).json({"success": true, errors: [], "object": obj});
+    ActivityCommentSystem.getAllForActivity(req.params.id, req.request_info).then(function (obj) {
+        res.status(200).json({"success": true, errors: [], "object": obj.list, "count": obj.count});
     }, function () {
         res.status(404).json({"success": false, errors: ["Something went wrong!"], "object": []});
     });

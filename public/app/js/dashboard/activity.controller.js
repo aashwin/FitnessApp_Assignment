@@ -5,7 +5,7 @@
         $scope.activity = {name: "Loading..."};
         $scope.default_profile_pic = defaultProfilePic;
         $scope.currentUser = {};
-        $scope.comments = {errors: [], list: []};
+        $scope.comments = {errors: [], list: [], count: 0};
         $scope.comment = "";
         $scope.mapPathData = [];
         $scope.$watch(userService.currentUser, function (currentUser) {
@@ -28,11 +28,19 @@
                 }
             }
         });
-        activityService.getComments($routeParams.id).then(function (res) {
-            if (res.success && res.object && res.object instanceof Array) {
-                $scope.comments.list = res.object;
-            }
-        });
+        var limit = 5;
+        var page = 1;
+        $scope.loadMoreComments = function () {
+            activityService.getComments($routeParams.id, {limit: limit, page: page}).then(function (res) {
+                if (res.success && res.object && res.object instanceof Array) {
+
+                    $scope.comments.list=$scope.comments.list.concat(res.object);
+                    $scope.comments.count = res.count || 0;
+                    page++;
+                }
+            });
+        };
+        $scope.loadMoreComments();
         $scope.addActivityComment = function () {
             activityService.addComment({
                 "activityId": $scope.activity._id,
@@ -41,6 +49,7 @@
                 if (res.success) {
                     res.object.createdBy = $scope.currentUser;
                     $scope.comments.list.push(res.object);
+                    $scope.comments.count++;
                     $scope.comments.errors = [];
                     $scope.comment = "";
                     $scope.errored = false;

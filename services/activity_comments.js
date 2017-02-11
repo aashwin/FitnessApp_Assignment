@@ -15,14 +15,14 @@ exports.getOne = function (id) {
         });
     });
 };
-exports.getAllForActivity = function (id) {
+exports.getAllForActivity = function (id, request_info) {
     return new Promise(function (resolve, reject) {
-        ActivityCommentDAO.findByActivityId(id, function (activitiesList) {
+        ActivityCommentDAO.findByActivityId(id, request_info, function (activitiesList, count) {
             if (!activitiesList || !(activitiesList instanceof Array)) {
                 reject();
                 return;
             }
-            resolve(activitiesList);
+            resolve({"list": activitiesList, "count": count});
         });
     });
 };
@@ -44,10 +44,9 @@ exports.validateAndClean = function (activityId, data, user) {
             if (data.commentText.length > 300) {
                 errors.push("Comment text must be less than 300 characters.");
             }
-            if (!validator.isAlphanumeric(data.activityId)) {
+            if (!data.activityId || !validator.isAlphanumeric(data.activityId)) {
                 errors.push("Activity ID is malformed");
-            }
-            if ((data.activityId!==activityId)) {
+            } else if ((data.activityId !== activityId)) {
                 errors.push("Activity ID is malformed");
             }
             data.commentText = validator.escape(data.commentText);
