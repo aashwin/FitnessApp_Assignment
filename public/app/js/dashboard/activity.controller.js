@@ -64,6 +64,9 @@
                 $scope.errored = true;
             });
         };
+        $scope.editActivity = function(){
+          $location.path('/app/activity/'+$scope.activity._id+'/edit');
+        };
         $scope.deleteActivity = function () {
             var con = confirm("Are you sure you want to delete the activity? Everything will be erased.");
             if (con) {

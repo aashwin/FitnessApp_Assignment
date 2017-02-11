@@ -36,7 +36,9 @@
                 <dash-card title="Avg. Pace" value="{{activity.durationInSeconds/(activity.distanceInMeters/1000 )}}"
                            format="MM:SS" type="timeValue" units="/km"
                            class="col xs-4"></dash-card>
-                <dash-card title="Type" value="Run" class="col xs-4"></dash-card>
+                <dash-card title="Type"
+                           value="{{activity.activityType == 0 ? 'Run' : activity.activityType == 2 ?'Cycle':'Walk'}}"
+                           class="col xs-4"></dash-card>
                 <dash-card title="Elevation" value="{{activity.elevationInMeters}}" units="m"
                            class="col xs-4"></dash-card>
                 <dash-card title="Cal Burn" value="{{activity.kCalBurnt | number: 0}}" units="kCal"

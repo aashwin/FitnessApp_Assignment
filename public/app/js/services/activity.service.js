@@ -28,6 +28,17 @@
                     return {"success": false, "errors": ["Something went wrong, try again!"]};
                 });
         };
+        service.update = function (id, activity) {
+            return $http.put('/api/activities/' + id, activity)
+                .then(function success(response) {
+                    return response.data;
+                }, function error(response) {
+                    if (response.status == 400) {
+                        return response.data;
+                    }
+                    return {"success": false, "errors": ["Something went wrong, try again!"]};
+                });
+        };
         service.getComments = function (id, query) {
             return $http.get('/api/activities/' + id + '/comments' + toQuery(query))
                 .then(function success(response) {

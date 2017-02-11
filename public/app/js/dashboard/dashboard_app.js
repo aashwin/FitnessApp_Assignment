@@ -118,21 +118,19 @@ var toQuery = function (query) {
                 templateUrl: 'static_views/dashboard/create_activity.view.html',
                 controller: 'createActivityController'
 
-            }).when('/app/activity/:id?', {
+            }).when('/app/activity/:id/:edit_mode', {
+            templateUrl: 'static_views/dashboard/create_activity.view.html',
+            controller: 'createActivityController'
+
+        }).when('/app/activity/:id', {
             templateUrl: 'static_views/dashboard/activity.view.html',
             controller: 'activityController'
 
-        })
-            .when('/app/activity/:id?', {
-                templateUrl: 'static_views/dashboard/activity.view.html',
-                controller: 'activityController'
+        }).when('/app/users/edit-profile', {
+            templateUrl: 'static_views/dashboard/edit_profile.view.html',
+            controller: 'editProfileController'
 
-            })
-            .when('/app/users/edit-profile', {
-                templateUrl: 'static_views/dashboard/edit_profile.view.html',
-                controller: 'editProfileController'
-
-            }).when('/app/404', {
+        }).when('/app/404', {
             templateUrl: 'static_views/dashboard/404.view.html',
             controller: 'ErrorController'
 

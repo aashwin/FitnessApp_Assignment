@@ -9,17 +9,23 @@ var upload = multer({
 });
 router.post('/authenticate', userController.authenticateUser);
 
+//Users
 router.get('/users/', userController.getUser);
 router.post('/users', userController.createUser);
+//Single User
 router.get('/users/:id([A-z0-9]+)', userController.getOne);
-router.put('/users/:id([A-z0-9]+)', userController.updateUser);
 router.delete('/users/:id([A-z0-9]+)', userController.deleteUser);
+router.put('/users/:id([A-z0-9]+)', userController.updateUser);
 router.put('/users/:id([A-z0-9]+)/profile_pic', upload.single('file'), userController.updateProfilePic);
 
+//Activities
 router.get('/activities/', activityController.getAll);
 router.post('/activities/', upload.single('file'), activityController.createActivity);
+//Single Activity
 router.get('/activities/:id([A-z0-9]+)', activityController.canSee, activityController.getOne);
+router.put('/activities/:id([A-z0-9]+)', activityController.canSee, activityController.editActivity);
 router.delete('/activities/:id([A-z0-9]+)', activityController.canSee, activityController.deleteOne);
+//Single Activity > Object
 router.get('/activities/:id([A-z0-9]+)/comments', activityController.canSee, activityController.getActivityComments);
 router.post('/activities/:id([A-z0-9]+)/comments', activityController.canSee, activityController.addComment);
 router.get('/activities/:id([A-z0-9]+)/trackpoints', activityController.canSee, activityController.getActivityTrackPoints);

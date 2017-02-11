@@ -5,6 +5,7 @@ const ActivitySchema = new Schema({
     name: {type: String, required: true},
     createdBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     dateTime: {type: Number},
+    activityType: {type: Number, default: 0, enum: [0, 1, 2]},
     distanceInMeters: {type: Number, default: 0},
     elevationInMeters: {type: Number, default: 0},
     durationInSeconds: {type: Number, default: 0},

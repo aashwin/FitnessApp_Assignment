@@ -114,6 +114,32 @@ exports.createActivity = function (req, res, next) {
     }
 };
 
+exports.editActivity = function (req, res, next) {
+    var response = {errors: [], success: false, object: null};
+
+    if (req.currentUser._id.toString() !== req.activity.createdBy._id.toString()) {
+        response.errors.push("You are not authorized to update this activity!");
+        res.status(403).json(response);
+        return;
+    }
+    ActivitySystem.validateAndClean(req.body, req.currentUser).then(function (activity) {
+        ActivitySystem.updateActivity(req.activity._id, activity).then(function (activity) {
+            response.success = true;
+            response.object = activity;
+            res.status(201).json(response);
+        }, function () {
+            response.errors = ["Something went wrong!"];
+            res.status(400).json(response);
+        });
+
+    }, function (ret) {
+        response.errors = ret.errors || ["Something went wrong!"];
+        res.status(400).json(response);
+    });
+
+
+};
+
 exports.deleteOne = function (req, res, next) {
     if (req.activity) {
         if (req.activity.createdBy && req.activity.createdBy._id.toString() == req.currentUser._id.toString()) {

@@ -62,4 +62,13 @@ ActivityDAO.delete = function (activity_id, callback) {
         callback();
     });
 };
+ActivityDAO.updateById = function (id, data, callback) {
+    Activity.findOneAndUpdate({_id: id}, data, {upsert: false}, function (err, doc) {
+        if (err) {
+            callback(err);
+        }
+        callback(null, doc);
+    });
+
+};
 module.exports = ActivityDAO;

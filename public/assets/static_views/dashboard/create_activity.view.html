@@ -8,7 +8,7 @@
     </div>
 </div>
 <div ng-show="entryMode==1">
-    <h1>Manual Entry</h1>
+    <h1>{{edit_mode ? 'Edit Mode: '+manualEntryModel.name :'Manual Entry'}}</h1>
 
     <form name="manualEntry" class="form-background grid" ng-class="{'errored': errored}">
         <ul class="error_list">
@@ -48,7 +48,7 @@
             <label for="name">Share with
                 <small class="red">*</small>
             </label>
-            <input type="text" class="form-input validation" id="share_with" ng-model="manualEntryModel.share_with"
+            <input type="text" class="form-input validation" id="shared_with" ng-model="manualEntryModel.shared_with"
                    placeholder="Comma seperated usernames of your friends..." required>
         </div>
         <div class="form-group col xs-12 md-6">
@@ -111,7 +111,7 @@
                       class="form-input validation"></textarea>
         </div>
         <input type="button" ng-click="addActivityManual();" class="button xs-large col xs-12 orange"
-               value="Add Activity >>">
+               value="{{edit_mode ? 'Edit' : 'Add'}} Activity >>">
         <div class="clear"></div>
     </form>
 </div>

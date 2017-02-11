@@ -45,14 +45,42 @@ exports.createActivity = function (activity) {
     activity2.save();
     return activity2;
 };
+exports.updateActivity = function (id, data) {
+
+    return new Promise(function (resolve, reject) {
+        if(!data){
+            reject("No data");
+            return;
+        }
+        delete data.createdAt;
+        delete data._id;
+        delete data.__v;
+        delete data.updatedAt;
+        delete data.createdBy;
+        ActivityDAO.updateById(id, data, function (err, activity) {
+            if (err) {
+                reject(err);
+            }
+            resolve(activity);
+        });
+    });
+};
+
 exports.validateAndClean = function (data, user) {
     var errors = [];
     return new Promise(function (resolve, reject) {
             if (data) {
                 data.name = validator.trim(data.name || "");
                 data.distance = data.distance || 0;
+                if(typeof data.distanceType !=='object'){
+                    data.distanceType = {"value": (data.distanceType || 0)};
+                }if(typeof data.activityType !=='object'){
+                    data.activityType = {"value": (data.activityType || 0)};
+                }
                 data.distanceType = data.distanceType || {"value": 0};
                 data.distanceType.value = data.distanceType.value || 0;
+                data.activityType = data.activityType || {"value": 0};
+                data.activityType.value = data.activityType.value || 0;
                 data.elevation = data.elevation || 0;
                 data.durationH = data.durationH || 0;
                 data.durationM = data.durationM || 0;
@@ -61,10 +89,13 @@ exports.validateAndClean = function (data, user) {
                 data.notes = data.notes || "";
                 data.shared_with = data.shared_with || "";
                 data.shared_with_processed = [];
+                if (typeof data.shared_with !== 'string') {
+                    data.shared_with = "";
+                }
                 const now = (new Date).getTime() / 1000;
                 if (data.name.length < 3 || data.name > 50) {
                     errors.push('Activity name has to be between 3-50 characters');
-                } else if (!data.name.match(/^[a-zA-Z0-9_ #()\[\]!@-]+$/)) {
+                } else if (!data.name.match(/^[a-zA-Z0-9_ #('")\[\]!@-]+$/)) {
                     errors.push('Activity name contains some invalid characters');
                 }
                 if (!data.dateTime) {
@@ -76,6 +107,10 @@ exports.validateAndClean = function (data, user) {
 
                 if (data.visibility !== 0 && data.visibility !== 1 && data.visibility !== 2) {
                     errors.push("Visibility is not valid");
+                }
+                if (!data.activityType.value.toString().match(/^[0-9\.]+$/) || data.activityType.value <0 || data.activityType.value > 2) {
+                    errors.push('Activity Type not correct, try again!');
+
                 }
                 if (!data.distanceType.value.toString().match(/^[0-9\.]+$/) || data.distanceType.value > 2000 || data.distanceType.value <= 0) {
                     errors.push('Distance Type not correct, try again!');
@@ -120,7 +155,8 @@ exports.validateAndClean = function (data, user) {
                         durationInSeconds: data.durationH * 3600 + data.durationM * 60 + data.durationS,
                         notes: validator.escape(validator.trim(data.notes)),
                         visibility: data.visibility,
-                        shared_with: []
+                        shared_with: [],
+                        activityType: data.activityType.value
                     };
                     if (user.weightInKg && user.weightInKg > 0) {
                         activity.kCalBurnt = CustomMath.calculateCalories(user.weightInKg, activity.distanceInMeters, activity.durationInSeconds);

@@ -15,6 +15,16 @@
                 if ($scope.entryModel.dob) {
                     $scope.entryModel.dobObj = moment($scope.entryModel.dob);
                 }
+                if ($scope.entryModel.gender) {
+                    for (var i = 0; i < $scope.genders.length; i++) {
+                        if ($scope.entryModel.gender == $scope.genders[i].value) {
+                            $scope.entryModel.genderObj = $scope.genders[i];
+                            break;
+                        }
+                    }
+                } else {
+                    $scope.entryModel.genderObj = $scope.genders[0];
+                }
             }
         );
         $scope.deleteAccount = function () {
