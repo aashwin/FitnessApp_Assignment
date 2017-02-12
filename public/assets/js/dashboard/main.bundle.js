@@ -42314,7 +42314,7 @@ return 'ngMap';
         $scope.count = 0;
         $scope.query = {
             "limit": '10',
-            "sort_field": "created_at",
+            "sort_field": "createdAt",
             "sort_by": "desc",
             "createdBy": "me",
             "page": 1
