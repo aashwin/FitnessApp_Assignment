@@ -7,7 +7,7 @@ const Activity = mongoose.model('Activity');
 const validator = require('validator');
 var parseGpx = require('../framework/modules/parse-gpx/parse-gpx');
 var CustomMath = require('../framework/modules/custom_math');
-exports.getAll = function (userId, query) {
+exports.getAll = function (userId, query, request_info) {
     return new Promise(function (resolve, reject) {
         var queryNew = [];
         if (query) {
@@ -19,12 +19,13 @@ exports.getAll = function (userId, query) {
                 }
             }
         }
-        ActivityDAO.findAll(userId, queryNew, function (activitiesList) {
+        ActivityDAO.findAll(userId, queryNew, request_info, function (activitiesList, count) {
             if (!activitiesList || !(activitiesList instanceof Array)) {
                 reject();
                 return;
             }
-            resolve(activitiesList);
+            count = count || activitiesList.length || 0;
+            resolve({"list": activitiesList, "count": count});
         });
     });
 };
@@ -48,7 +49,7 @@ exports.createActivity = function (activity) {
 exports.updateActivity = function (id, data) {
 
     return new Promise(function (resolve, reject) {
-        if(!data){
+        if (!data) {
             reject("No data");
             return;
         }
@@ -72,9 +73,10 @@ exports.validateAndClean = function (data, user) {
             if (data) {
                 data.name = validator.trim(data.name || "");
                 data.distance = data.distance || 0;
-                if(typeof data.distanceType !=='object'){
+                if (typeof data.distanceType !== 'object') {
                     data.distanceType = {"value": (data.distanceType || 0)};
-                }if(typeof data.activityType !=='object'){
+                }
+                if (typeof data.activityType !== 'object') {
                     data.activityType = {"value": (data.activityType || 0)};
                 }
                 data.distanceType = data.distanceType || {"value": 0};
@@ -108,7 +110,7 @@ exports.validateAndClean = function (data, user) {
                 if (data.visibility !== 0 && data.visibility !== 1 && data.visibility !== 2) {
                     errors.push("Visibility is not valid");
                 }
-                if (!data.activityType.value.toString().match(/^[0-9\.]+$/) || data.activityType.value <0 || data.activityType.value > 2) {
+                if (!data.activityType.value.toString().match(/^[0-9\.]+$/) || data.activityType.value < 0 || data.activityType.value > 2) {
                     errors.push('Activity Type not correct, try again!');
 
                 }

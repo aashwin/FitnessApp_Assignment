@@ -14,7 +14,7 @@ ActivityDAO.findById = function (id, callback) {
         });
     });
 };
-ActivityDAO.findAll = function (user_id, query, callback) {
+ActivityDAO.findAll = function (user_id, query, req_info, callback) {
     var $queryObject = null;
     if (query) {
         $queryObject = {$and: query};
@@ -29,18 +29,32 @@ ActivityDAO.findAll = function (user_id, query, callback) {
     } else {
         $queryObject = $restricterQuery;
     }
-    Activity.find($queryObject, function (err, data) {
-        if (err) {
-            return callback(null);
-        }
-        Activity.populate(data, {"path": "createdBy"}, function (err, popData) {
+    query = Activity.find($queryObject);
+    if (req_info.offset) {
+        query.skip(req_info.offset);
+    }
+    if (req_info.limit) {
+        query.limit(req_info.limit);
+    }
+    if (req_info.sort_field) {
+        var sortObj = {};
+        sortObj[req_info.sort_field] = req_info.sort_by;
+        query.sort(sortObj);
+    }
+    query.exec(function (err, data) {
             if (err) {
                 return callback(null);
             }
-            callback(popData);
-        });
-    });
-
+            Activity.populate(data, {"path": "createdBy"}, function (err, popData) {
+                if (err) {
+                    return callback(null);
+                }
+                Activity.count($queryObject, function (err, count) {
+                    callback(popData, count || 0);
+                });
+            });
+        }
+    );
 };
 ActivityDAO.findByUserId = function (user_id, callback) {
     Activity.find({"createdBy": user_id}, function (err, data) {

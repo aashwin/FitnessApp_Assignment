@@ -22,7 +22,7 @@ gulp.task('copy:angular', function () {
     return gulp.src([
         //Commented out modules are now imported using Browserify
         // nodeModulesDir + 'angular/angular.min.js*',
-        nodeModulesDir + 'moment/min/moment.min.js',
+        nodeModulesDir + 'moment/min/moment.min.js'
         // nodeModulesDir + 'angular-moment-picker/dist/angular-moment-picker.min.js',
         // nodeModulesDir + 'ng-file-upload/dist/ng-file-upload-all.min.js',
         // nodeModulesDir + 'ngmap/build/scripts/ng-map.min.js',
@@ -55,9 +55,9 @@ gulp.task('minify_css', function () {
 });
 
 gulp.task('compress_js', function () {
-    gulp.src(distDir + 'js/**/*.js')
-        .pipe(uglify())
-        .pipe(gulp.dest(distDir + "js/"))
+    // gulp.src(distDir + 'js/**/*.js')
+    //     .pipe(uglify())
+    //     .pipe(gulp.dest(distDir + "js/"))
 });
 gulp.task('browserify', function (done) {
     glob(buildDir + '/js/**/main.js', function (err, files) {
