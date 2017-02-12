@@ -42343,13 +42343,68 @@ return 'ngMap';
 })();
 },{}],17:[function(require,module,exports){
 require('./activity.controller');
+require('./list_activity.controller');
 require('./create_activity.controller');
 require('./edit_profile.controller');
 require('./error.controller');
 require('./header.controller');
 require('./home.controller');
 
-},{"./activity.controller":11,"./create_activity.controller":12,"./edit_profile.controller":13,"./error.controller":14,"./header.controller":15,"./home.controller":16}],18:[function(require,module,exports){
+},{"./activity.controller":11,"./create_activity.controller":12,"./edit_profile.controller":13,"./error.controller":14,"./header.controller":15,"./home.controller":16,"./list_activity.controller":18}],18:[function(require,module,exports){
+'use strict';
+(function () {
+    var app = angular.module("app");
+    app.controller("listActivitiesController", ['activityService', 'userService', 'Notification', 'defaultProfilePic', '$location', '$scope', '$routeParams', function (activityService, userService, Notification, defaultProfilePic, $location, $scope, $routeParams) {
+        $scope.myActivityList = [];
+        $scope.totalPages = [];
+        $scope.count = 0;
+        $scope.search_type = "name";
+        $scope.search_query = "";
+        $scope.query = {
+            "limit": '10',
+            "sort_field": "createdAt",
+            "sort_by": "desc",
+            "page": 1,
+            "activityType": "ALL"
+        };
+
+        $scope.switchPage = function (p) {
+            $scope.query.page = p;
+            $scope.reload();
+        };
+        $scope.reload = function () {
+            if ($scope.count == 0 || $scope.query.page > Math.ceil($scope.count / $scope.query.limit)) {
+                $scope.query.page = 1;
+            };
+
+            $scope.query[$scope.search_type] = $scope.search_query;
+            if ($scope.query.activityType == 'ALL') {
+                delete $scope.query.activityType;
+            }
+            activityService.getAll($scope.query).then(function (res) {
+                if (!$scope.query.activityType) {
+                    $scope.query.activityType = 'ALL';
+                }
+                if (res.success && res.object && res.object instanceof Array) {
+                    $scope.myActivityList = res.object;
+                    $scope.count = res.count;
+                    $scope.totalPages = new Array(Math.ceil(res.count / $scope.query.limit));
+                }
+            }, function () {
+                if (!$scope.query.activityType) {
+                    $scope.query.activityType = 'ALL';
+                }
+                $scope.myActivityList = [];
+                $scope.totalPages = [];
+            });
+        };
+        $scope.reload();
+
+    }]);
+
+})();
+
+},{}],19:[function(require,module,exports){
 'use strict';
 var angular = require('angular');
 var ui_notification = require('angular-ui-notification');
@@ -42481,6 +42536,10 @@ var ngMap = require('ngmap');
             templateUrl: 'static_views/dashboard/activity.view.html',
             controller: 'activityController'
 
+        }).when('/app/activities', {
+            templateUrl: 'static_views/dashboard/activity_list.view.html',
+            controller: 'listActivitiesController'
+
         }).when('/app/users/edit-profile', {
             templateUrl: 'static_views/dashboard/edit_profile.view.html',
             controller: 'editProfileController'
@@ -42504,7 +42563,7 @@ var ngMap = require('ngmap');
 })();
 
 
-},{"../controllers/dashboard":17,"../services/activity.service":19,"../services/user.service":20,"angular":7,"angular-moment-picker":1,"angular-route":3,"angular-ui-notification":5,"ng-file-upload":9,"ngmap":10}],19:[function(require,module,exports){
+},{"../controllers/dashboard":17,"../services/activity.service":20,"../services/user.service":21,"angular":7,"angular-moment-picker":1,"angular-route":3,"angular-ui-notification":5,"ng-file-upload":9,"ngmap":10}],20:[function(require,module,exports){
 'use strict';
 (function () {
     var app = angular.module("app");
@@ -42608,7 +42667,7 @@ var ngMap = require('ngmap');
         return service;
     }]);
 })();
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 (function () {
     var loginApp = angular.module("app");
@@ -42709,4 +42768,4 @@ var ngMap = require('ngmap');
         return service;
     }]);
 })();
-},{}]},{},[18]);
+},{}]},{},[19]);

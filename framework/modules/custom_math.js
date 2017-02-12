@@ -32,3 +32,7 @@ exports.calculateCalories = function (weightInKg, distanceInMeters, durationInSe
     return (durationInSeconds / 60) * calPerMin;
 
 };
+
+exports.isNumber = function (n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+};

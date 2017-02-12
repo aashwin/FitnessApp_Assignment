@@ -14,7 +14,13 @@ exports.getAll = function (userId, query, request_info) {
             for (var q in query) {
                 if (query.hasOwnProperty(q)) {
                     var obj = {};
-                    obj[q] = query[q];
+                    if (CustomMath.isNumber(query[q])) {
+                        obj[q] = parseInt(query[q]);
+                    } else if (q === '_id' || q === 'createdBy') {
+                        obj[q] = query[q];
+                    } else {
+                        obj[q] = new RegExp(query[q], "i");
+                    }
                     queryNew.push(obj);
                 }
             }

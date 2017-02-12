@@ -18,8 +18,9 @@
                     <img ng-src="{{activity.createdBy.profile_pic || default_profile_pic}}"/>
                     <div class="title">{{activity.createdBy.name || activity.createdBy.username}}</div>
                     at {{activity.dateTime*1000 | date:'dd/MM/yyyy @ h:mma'}}<br/><br/>
-                    <strong>Shared with:</strong> {{activity.visibility == 1 ? 'Friends': activity.visibility ==
+                   <small><strong>Shared with:</strong> {{activity.visibility == 1 ? 'Friends': activity.visibility ==
                     2 ? 'Me': 'Public'}}
+                   </small>
                 </div>
             </div>
         </div>
