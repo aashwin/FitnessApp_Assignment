@@ -3,6 +3,15 @@
     var app = angular.module("app");
     app.factory("activityService", ['$http', 'Upload', function ($http, Upload) {
         var service = {};
+        var toQuery = function (query) {
+            var parts = [];
+            for (var i in query) {
+                if (query.hasOwnProperty(i)) {
+                    parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(query[i]));
+                }
+            }
+            return "?" + parts.join("&");
+        };
         service.get = function (id) {
             return $http.get('/api/activities/' + id)
                 .then(function success(response) {

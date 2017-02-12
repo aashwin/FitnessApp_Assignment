@@ -1,1 +1,0 @@
-"use strict";!function(){var t=angular.module("app");t.controller("homeController",["activityService","userService","$scope",function(t,e,c){c.myActivityList=[],t.getAll({createdBy:"me"}).then(function(t){t.success&&t.object&&t.object instanceof Array&&(c.myActivityList=t.object)},function(){})}])}();

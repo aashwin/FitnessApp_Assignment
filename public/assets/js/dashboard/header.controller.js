@@ -1,1 +1,0 @@
-"use strict";!function(){var e=angular.module("app");e.controller("headerController",["userService","$scope",function(e,r){r.user={},e.getLoggedInUser().then(function(e){e.success?r.user=e.user:(localStorage.removeItem("AUTH_TOKEN"),location.href="/?unauthorised=true")},function(){localStorage.removeItem("AUTH_TOKEN"),location.href="/?unauthorised=true"})}])}();

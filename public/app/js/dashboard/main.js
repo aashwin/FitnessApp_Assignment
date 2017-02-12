@@ -1,16 +1,15 @@
 'use strict';
-var toQuery = function (query) {
-    var parts = [];
-    for (var i in query) {
-        if (query.hasOwnProperty(i)) {
-            parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(query[i]));
-        }
-    }
-    return "?" + parts.join("&");
-};
+var angular = require('angular');
+var ui_notification = require('angular-ui-notification');
+var ngRoute = require('angular-route');
+var moment_picker = require('angular-moment-picker');
+var ngFileUpload = require('ng-file-upload');
+var ngMap = require('ngmap');
+
+
 
 (function () {
-    var app = angular.module("app", ['ui-notification', 'ngRoute', 'moment-picker', 'ngFileUpload', 'ngMap']);
+    var app = angular.module("app", [ui_notification, ngRoute, ngFileUpload, ngMap, 'moment-picker']);
     app.constant('defaultProfilePic', "images/default_avatar.png");
     app.factory('httpRequestInterceptor',
         ['$rootScope', function ($rootScope) {
@@ -32,6 +31,10 @@ var toQuery = function (query) {
                 }
             };
         }]);
+
+    require('../controllers/dashboard');
+    require('../services/activity.service');
+    require('../services/user.service');
     app.filter('numberText', function () {
         return function (number, precision) {
             if (isNaN(number)) {
@@ -103,7 +106,7 @@ var toQuery = function (query) {
 
         };
     });
-    app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'momentPickerProvider', function ($routeProvider, $locationProvider, $httpProvider, momentPickerProvider) {
+    app.config(['$routeProvider', '$locationProvider', '$httpProvider','momentPickerProvider', function ($routeProvider, $locationProvider, $httpProvider,momentPickerProvider) {
         momentPickerProvider.options({
             startView: 'month',
             today: true
@@ -144,5 +147,7 @@ var toQuery = function (query) {
             requireBase: false
         });
     }]);
+
+
 })();
 

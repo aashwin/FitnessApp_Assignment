@@ -3,6 +3,15 @@
     var loginApp = angular.module("app");
     loginApp.factory("userService", ['$http', 'Upload', '$rootScope', function ($http, Upload, $rootScope) {
         var service = {};
+        var toQuery = function (query) {
+            var parts = [];
+            for (var i in query) {
+                if (query.hasOwnProperty(i)) {
+                    parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(query[i]));
+                }
+            }
+            return "?" + parts.join("&");
+        };
         $rootScope.currentUser = {};
 
         service.getLoggedInUser = function () {
