@@ -367,6 +367,10 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
   text-align: center;
   padding: 10px;
 }
+.dash_card img{
+  width:50%;
+  border-radius:10px;
+}
 
 .dash_card .title {
   text-transform: uppercase;
@@ -415,7 +419,6 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
   font-weight: bold;
   display: inline;
 }
-
 h1, h2 {
   text-transform: uppercase;
   border-bottom: 1px solid #ddd;
@@ -442,6 +445,12 @@ a.home_card:hover .form-background{
 
 }
 
+.greenText{
+  color:#0f0 !important;
+}
+.redText{
+  color:#f00 !important;
+}
 @media #{$small-screen-min-width}{
 
   .button.s-large {

@@ -63,6 +63,7 @@ var ngMap = require('ngmap');
                 title: '@',
                 value: "@",
                 format: "@",
+                highlighter: "@",
                 units: "@",
                 type: "@"
             },
@@ -72,7 +73,7 @@ var ngMap = require('ngmap');
                 //Convert to K, M source adapted from: http://stackoverflow.com/a/10600491/7156780
                 scope.$watchGroup(['units', 'type', 'value'], function (newValues, oldValues, scope) {
                     if (scope.type == 'timeValue' && scope.value) {
-                        var leftOver = scope.value;
+                        var leftOver = Math.abs(scope.value);
 
                         if (leftOver && leftOver > 0) {
                             var hour = 0, minutes = 0, seconds = 0;
@@ -95,6 +96,9 @@ var ngMap = require('ngmap');
                         }
                     } else {
                         scope.displayVal = !scope.value || scope.value === 0 || scope.value === '0' || scope.value === '0.00' ? "--" : scope.value;
+                    }
+                    if(scope.highlighter){
+                        
                     }
                     scope.displayUnits = scope.units;
                     if (!scope.value || scope.value === 0 || scope.value === '0' || scope.value === '0.00') {
@@ -124,6 +128,10 @@ var ngMap = require('ngmap');
             }).when('/app/activity/:id/:edit_mode', {
             templateUrl: 'static_views/dashboard/create_activity.view.html',
             controller: 'createActivityController'
+
+        }).when('/app/activity/:id/compare/:compare_id', {
+            templateUrl: 'static_views/dashboard/compare_activity.view.html',
+            controller: 'compareActivityController'
 
         }).when('/app/activity/:id', {
             templateUrl: 'static_views/dashboard/activity.view.html',

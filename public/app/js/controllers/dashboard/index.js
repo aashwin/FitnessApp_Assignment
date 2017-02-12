@@ -5,3 +5,4 @@ require('./edit_profile.controller');
 require('./error.controller');
 require('./header.controller');
 require('./home.controller');
+require('./compare_activity.controller');

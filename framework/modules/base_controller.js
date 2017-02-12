@@ -15,7 +15,7 @@ module.exports = function (config) {
                 delete req.query.limit;
             }
             if (req.request_info.limit > config.max_limit_per_page) {
-                req.request.info.limit = config.max_limit_per_page;
+                req.request_info.limit = config.max_limit_per_page;
             }
             if (req.query.page) {
                 if (parseInt(req.query.page) > 0) {

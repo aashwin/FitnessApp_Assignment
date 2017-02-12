@@ -41944,7 +41944,22 @@ return 'ngMap';
         $scope.comments = {errors: [], list: [], count: 0};
         $scope.comment = "";
         $scope.mapPathData = [];
+        $scope.myActivityList = [];
+        $scope.compareActivityObj = {};
+        $scope.query = {
+            "limit": '10000',
+            "sort_field": "name",
+            "sort_by": "asc",
+            "createdBy": "me"
+        };
 
+        activityService.getAll($scope.query).then(function (res) {
+            if (res.success && res.object && res.object instanceof Array) {
+                $scope.myActivityList = res.object;
+            }
+        }, function () {
+            $scope.myActivityList = [];
+        });
         activityService.get($routeParams.id).then(function (response) {
             if (response.success && response.object) {
                 $scope.activity = response.object;
@@ -41980,6 +41995,12 @@ return 'ngMap';
             });
         };
         $scope.loadMoreComments();
+        $scope.compareActivity = function () {
+            if ($scope.compareActivityObj && $scope.compareActivityObj._id) {
+                $location.path("/app/activity/" + $routeParams.id + "/compare/" + $scope.compareActivityObj._id)
+                return;
+            }
+        };
         $scope.addActivityComment = function () {
             activityService.addComment({
                 "activityId": $scope.activity._id,
@@ -42001,18 +42022,18 @@ return 'ngMap';
                 $scope.errored = true;
             });
         };
-        $scope.editActivity = function(){
-          $location.path('/app/activity/'+$scope.activity._id+'/edit');
+        $scope.editActivity = function () {
+            $location.path('/app/activity/' + $scope.activity._id + '/edit');
         };
         $scope.deleteActivity = function () {
             var con = confirm("Are you sure you want to delete the activity? Everything will be erased.");
             if (con) {
                 activityService.delete($scope.activity._id).then(function (res) {
 
-                    if(res.success) {
+                    if (res.success) {
                         $location.path('/app/');
                         Notification.success({message: 'Successfully deleted activity', delay: 5000});
-                    }else{
+                    } else {
                         Notification.error({message: 'Something went wrong', delay: 5000});
                     }
                 }, function () {
@@ -42026,6 +42047,60 @@ return 'ngMap';
 })();
 
 },{}],12:[function(require,module,exports){
+'use strict';
+(function () {
+    var app = angular.module("app");
+    app.controller("compareActivityController", ['userService', 'activityService', '$location', '$scope', '$routeParams', function (userService, activityService, $location, $scope, $routeParams) {
+        $scope.activity = {name: "Loading..."};
+        $scope.otherActivity = {name: "Loading..."};
+        $scope.myActivityList = [];
+        $scope.compareActivityObj = {};
+        $scope.query = {
+            "limit": '10000',
+            "sort_field": "name",
+            "sort_by": "asc",
+            "createdBy": "me"
+        };
+        $scope.compareActivity = function () {
+            if ($scope.compareActivityObj && $scope.compareActivityObj._id) {
+                $location.path("/app/activity/" + $routeParams.id + "/compare/" + $scope.compareActivityObj._id)
+                return;
+            }
+        };
+
+        activityService.getAll($scope.query).then(function (res) {
+            if (res.success && res.object && res.object instanceof Array) {
+                $scope.myActivityList = res.object;
+            }
+        }, function () {
+            $scope.myActivityList = [];
+        });
+        activityService.get($routeParams.id).then(function (response) {
+            if (response.success && response.object) {
+                $scope.activity = response.object;
+            } else {
+                location.href = "/app/404/";
+                return;
+            }
+        }, function () {
+            location.href = "/app/404/";
+        });
+        activityService.get($routeParams.compare_id).then(function (response) {
+            if (response.success && response.object) {
+                $scope.otherActivity = response.object;
+            } else {
+                location.href = "/app/404/";
+                return;
+            }
+        }, function () {
+            location.href = "/app/404/";
+        });
+    }]);
+
+
+})();
+
+},{}],13:[function(require,module,exports){
 'use strict';
 (function () {
     var app = angular.module("app");
@@ -42195,7 +42270,7 @@ return 'ngMap';
 
 })();
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 (function () {
     var app = angular.module("app");
@@ -42274,7 +42349,7 @@ return 'ngMap';
 
 })();
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 (function () {
     var app = angular.module("app");
@@ -42284,7 +42359,7 @@ return 'ngMap';
 
 })();
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 (function () {
     var app = angular.module("app");
@@ -42304,7 +42379,7 @@ return 'ngMap';
     }]);
 
 })();
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 (function () {
     var app = angular.module("app");
@@ -42341,7 +42416,7 @@ return 'ngMap';
     }]);
 
 })();
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 require('./activity.controller');
 require('./list_activity.controller');
 require('./create_activity.controller');
@@ -42349,8 +42424,9 @@ require('./edit_profile.controller');
 require('./error.controller');
 require('./header.controller');
 require('./home.controller');
+require('./compare_activity.controller');
 
-},{"./activity.controller":11,"./create_activity.controller":12,"./edit_profile.controller":13,"./error.controller":14,"./header.controller":15,"./home.controller":16,"./list_activity.controller":18}],18:[function(require,module,exports){
+},{"./activity.controller":11,"./compare_activity.controller":12,"./create_activity.controller":13,"./edit_profile.controller":14,"./error.controller":15,"./header.controller":16,"./home.controller":17,"./list_activity.controller":19}],19:[function(require,module,exports){
 'use strict';
 (function () {
     var app = angular.module("app");
@@ -42404,7 +42480,7 @@ require('./home.controller');
 
 })();
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 var angular = require('angular');
 var ui_notification = require('angular-ui-notification');
@@ -42470,6 +42546,7 @@ var ngMap = require('ngmap');
                 title: '@',
                 value: "@",
                 format: "@",
+                highlighter: "@",
                 units: "@",
                 type: "@"
             },
@@ -42479,7 +42556,7 @@ var ngMap = require('ngmap');
                 //Convert to K, M source adapted from: http://stackoverflow.com/a/10600491/7156780
                 scope.$watchGroup(['units', 'type', 'value'], function (newValues, oldValues, scope) {
                     if (scope.type == 'timeValue' && scope.value) {
-                        var leftOver = scope.value;
+                        var leftOver = Math.abs(scope.value);
 
                         if (leftOver && leftOver > 0) {
                             var hour = 0, minutes = 0, seconds = 0;
@@ -42502,6 +42579,9 @@ var ngMap = require('ngmap');
                         }
                     } else {
                         scope.displayVal = !scope.value || scope.value === 0 || scope.value === '0' || scope.value === '0.00' ? "--" : scope.value;
+                    }
+                    if(scope.highlighter){
+                        
                     }
                     scope.displayUnits = scope.units;
                     if (!scope.value || scope.value === 0 || scope.value === '0' || scope.value === '0.00') {
@@ -42531,6 +42611,10 @@ var ngMap = require('ngmap');
             }).when('/app/activity/:id/:edit_mode', {
             templateUrl: 'static_views/dashboard/create_activity.view.html',
             controller: 'createActivityController'
+
+        }).when('/app/activity/:id/compare/:compare_id', {
+            templateUrl: 'static_views/dashboard/compare_activity.view.html',
+            controller: 'compareActivityController'
 
         }).when('/app/activity/:id', {
             templateUrl: 'static_views/dashboard/activity.view.html',
@@ -42563,7 +42647,7 @@ var ngMap = require('ngmap');
 })();
 
 
-},{"../controllers/dashboard":17,"../services/activity.service":20,"../services/user.service":21,"angular":7,"angular-moment-picker":1,"angular-route":3,"angular-ui-notification":5,"ng-file-upload":9,"ngmap":10}],20:[function(require,module,exports){
+},{"../controllers/dashboard":18,"../services/activity.service":21,"../services/user.service":22,"angular":7,"angular-moment-picker":1,"angular-route":3,"angular-ui-notification":5,"ng-file-upload":9,"ngmap":10}],21:[function(require,module,exports){
 'use strict';
 (function () {
     var app = angular.module("app");
@@ -42667,7 +42751,7 @@ var ngMap = require('ngmap');
         return service;
     }]);
 })();
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 (function () {
     var loginApp = angular.module("app");
@@ -42768,4 +42852,4 @@ var ngMap = require('ngmap');
         return service;
     }]);
 })();
-},{}]},{},[19]);
+},{}]},{},[20]);

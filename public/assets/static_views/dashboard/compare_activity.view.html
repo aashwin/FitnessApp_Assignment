@@ -1,0 +1,114 @@
+<div class="grid-inner">
+
+
+    <div class="col xs-12 bottom-margin">
+
+        <div class="form-background ">
+            <div class="form-group">
+                <h1>{{activity.name}} vs {{otherActivity.name}}</h1>
+                <button type="button" ng-click="showCompare=!showCompare"
+                        class="button col xs-12"><i class="fa fa-search"
+                                                    aria-hidden="true"></i>
+                    Compare With Another
+                </button>
+                <div class="form-group" ng-show="showCompare">
+                    <label>Pick an Activity: </label>
+                    <select id="activity" ng-model="compareActivityObj" class="form-input validation"
+                            ng-change="compareActivity()" ng-options="aT.name for aT in myActivityList">
+                    </select>
+                </div>
+                <div class="dash_card col xs-3">
+                    <img ng-src="{{activity.createdBy.profile_pic || default_profile_pic}}" style="width:50%"/>
+
+                </div>
+                <div class="dash_card col xs-3">
+                    <img ng-src="{{otherActivity.createdBy.profile_pic || default_profile_pic}}" style="width:50%"/>
+                </div>
+                <div class="dash_card col xs-3">
+                    <img src="https://placehold.it/300/ffffff/000000?text=Compare" style="width:50%"/>
+
+                </div>
+                <div class="dash_card col xs-3">
+                    <img src="https://placehold.it/300/ffffff/000000?text=Compare" style="width:50%"/>
+
+                </div>
+                <dash-card title="Their Distance" value="{{activity.distanceInMeters/1000 | number:2}}" units="km"
+                           class="col xs-3"></dash-card>
+                <dash-card title="Your Distance" value="{{otherActivity.distanceInMeters/1000 | number:2}}" units="km"
+                           class="col xs-3"></dash-card>
+                <dash-card title="Diff"
+                           value="{{(otherActivity.distanceInMeters-activity.distanceInMeters)/1000 | number:2}}"
+                           units="km"
+                           class="col xs-3"></dash-card>
+
+                <dash-card title="%"
+                           value="{{((activity.distanceInMeters)/(otherActivity.distanceInMeters)-1)*100 | number: 2}}"
+                           highlighter="positive" units="%"
+                           class="col xs-3"></dash-card>
+                <dash-card title="Their Duration" value="{{activity.durationInSeconds}}" format="HH:MM:SS"
+                           type="timeValue"
+                           class="col xs-3"></dash-card>
+                <dash-card title="Your Duration" value="{{otherActivity.durationInSeconds}}" format="HH:MM:SS"
+                           type="timeValue"
+                           class="col xs-3"></dash-card>
+                <dash-card title="Diff" value="{{(otherActivity.durationInSeconds-activity.durationInSeconds)}}"
+                           format="HH:MM:SS" type="timeValue"
+                           class="col xs-3"></dash-card>
+
+                <dash-card title="%"
+                           value="{{((activity.durationInSeconds)/(otherActivity.durationInSeconds)-1)*100 | number: 2}}"
+                           highlighter="positive" units="%"
+                           class="col xs-3"></dash-card>
+
+                <dash-card title="Their Avg. Pace"
+                           value="{{activity.durationInSeconds/(activity.distanceInMeters/1000 )}}"
+                           format="MM:SS"
+                           type="timeValue" units="/km"
+                           class="col xs-3"></dash-card>
+                <dash-card title="Your Avg. Pace"
+                           value="{{otherActivity.durationInSeconds/(otherActivity.distanceInMeters/1000 )}}"
+                           format="MM:SS"
+                           type="timeValue" units="/km"
+                           class="col xs-3"></dash-card>
+                <dash-card title="Diff"
+                           value="{{(otherActivity.durationInSeconds/(otherActivity.distanceInMeters/1000))-(activity.durationInSeconds/(activity.distanceInMeters/1000))}}"
+                           format="MM:SS" type="timeValue"
+                           class="col xs-3" units="/km"></dash-card>
+                <dash-card title="%"
+                           value="{{((otherActivity.durationInSeconds/(otherActivity.distanceInMeters/1000))/(activity.durationInSeconds/(activity.distanceInMeters/1000))-1)*100 | number: 2}}"
+                           highlighter="positive" units="%"
+                           class="col xs-3"></dash-card>
+
+
+                <dash-card title="Their Elevation" value="{{otherActivity.elevationInMeters}}" units="m"
+                           class="col xs-3"></dash-card>
+                <dash-card title="Your Elevation" value="{{otherActivity.elevationInMeters}}" units="m"
+                           class="col xs-3"></dash-card>
+                <dash-card title="Diff" value="{{(otherActivity.elevationInMeters)-(activity.elevationInMeters)}}"
+                           units="m" class="col xs-3"></dash-card>
+
+                <dash-card title="%"
+                           value="{{(otherActivity.elevationInMeters/activity.elevationInMeters-1)*100 | number: 2}}"
+                           highlighter="positive" units="%"
+                           class="col xs-3"></dash-card>
+
+
+                <dash-card title="Their Cal Burn" value="{{activity.kCalBurnt | number: 0}}" units="kCal"
+                           class="col xs-3"></dash-card>
+                <dash-card title="Your Cal Burn" value="{{otherActivity.kCalBurnt | number: 0}}" units="kCal"
+                           class="col xs-3"></dash-card>
+                <dash-card title="Diff" value="{{(otherActivity.kCalBurnt)-(activity.kCalBurnt) | number: 0}}"
+                           units="kCal" class="col xs-3"></dash-card>
+                <dash-card title="%"
+                           value="{{(otherActivity.kCalBurnt/activity.kCalBurnt-1)*100 | number: 2}}"
+                           highlighter="positive" units="%"
+                           class="col xs-3"></dash-card>
+
+
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+
+</div>
