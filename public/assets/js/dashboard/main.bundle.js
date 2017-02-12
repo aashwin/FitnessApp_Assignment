@@ -42425,8 +42425,9 @@ require('./error.controller');
 require('./header.controller');
 require('./home.controller');
 require('./compare_activity.controller');
+require('./profile.controller');
 
-},{"./activity.controller":11,"./compare_activity.controller":12,"./create_activity.controller":13,"./edit_profile.controller":14,"./error.controller":15,"./header.controller":16,"./home.controller":17,"./list_activity.controller":19}],19:[function(require,module,exports){
+},{"./activity.controller":11,"./compare_activity.controller":12,"./create_activity.controller":13,"./edit_profile.controller":14,"./error.controller":15,"./header.controller":16,"./home.controller":17,"./list_activity.controller":19,"./profile.controller":20}],19:[function(require,module,exports){
 'use strict';
 (function () {
     var app = angular.module("app");
@@ -42481,6 +42482,56 @@ require('./compare_activity.controller');
 })();
 
 },{}],20:[function(require,module,exports){
+'use strict';
+(function () {
+    var app = angular.module("app");
+    app.controller("profileController", ['userService', 'activityService', 'defaultProfilePic', '$location', '$scope', '$routeParams', function (userService, activityService, defaultProfilePic, $location, $scope, $routeParams) {
+        $scope.default_profile_pic = defaultProfilePic;
+        $scope.profile = {};
+        $scope.myActivityList = [];
+        $scope.count = 0;
+        $scope.totalPages = [];
+        userService.get($routeParams.id).then(function (response) {
+            if (response.success && response.object) {
+                $scope.profile = response.object;
+            } else {
+                location.href = "/app/404/";
+                return;
+            }
+        }, function () {
+            location.href = "/app/404/";
+        });
+        $scope.query = {
+            "limit": '10',
+            "sort_field": "createdAt",
+            "sort_by": "desc",
+            "createdBy": $routeParams.id,
+            "page": 1
+        };
+
+        $scope.switchPage = function (p) {
+            $scope.query.page = p;
+            $scope.reload();
+        };
+        $scope.reload = function () {
+            activityService.getAll($scope.query).then(function (res) {
+                if (res.success && res.object && res.object instanceof Array) {
+                    $scope.myActivityList = res.object;
+                    $scope.count = res.count;
+                    $scope.totalPages = new Array(Math.ceil(res.count / $scope.query.limit));
+                }
+            }, function () {
+                $scope.myActivityList = [];
+                $scope.totalPages = [];
+            });
+        };
+        $scope.reload();
+    }]);
+
+
+})();
+
+},{}],21:[function(require,module,exports){
 'use strict';
 var angular = require('angular');
 var ui_notification = require('angular-ui-notification');
@@ -42620,6 +42671,10 @@ var ngMap = require('ngmap');
             templateUrl: 'static_views/dashboard/activity.view.html',
             controller: 'activityController'
 
+        }).when('/app/profile/:id', {
+            templateUrl: 'static_views/dashboard/profile.view.html',
+            controller: 'profileController'
+
         }).when('/app/activities', {
             templateUrl: 'static_views/dashboard/activity_list.view.html',
             controller: 'listActivitiesController'
@@ -42647,7 +42702,7 @@ var ngMap = require('ngmap');
 })();
 
 
-},{"../controllers/dashboard":18,"../services/activity.service":21,"../services/user.service":22,"angular":7,"angular-moment-picker":1,"angular-route":3,"angular-ui-notification":5,"ng-file-upload":9,"ngmap":10}],21:[function(require,module,exports){
+},{"../controllers/dashboard":18,"../services/activity.service":22,"../services/user.service":23,"angular":7,"angular-moment-picker":1,"angular-route":3,"angular-ui-notification":5,"ng-file-upload":9,"ngmap":10}],22:[function(require,module,exports){
 'use strict';
 (function () {
     var app = angular.module("app");
@@ -42751,7 +42806,7 @@ var ngMap = require('ngmap');
         return service;
     }]);
 })();
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 (function () {
     var loginApp = angular.module("app");
@@ -42852,4 +42907,4 @@ var ngMap = require('ngmap');
         return service;
     }]);
 })();
-},{}]},{},[20]);
+},{}]},{},[21]);

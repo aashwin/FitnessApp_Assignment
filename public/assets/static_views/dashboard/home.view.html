@@ -76,7 +76,7 @@
 
     <div class="col xs-12 bottom-margin" ng-show="totalPages.length>0">
         <div class="form-background " align="center">
-            <a ng-repeat="i in totalPages track by $index" href="app/page-{{$index+1}}" class="button"
+            <a ng-repeat="i in totalPages track by $index" ng-click="switchPage($index+1)"class="button"
                ng-class="{'selected':query.page==$index+1}">{{$index+1}}</a>
 
         </div>

@@ -142,8 +142,9 @@ nav ul li a.active, nav ul li a:hover {
   color: #333;
   text-decoration: none;
 }
-.page{
-  margin:3px;
+
+.page {
+  margin: 3px;
 }
 
 .button.small {
@@ -306,8 +307,15 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
   font-size: 105%;
 }
 
+a.user_card {
+  text-decoration: none;
+  text-align: center;
+  display:block;
+}
+
 .user_card img {
   width: 35%;
+  margin-left:-calc(75%);
   margin-bottom: 3px;
   border-radius: 10px;
 }
@@ -367,9 +375,10 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
   text-align: center;
   padding: 10px;
 }
-.dash_card img{
-  width:50%;
-  border-radius:10px;
+
+.dash_card img {
+  width: 50%;
+  border-radius: 10px;
 }
 
 .dash_card .title {
@@ -419,6 +428,7 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
   font-weight: bold;
   display: inline;
 }
+
 h1, h2 {
   text-transform: uppercase;
   border-bottom: 1px solid #ddd;
@@ -428,9 +438,11 @@ h1, h2 {
   width: 100%;
   font-size: 1.45em;
 }
-a.home_card{
+
+a.home_card {
   text-decoration: none;
 }
+
 h2 {
   margin: 0;
   padding: 5px;
@@ -439,18 +451,20 @@ h2 {
   text-transform: uppercase
 }
 
-a.home_card:hover .form-background{
+a.home_card:hover .form-background {
   background: #fdfdfd;
   transition: all .5s ease-in-out;
 
 }
 
-.greenText{
-  color:#0f0 !important;
+.greenText {
+  color: #0f0 !important;
 }
-.redText{
-  color:#f00 !important;
+
+.redText {
+  color: #f00 !important;
 }
+
 @media #{$small-screen-min-width}{
 
   .button.s-large {

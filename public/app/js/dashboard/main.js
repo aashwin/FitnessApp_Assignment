@@ -137,6 +137,10 @@ var ngMap = require('ngmap');
             templateUrl: 'static_views/dashboard/activity.view.html',
             controller: 'activityController'
 
+        }).when('/app/profile/:id', {
+            templateUrl: 'static_views/dashboard/profile.view.html',
+            controller: 'profileController'
+
         }).when('/app/activities', {
             templateUrl: 'static_views/dashboard/activity_list.view.html',
             controller: 'listActivitiesController'

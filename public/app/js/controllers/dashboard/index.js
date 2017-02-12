@@ -6,3 +6,4 @@ require('./error.controller');
 require('./header.controller');
 require('./home.controller');
 require('./compare_activity.controller');
+require('./profile.controller');
