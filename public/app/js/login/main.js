@@ -1,12 +1,16 @@
 'use strict';
-const isEmpty = function (txt) {
-    return txt === undefined || txt === null || txt == "";
-};
 (function () {
     if (localStorage.getItem("AUTH_TOKEN")) {
         location.href = "/app";
     }
-    var loginApp = angular.module("app", ['ngFileUpload', 'ngRoute']);
+    var angular = require('angular');
+    var ngRoute = require('angular-route');
+    var ngFileUpload = require('ng-file-upload');
+
+    var loginApp = angular.module("app", [ngRoute, ngFileUpload]);
+
+    require('../controllers/login');
+    require('../services/user.service');
     loginApp
         .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
             $routeProvider

@@ -1,6 +1,10 @@
 'use strict';
 (function () {
     var loginApp = angular.module("app");
+
+    const isEmpty = function (txt) {
+        return txt === undefined || txt === null || txt == "";
+    };
     loginApp.controller("loginController", ['userService', '$scope', '$location', function (userService, $scope, $location) {
         $scope.username = "";
         $scope.password = "";
