@@ -29,6 +29,8 @@ router.delete('/activities/:id([A-z0-9]+)', activityController.canSee, activityC
 //Single Activity > Comments
 router.get('/activities/:id([A-z0-9]+)/comments', activityController.canSee, activityCommentController.getActivityComments);
 router.post('/activities/:id([A-z0-9]+)/comments', activityController.canSee, activityCommentController.addComment);
+router.get('/activities/:id([A-z0-9]+)/comments/:comment_id([A-z0-9]+)', activityController.canSee, activityCommentController.getOne);
+router.put('/activities/:id([A-z0-9]+)/comments/:comment_id([A-z0-9]+)', activityController.canSee, activityCommentController.updateComment);
 router.delete('/activities/:id([A-z0-9]+)/comments/:comment_id([A-z0-9]+)', activityController.canSee, activityCommentController.deleteComment);
 router.get('/activities/:id([A-z0-9]+)/trackpoints', activityController.canSee, activityController.getActivityTrackPoints);
 

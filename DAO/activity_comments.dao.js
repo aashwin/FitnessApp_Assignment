@@ -68,7 +68,15 @@ ActivityCommentDAO.deleteByActivityId = function (activity_id, callback) {
         callback();
     });
 };
+ActivityCommentDAO.updateById = function (id, data, callback) {
+    ActivityComment.findOneAndUpdate({_id: id}, data, {upsert: false}, function (err, doc) {
+        if (err) {
+            callback(err);
+        }
+        callback(null, doc);
+    });
 
+};
 ActivityCommentDAO.delete = function (id, callback) {
     var deleteArray = id;
     if (!(id instanceof Array)) {

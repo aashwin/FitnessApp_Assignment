@@ -4,6 +4,27 @@ const mongoose = require('mongoose');
 const ActivityComment = mongoose.model('ActivityComment');
 var validator = require('validator');
 
+exports.updateComment = function (id, data) {
+
+    return new Promise(function (resolve, reject) {
+        if (!data) {
+            reject();
+            return;
+        }
+        delete data.createdAt;
+        delete data._id;
+        delete data.__v;
+        delete data.updatedAt;
+        delete data.activityId;
+        delete data.createdBy;
+        ActivityCommentDAO.updateById(id, data, function (err, comment) {
+            if (err) {
+                reject();
+            }
+            resolve(comment);
+        });
+    });
+};
 exports.getOne = function (id) {
     return new Promise(function (resolve, reject) {
         ActivityCommentDAO.findById(id, function (activityComment) {
