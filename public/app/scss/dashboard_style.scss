@@ -451,11 +451,22 @@ h2 {
   text-transform: uppercase
 }
 
-.form-background a{
-  display: block;
+.form-background a {
+  display: inline-block;
   color: #000;
   text-decoration: none;
 
+}
+.fa-youtube-play{
+  color:#f00;
+}
+
+
+.fa-picture-o, .fa-external-link-square{
+  color:#ccc;
+}
+.form-background img{
+  border-radius:10px;
 }
 
 .form-background .over {
@@ -466,14 +477,16 @@ h2 {
   top: 10px;
   right: 30px;
   color: #fff;
-  text-shadow:1px 1px #000;
-  border:none;
-  outline:none;
-  cursor:pointer;
+  text-shadow: 1px 1px #000;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
-.form-background .over .fa{
-  color:#f00;
+
+.form-background .over .fa {
+  color: #f00;
 }
+
 a.home_card:hover .form-background {
   background: #fdfdfd;
   transition: all .5s ease-in-out;
