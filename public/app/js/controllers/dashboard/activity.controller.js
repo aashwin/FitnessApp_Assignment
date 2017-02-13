@@ -89,7 +89,7 @@
         };
         $scope.attachments = [];
         $scope.$watch(function (scope) {
-                return scope.activity.attachedMedia.length;
+                return !scope.activity ? 0 : !scope.activity.attachedMedia ? 0 : scope.activity.attachedMedia.length;
             }, function () {
                 $scope.attachments = [];
 

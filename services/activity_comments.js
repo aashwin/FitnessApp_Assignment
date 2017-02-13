@@ -84,3 +84,13 @@ exports.deleteByActivityId = function (ids) {
         });
     });
 };
+exports.delete = function (ids) {
+    return new Promise(function (resolve, reject) {
+        ActivityCommentDAO.delete(ids, function (err) {
+            if (err) {
+                reject();
+            }
+            resolve();
+        });
+    });
+};

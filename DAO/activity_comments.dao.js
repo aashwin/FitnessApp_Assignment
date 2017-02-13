@@ -68,4 +68,17 @@ ActivityCommentDAO.deleteByActivityId = function (activity_id, callback) {
         callback();
     });
 };
+
+ActivityCommentDAO.delete = function (id, callback) {
+    var deleteArray = id;
+    if (!(id instanceof Array)) {
+        deleteArray = [id];
+    }
+    ActivityComment.remove({_id: {$in: deleteArray}}, function (err) {
+        if (err) {
+            return callback(err);
+        }
+        callback();
+    });
+};
 module.exports = ActivityCommentDAO;

@@ -1,6 +1,7 @@
 var express = require('express');
 var userController = require('../controllers/api/users.controller');
 var activityController = require('../controllers/api/activities.controller');
+var activityCommentController = require('../controllers/api/activity_comments.controller');
 var router = express.Router();
 var multer = require('multer');
 var path = require('path');
@@ -25,9 +26,10 @@ router.post('/activities/', upload.single('file'), activityController.createActi
 router.get('/activities/:id([A-z0-9]+)', activityController.canSee, activityController.getOne);
 router.put('/activities/:id([A-z0-9]+)', activityController.canSee, activityController.editActivity);
 router.delete('/activities/:id([A-z0-9]+)', activityController.canSee, activityController.deleteOne);
-//Single Activity > Object
-router.get('/activities/:id([A-z0-9]+)/comments', activityController.canSee, activityController.getActivityComments);
-router.post('/activities/:id([A-z0-9]+)/comments', activityController.canSee, activityController.addComment);
+//Single Activity > Comments
+router.get('/activities/:id([A-z0-9]+)/comments', activityController.canSee, activityCommentController.getActivityComments);
+router.post('/activities/:id([A-z0-9]+)/comments', activityController.canSee, activityCommentController.addComment);
+router.delete('/activities/:id([A-z0-9]+)/comments/:comment_id([A-z0-9]+)', activityController.canSee, activityCommentController.deleteComment);
 router.get('/activities/:id([A-z0-9]+)/trackpoints', activityController.canSee, activityController.getActivityTrackPoints);
 
 module.exports = router;
