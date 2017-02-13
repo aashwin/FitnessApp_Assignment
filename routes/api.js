@@ -2,6 +2,7 @@ var express = require('express');
 var userController = require('../controllers/api/users.controller');
 var activityController = require('../controllers/api/activities.controller');
 var activityCommentController = require('../controllers/api/activity_comments.controller');
+var activityTrackpointsController = require('../controllers/api/activity_trackpoints.controller');
 var router = express.Router();
 var multer = require('multer');
 var path = require('path');
@@ -32,6 +33,8 @@ router.post('/activities/:id([A-z0-9]+)/comments', activityController.canSee, ac
 router.get('/activities/:id([A-z0-9]+)/comments/:comment_id([A-z0-9]+)', activityController.canSee, activityCommentController.getOne);
 router.put('/activities/:id([A-z0-9]+)/comments/:comment_id([A-z0-9]+)', activityController.canSee, activityCommentController.updateComment);
 router.delete('/activities/:id([A-z0-9]+)/comments/:comment_id([A-z0-9]+)', activityController.canSee, activityCommentController.deleteComment);
-router.get('/activities/:id([A-z0-9]+)/trackpoints', activityController.canSee, activityController.getActivityTrackPoints);
+
+//Single Activity > Trackpoints
+router.get('/activities/:id([A-z0-9]+)/trackpoints', activityController.canSee, activityTrackpointsController.getActivityTrackPoints);
 
 module.exports = router;
