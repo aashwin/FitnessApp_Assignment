@@ -11,8 +11,28 @@ exports.getUser = function (req, res, next) {
     }
     res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
 };
+exports.getAll = function (req, res, next) {
+    if (req.query && req.query._id === 'me') {
+        req.query._id = req.currentUser._id;
+    }
+    UserSystem.getAll(req.query, req.request_info).then(function (obj) {
+        if (!obj) {
+            res.status(500).json({"success": false, errors: ["Something went wrong!"], "object": [], "count": 0});
+        } else {
+            if (!obj.list) {
+                obj.list = [];
+            }
+            if (!obj.count) {
+                obj.count = 0;
+            }
+            res.status(200).json({"success": true, errors: [], "object": obj.list, "count": obj.count});
+        }
+    }, function () {
+        res.status(404).json({"success": false, errors: ["Something went wrong!"], "object": []});
+    });
+};
 exports.getOne = function (req, res, next) {
-    if(req.currentUser._id.toString()==req.params.id){
+    if (req.currentUser._id.toString() == req.params.id) {
         res.status(200).json({"success": true, errors: [], "object": req.currentUser});
         return;
     }

@@ -6,6 +6,7 @@ const debug = require('debug')(config.application.namespace);
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 var validator = require('validator');
+var CustomMath = require('../framework/modules/custom_math');
 
 exports.getOne = function (id) {
     return new Promise(function (resolve, reject) {
@@ -16,6 +17,34 @@ exports.getOne = function (id) {
             }
             resolve(usr);
             return;
+        });
+    });
+};
+exports.getAll = function (query, request_info) {
+    var queryNew = [];
+    if (query) {
+        for (var q in query) {
+            if (query.hasOwnProperty(q)) {
+                var obj = {};
+                if (CustomMath.isNumber(query[q])) {
+                    obj[q] = parseInt(query[q]);
+                } else if (mongoose.Types.ObjectId.isValid(query[q])) {
+                    obj[q] = query[q];
+                } else {
+                    obj[q] = new RegExp(query[q], "i");
+                }
+                queryNew.push(obj);
+            }
+        }
+    }
+    return new Promise(function (resolve, reject) {
+        UserDAO.findAll(queryNew, request_info, function (usersList, count) {
+            if (!usersList || !(usersList instanceof Array)) {
+                reject();
+                return;
+            }
+            count = count || usersList.length || 0;
+            resolve({"list": usersList, "count": count});
         });
     });
 };

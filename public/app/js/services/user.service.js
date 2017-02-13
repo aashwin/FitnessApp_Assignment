@@ -15,10 +15,13 @@
         $rootScope.currentUser = {};
 
         service.getLoggedInUser = function () {
-            return $http.get('/api/users')
+            return $http.get('/api/users/?_id=me')
                 .then(function success(response) {
-                    $rootScope.currentUser = response.data.user;
-                    return response.data;
+                    if (response.data.object && response.data.object.length === 1) {
+                        $rootScope.currentUser = response.data.object[0];
+                        return response.data;
+                    }
+                    return {"success": false, "unauthorised": true};
                 }, function error(response) {
                     if (response.status == 401) {
                         return {"success": false, "unauthorised": true};

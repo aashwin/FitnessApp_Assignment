@@ -10,8 +10,8 @@ var upload = multer({
 router.post('/authenticate', userController.authenticateUser);
 
 //Users
-router.get('/users/', userController.getUser);
-router.post('/users', userController.createUser);
+router.get('/users/', userController.getAll);
+router.post('/users/', userController.createUser);
 //Single User
 router.get('/users/:id([A-z0-9]+)', userController.getOne);
 router.delete('/users/:id([A-z0-9]+)', userController.deleteUser);
