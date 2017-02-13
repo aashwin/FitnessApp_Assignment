@@ -49,8 +49,11 @@ exports.getOne = function (id) {
 
 exports.createActivity = function (activity) {
     var activity2 = new Activity(activity);
-    activity2.save();
-    return activity2;
+    return activity2.save().then(function (activity2) {
+        return activity2;
+    }, function(err){
+        return null;
+    });
 };
 exports.updateActivity = function (id, data) {
 
@@ -78,27 +81,32 @@ exports.validateAndClean = function (data, user) {
     return new Promise(function (resolve, reject) {
             if (data) {
                 data.name = validator.trim(data.name || "");
-                data.distance = data.distance || 0;
-                if (typeof data.distanceType !== 'object') {
-                    data.distanceType = {"value": (data.distanceType || 0)};
-                }
-                if (typeof data.activityType !== 'object') {
-                    data.activityType = {"value": (data.activityType || 0)};
-                }
-                data.distanceType = data.distanceType || {"value": 0};
-                data.distanceType.value = data.distanceType.value || 0;
-                data.activityType = data.activityType || {"value": 0};
-                data.activityType.value = data.activityType.value || 0;
-                data.elevation = data.elevation || 0;
-                data.durationH = data.durationH || 0;
-                data.durationM = data.durationM || 0;
-                data.durationS = data.durationS || 0;
+                data.distanceInMeters = parseFloat(data.distanceInMeters || 0);
+                data.activityType = parseInt(data.activityType || 0);
+                data.dateTime = parseInt(data.dateTime || 0);
+                data.elevationInMeters = parseFloat(data.elevationInMeters || 0);
+                data.durationInSeconds = parseInt(data.durationInSeconds || 0);
                 data.visibility = parseInt(data.visibility || 0);
                 data.notes = data.notes || "";
-                data.shared_with = data.shared_with || "";
-                data.shared_with_processed = [];
-                if (typeof data.shared_with !== 'string') {
-                    data.shared_with = "";
+                data.shared_with = data.shared_with || [];
+                if (!data.attachedMedia || !data.attachedMedia instanceof Array) {
+                    data.attachedMedia = []
+                }
+                if (!data.shared_with || !data.shared_with instanceof Array) {
+                    data.shared_with = []
+                }
+                for (var xi = 0; xi < data.attachedMedia; xi++) {
+                    if (data.attachedMedia[xi] instanceof Object) {
+                        var obj = data.attachedMedia[xi];
+                        obj.type = parseInt(obj.type || 0);
+                        if (obj.type < 0 || obj.type > 2) {
+                            errors.push("One of the attachment type is invalid");
+                        }
+                        if (!obj.url || !validator.isURL(obj.url)) {
+                            errors.push("One of the attachment URL is invalid")
+                        }
+                        data.attachedMedia[xi] = {url: obj.url, type: obj.type}
+                    }
                 }
                 const now = (new Date).getTime() / 1000;
                 if (data.name.length < 3 || data.name > 50) {
@@ -116,35 +124,25 @@ exports.validateAndClean = function (data, user) {
                 if (data.visibility !== 0 && data.visibility !== 1 && data.visibility !== 2) {
                     errors.push("Visibility is not valid");
                 }
-                if (!data.activityType.value.toString().match(/^[0-9\.]+$/) || data.activityType.value < 0 || data.activityType.value > 2) {
+                if (!data.activityType.toString().match(/^[0-9\.]+$/) || data.activityType < 0 || data.activityType > 2) {
                     errors.push('Activity Type not correct, try again!');
 
                 }
-                if (!data.distanceType.value.toString().match(/^[0-9\.]+$/) || data.distanceType.value > 2000 || data.distanceType.value <= 0) {
-                    errors.push('Distance Type not correct, try again!');
-
-                } else if (!data.distance.toString().match(/^[0-9\.]+$/) || data.distance * data.distanceType.value < 0 || data.distance * data.distanceType.value > 999999) {
+                if (!data.distanceInMeters.toString().match(/^[0-9\.]+$/) || data.distanceInMeters < 0 || data.distanceInMeters > 999999) {
                     errors.push('Distance is too big, are you sure you did that much?');
                 }
 
-                if (!data.elevation.toString().match(/^[0-9\.]+$/) || data.elevation < 0 || data.elevation > 999) {
+                if (!data.elevationInMeters.toString().match(/^[0-9\.]+$/) || data.elevationInMeters < 0 || data.elevationInMeters > 999) {
                     errors.push('Elevation must be between 0-999, are you sure you did that much?');
                 }
-                if (!data.durationH.toString().match(/^[0-9\.]+$/) || data.durationH < 0 || data.durationH > 99) {
-                    errors.push('Hours must be between 0-99, are you sure you did that much?');
-                }
-                if (!data.durationM.toString().match(/^[0-9\.]+$/) || data.durationM < 0 || data.durationM > 59) {
-                    errors.push('Minutes must be between 0-59');
-                }
-                if (!data.durationS.toString().match(/^[0-9\.]+$/) || data.durationS < 0 || data.durationS > 59) {
-                    errors.push('Seconds must be between 0-59');
+                if (!data.durationInSeconds.toString().match(/^[0-9\.]+$/) || data.durationInSeconds < 0 || data.durationInSeconds > 500000) {
+                    errors.push('Duration range is invalid');
                 }
                 if (data.visibility === 1 && data.shared_with.length > 0) {
-                    var arrayOfShared = data.shared_with.split(",");
-                    for (var i = 0; i < arrayOfShared.length; i++) {
-                        var sharedUser = validator.trim(arrayOfShared[i] || "").toLowerCase();
+                    for (var i = 0; i < data.shared_with.length; i++) {
+                        var sharedUser = validator.trim(data.shared_with[i] || "").toLowerCase();
                         if (sharedUser.match(/^[a-z0-9_-]+$/)) {
-                            data.shared_with_processed.push(sharedUser);
+                            data.shared_with[i] = (sharedUser);
                         }
                     }
                 }
@@ -153,18 +151,19 @@ exports.validateAndClean = function (data, user) {
                 errors.push('Malformed data');
             }
             if (errors.length === 0) {
-                UserDAO.findByListOfUsername(data.shared_with_processed, function (users) {
+                UserDAO.findByListOfUsername(data.shared_with, function (users) {
                     var activity = {
                         name: validator.escape(data.name),
                         createdBy: user._id,
                         dateTime: data.dateTime,
-                        distanceInMeters: data.distance * data.distanceType.value,
-                        elevationInMeters: data.elevation,
-                        durationInSeconds: data.durationH * 3600 + data.durationM * 60 + data.durationS,
+                        distanceInMeters: data.distanceInMeters,
+                        elevationInMeters: data.elevationInMeters,
+                        durationInSeconds: data.durationInSeconds,
                         notes: validator.escape(validator.trim(data.notes)),
                         visibility: data.visibility,
                         shared_with: [],
-                        activityType: data.activityType.value
+                        attachedMedia: data.attachedMedia,
+                        activityType: data.activityType
                     };
                     if (user.weightInKg && user.weightInKg > 0) {
                         activity.kCalBurnt = CustomMath.calculateCalories(user.weightInKg, activity.distanceInMeters, activity.durationInSeconds);

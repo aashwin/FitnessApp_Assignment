@@ -48,7 +48,7 @@
             <label for="name">Share with
                 <small class="red">*</small>
             </label>
-            <input type="text" class="form-input validation" id="shared_with" ng-model="manualEntryModel.shared_with"
+            <input type="text" class="form-input validation" id="shared_with" ng-model="manualEntryModel.shared_with_text"
                    placeholder="Comma seperated usernames of your friends..." required>
         </div>
         <div class="form-group col xs-12 md-6">
@@ -84,9 +84,9 @@
             </div>
         </div>
         <div class="form-group col xs-12 md-4">
-            <label for="elevation">Elevation (meters)</label>
-            <input type="number" class="form-input validation" id="elevation" min="0" max="999" ng-maxlength="3"
-                   ng-model="manualEntryModel.elevation"
+            <label for="elevationInMeters">Elevation (meters)</label>
+            <input type="number" class="form-input validation" id="elevationInMeters" min="0" max="999" ng-maxlength="3"
+                   ng-model="manualEntryModel.elevationInMeters"
                    placeholder="Did you climb?">
 
         </div>
@@ -152,10 +152,10 @@
             </label>
         </div>
         <div class="form-group col xs-12 md-12" ng-show="gpxUploadModel.visibility==1">
-            <label for="name">Share with
+            <label for="shared_with_text">Share with
                 <small class="red">*</small>
             </label>
-            <input type="text" class="form-input validation" id="shared_with" ng-model="gpxUploadModel.shared_with"
+            <input type="text" class="form-input validation" id="shared_with_text" ng-model="gpxUploadModel.shared_with_text"
                    placeholder="Comma seperated usernames of your friends...">
         </div>
         <div class="form-group col xs-12 md-5">

@@ -9,6 +9,8 @@
         $scope.mapPathData = [];
         $scope.myActivityList = [];
         $scope.compareActivityObj = {};
+        $scope.attachmentUrl = '';
+        $scope.attachmentType = '0';
         $scope.query = {
             "limit": '10000',
             "sort_field": "name",
@@ -83,6 +85,26 @@
             }, function (res) {
                 $scope.comments.errors = res.errors;
                 $scope.errored = true;
+            });
+        };
+        $scope.attachMedia = function () {
+            if (!$scope.activity) {
+                return;
+            }
+            if (!$scope.activity.attachedMedia && !$scope.activity.attachedMedia instanceof Array) {
+                $scope.activity.attachedMedia = [];
+            }
+            $scope.activity.attachedMedia.push({url: $scope.attachmentUrl, type: $scope.attachmentType});
+            activityService.update($routeParams.id, $scope.activity).then(function (res) {
+                if (res.success) {
+                    Notification.success({message: 'Successfully attached media to the activity', delay: 5000});
+
+                } else {
+                    $scope.errored = true;
+                }
+            }, function (res) {
+                $scope.errored = true;
+
             });
         };
         $scope.editActivity = function () {

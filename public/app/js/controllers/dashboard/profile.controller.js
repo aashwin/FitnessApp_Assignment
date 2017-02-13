@@ -10,6 +10,8 @@
         userService.get($routeParams.id).then(function (response) {
             if (response.success && response.object) {
                 $scope.profile = response.object;
+                $scope.profile.createdAtObj= moment($scope.profile.createdAt).fromNow();
+
             } else {
                 location.href = "/app/404/";
                 return;

@@ -85,22 +85,25 @@ exports.createActivity = function (req, res, next) {
         var response = {errors: [], success: false, object: null};
         if (req.file) {
             ActivitySystem.validateAndProcessGPXFile(req.file).then(function (gpxData) {
-                req.body.distance = Number(gpxData.distance.toFixed(2));
+                req.body.distanceInMeters = Number(gpxData.distance.toFixed(2));
                 req.body.dateTime = Math.round(gpxData.startTime / 1000);
-                req.body.distanceType = {"value": 1, "label": "Meters"};
-                req.body.elevation = Number(gpxData.elevation.toFixed(2));
-                req.body.durationH = gpxData.durationH;
-                req.body.durationM = gpxData.durationM;
-                req.body.durationS = gpxData.durationS;
+                req.body.elevationInMeters = Number(gpxData.elevation.toFixed(2));
+                req.body.durationInSeconds = gpxData.durationH * 3600;
+                req.body.durationInSeconds += gpxData.durationM * 60;
+                req.body.durationInSeconds += gpxData.durationS;
                 ActivitySystem.validateAndClean(req.body, req.currentUser).then(function (activity) {
-                    activity = ActivitySystem.createActivity(activity);
-                    for (var i = 0; i < gpxData.trackPoints.length; i++) {
-                        gpxData.trackPoints[i].activityId = activity._id;
-                    }
-                    ActivityTrackPointSystem.createTrackpoints(gpxData.trackPoints, function (err, points) {
-                        response.success = true;
-                        response.object = activity;
-                        res.status(201).json(response);
+                    ActivitySystem.createActivity(activity).then(function (activity) {
+                        for (var i = 0; i < gpxData.trackPoints.length; i++) {
+                            gpxData.trackPoints[i].activityId = activity._id;
+                        }
+                        ActivityTrackPointSystem.createTrackpoints(gpxData.trackPoints, function (err, points) {
+                            response.success = true;
+                            response.object = activity;
+                            res.status(201).json(response);
+                        });
+                    }, function () {
+                        response.errors = ["Something went wrong!"];
+                        res.status(400).json(response);
                     });
                 }, function (ret) {
                     response.errors = ret.errors || ["Something went wrong!"];
@@ -111,10 +114,15 @@ exports.createActivity = function (req, res, next) {
             fs.unlink(req.file.path);
         } else {
             ActivitySystem.validateAndClean(req.body, req.currentUser).then(function (activity) {
-                activity = ActivitySystem.createActivity(activity);
-                response.success = true;
-                response.object = activity;
-                res.status(201).json(response);
+                ActivitySystem.createActivity(activity).then(function (activity) {
+                    response.success = true;
+                    response.object = activity;
+                    res.status(201).json(response);
+                }, function () {
+                    response.errors = ["Something went wrong!"];
+                    res.status(400).json(response);
+                });
+
             }, function (ret) {
                 response.errors = ret.errors || ["Something went wrong!"];
                 res.status(400).json(response);

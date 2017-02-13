@@ -12,7 +12,15 @@ UserDAO.findByUsername = function (username, showPassword, callback) {
     });
 };
 UserDAO.findByListOfUsername = function (listOfUsernames, callback) {
-    User.find({username: {$in: listOfUsernames}}, function (err, data) {
+    var ids = [], names = [];
+    for (var i = 0; i < listOfUsernames.length; i++) {
+        if (mongoose.Types.ObjectId.isValid(listOfUsernames[i])) {
+            ids.push(listOfUsernames[i]);
+        } else {
+            names.push(listOfUsernames[i]);
+        }
+    }
+    User.find({$or: [{username: {$in: names}}, {_id: {$in: ids}}]}, function (err, data) {
         if (err) {
             return callback();
         }
@@ -21,7 +29,7 @@ UserDAO.findByListOfUsername = function (listOfUsernames, callback) {
 };
 UserDAO.findById = function (id, callback, internal) {
     internal = internal || false;
-    User.findById(id, !internal ? 'name username' : 'name username dob weightInKg email profile_pic gender', function (err, data) {
+    User.findById(id, !internal ? 'name username' : 'createdAt name username dob weightInKg email profile_pic gender', function (err, data) {
         if (err) {
             return callback();
         }

@@ -12,6 +12,10 @@ exports.getUser = function (req, res, next) {
     res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
 };
 exports.getOne = function (req, res, next) {
+    if(req.currentUser._id.toString()==req.params.id){
+        res.status(200).json({"success": true, errors: [], "object": req.currentUser});
+        return;
+    }
     UserSystem.getOne(req.params.id).then(function (user) {
         res.status(200).json({"success": true, errors: [], "object": user});
     }, function () {

@@ -29,7 +29,6 @@
             distanceType: $scope.measurementTypes[0],
             dateTimeObj: moment(date)
         };
-
         if ($scope.edit_mode) {
             activityService.get($routeParams.id).then(function (response) {
                     if (response.success && response.object) {
@@ -50,8 +49,6 @@
                         response.object.distance = response.object.distanceInMeters / 1000;
                         response.object.distanceType = $scope.measurementTypes[1];
                         response.object.dateTimeObj = moment(new Date(response.object.dateTime * 1000));
-                        response.object.elevation = response.object.elevationInMeters;
-                        response.object.shared_with_list = response.object.shared_with;
                         var leftOver = response.object.durationInSeconds;
 
                         if (leftOver && leftOver > 0) {
@@ -64,19 +61,19 @@
                             response.object.durationS = Math.round(leftOver);
                         }
                         delete response.object.distanceInMeters;
-                        delete response.object.elevationInMeters;
                         delete response.object.dateTime;
                         delete response.object.durationInSeconds;
-                        delete response.object.shared_with;
                         $scope.manualEntryModel = response.object;
-                        $scope.manualEntryModel.shared_with = "";
-                        for (var ix = 0; ix < $scope.manualEntryModel.shared_with_list.length; ix++) {
-                            userService.get($scope.manualEntryModel.shared_with_list[ix]).then(function (res) {
+                        $scope.manualEntryModel.shared_with_text = [];
+                        var done = 0;
+                        for (var ix = 0; ix < $scope.manualEntryModel.shared_with.length; ix++) {
+                            userService.get($scope.manualEntryModel.shared_with[ix]).then(function (res) {
+                                done++;
                                 if (res.success && res.object) {
-                                    if ($scope.manualEntryModel.shared_with.length > 0) {
-                                        $scope.manualEntryModel.shared_with += ", ";
-                                    }
-                                    $scope.manualEntryModel.shared_with += res.object.username;
+                                    $scope.manualEntryModel.shared_with_text.push(res.object.username);
+                                }
+                                if (done == $scope.manualEntryModel.shared_with.length) {
+                                    $scope.manualEntryModel.shared_with_text = $scope.manualEntryModel.shared_with_text.join(', ');
                                 }
                             });
                         }
@@ -93,8 +90,15 @@
             );
             $scope.addActivityManual = function () {
                 $scope.manualEntryModel.errors = [];
-                $scope.manualEntryModel.dateTime = Math.round($scope.manualEntryModel.dateTimeObj.valueOf() / 1000);
-                activityService.update($scope.manualEntryModel._id, $scope.manualEntryModel).then(function (res) {
+                var model = angular.copy($scope.manualEntryModel);
+                model.dateTime = Math.round($scope.manualEntryModel.dateTimeObj.valueOf() / 1000);
+                model.activityType = $scope.manualEntryModel.activityType.value;
+                model.distanceInMeters = $scope.manualEntryModel.distance * $scope.manualEntryModel.distanceType.value;
+                model.shared_with_text = model.shared_with_text || "";
+                model.shared_with = model.shared_with_text.length > 0 ? model.shared_with_text.split(",") : [];
+                model.durationInSeconds = model.durationH * 3600 + model.durationM * 60 + model.durationS;
+
+                activityService.update(model._id, model).then(function (res) {
                     if (res.success) {
                         $scope.errored = false;
                         $location.path('/app/activity/' + res.object._id);
@@ -117,8 +121,15 @@
             };
             $scope.addActivityManual = function () {
                 $scope.manualEntryModel.errors = [];
-                $scope.manualEntryModel.dateTime = Math.round($scope.manualEntryModel.dateTimeObj.valueOf() / 1000);
-                activityService.create($scope.manualEntryModel).then(function (res) {
+                var model = angular.copy($scope.manualEntryModel);
+                model.dateTime = Math.round($scope.manualEntryModel.dateTimeObj.valueOf() / 1000);
+                model.dateTime = Math.round($scope.manualEntryModel.dateTimeObj.valueOf() / 1000);
+                model.activityType = $scope.manualEntryModel.activityType.value;
+                model.distanceInMeters = $scope.manualEntryModel.distance * $scope.manualEntryModel.distanceType.value;
+                model.shared_with_text = model.shared_with_text || "";
+                model.shared_with = model.shared_with_text.length > 0 ? model.shared_with_text.split(",") : [];
+                model.durationInSeconds = model.durationH * 3600 + model.durationM * 60 + model.durationS;
+                activityService.create(model).then(function (res) {
                     if (res.success) {
                         $scope.errored = false;
                         $location.path('/app/activity/' + res.object._id);
@@ -141,9 +152,18 @@
                     $scope.errored = true;
                     return;
                 }
+
+                var copyOfActivityType = angular.copy($scope.gpxUploadModel.activityType);
+
+                $scope.gpxUploadModel.activityType = $scope.gpxUploadModel.activityType.value;
+                $scope.gpxUploadModel.shared_with_text = $scope.gpxUploadModel.shared_with_text || "";
+                $scope.gpxUploadModel.shared_with = $scope.gpxUploadModel.shared_with_text.length > 0 ? $scope.gpxUploadModel.shared_with_text.split(",") : [];
+                console.log($scope.gpxUploadModel);
+
                 $scope.gpxUploadModel.errors = [];
                 activityService.createUploader($scope.gpxUploadModel).then(function (resp) {
                     $scope.uploadPercent = null;
+                    $scope.gpxUploadModel.activityType = copyOfActivityType;
                     if (resp.success) {
                         $scope.errored = false;
                         $location.path('/app/activity/' + resp.object._id);
@@ -153,6 +173,7 @@
                         $scope.errored = true;
                     }
                 }, function (resp) {
+                    $scope.gpxUploadModel.activityType = copyOfActivityType;
                     $scope.gpxUploadModel.errors = ['Something went wrong, try again!'];
                     $scope.errored = true;
 
