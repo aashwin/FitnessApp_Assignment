@@ -145,8 +145,7 @@ exports.createUser = function (username, password) {
     var user = new User();
     user.username = username;
     user.hashed_password = password;
-    user.save();
-    return user;
+    return user.save();
 };
 
 exports.updateUser = function (id, data, onlyProfilePic) {

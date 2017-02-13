@@ -69,9 +69,17 @@ exports.createUser = function (req, res, next) {
     UserSystem.validateUser(req.body, false)
         .then(function () {
             UserSystem.hashPassword(req.body.password).then(function (hash) {
-                UserSystem.createUser(req.body.username.toLowerCase(), hash);
-                response.success = true;
-                res.status(201).json(response);
+                UserSystem.createUser(req.body.username.toLowerCase(), hash).then(function (usr) {
+                    delete usr.hashed_password;
+                    response.success = true;
+                    response.object = usr;
+                    res.status(201).json(response);
+                }, function () {
+                    var statusCode = 500;
+                    response.errors = ["Something went wrong!"];
+                    res.status(statusCode).json(response);
+                });
+
             }, function (error) {
                 debug("Password hashing error: ", error);
                 response.errors.push("Something went wrong, try again!");
