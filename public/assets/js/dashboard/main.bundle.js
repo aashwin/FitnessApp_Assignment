@@ -41938,7 +41938,7 @@ return 'ngMap';
 'use strict';
 (function () {
     var app = angular.module("app");
-    app.controller("activityController", ['activityService', 'userService', 'Notification', 'defaultProfilePic', '$location', '$scope', '$routeParams', function (activityService, userService, Notification, defaultProfilePic, $location, $scope, $routeParams) {
+    app.controller("activityController", ['youtubeService', 'activityService', 'userService', 'Notification', 'defaultProfilePic', '$location', '$scope', '$routeParams', function (youtubeService, activityService, userService, Notification, defaultProfilePic, $location, $scope, $routeParams) {
         $scope.activity = {name: "Loading..."};
         $scope.default_profile_pic = defaultProfilePic;
         $scope.comments = {errors: [], list: [], count: 0};
@@ -42024,18 +42024,95 @@ return 'ngMap';
                 $scope.errored = true;
             });
         };
+        $scope.attachments = [];
+        $scope.$watch(function (scope) {
+                return scope.activity.attachedMedia.length;
+            }, function () {
+                $scope.attachments = [];
+
+                if (!$scope.activity.attachedMedia || !$scope.activity.attachedMedia instanceof Array) {
+                    $scope.activity.attachedMedia = [];
+                }
+                for (var i = 0; i < $scope.activity.attachedMedia.length; i++) {
+                    var attachment = $scope.activity.attachedMedia[i];
+                    if (attachment.type == 1) {
+                        $scope.attachments.push({
+                            thumb: attachment.url,
+                            title: "Image",
+                            url: attachment.url,
+                            type: attachment.type
+                        });
+                    } else if (attachment.type == 2) {
+                        var thumb = 'http://free.pagepeeker.com/v2/thumbs.php?size=x&url=' + attachment.url;
+                        var utubeId = youtubeService.getIdFromURL(attachment.url);
+
+                        if (utubeId) {
+                            youtubeService.get(utubeId).then(function (resp) {
+                                if (resp && resp.items) {
+                                    $scope.attachments.push({
+                                        thumb: resp.items[0].snippet.thumbnails.high.url,
+                                        url: 'https://www.youtube.com/watch?v=' + resp.items[0].id,
+                                        title: resp.items[0].snippet.title,
+                                        type: 2
+                                    });
+                                }
+                            });
+
+                        } else {
+                            $scope.attachments.push({
+                                thumb: thumb,
+                                url: attachment.url,
+                                type: attachment.type
+                            });
+                        }
+
+                    } else {
+                        $scope.attachments.push({
+                            thumb: 'http://free.pagepeeker.com/v2/thumbs.php?size=x&url=' + attachment.url,
+                            url: attachment.url,
+                            type: attachment.type
+                        });
+                    }
+                }
+            }
+        );
+        $scope.deleteAttachment = function (attachment) {
+            for (var ix = 0; ix < $scope.attachments.length; ix++) {
+                if ($scope.attachments[ix].url === attachment.url && attachment.type === $scope.attachments[ix].type && $scope.attachments[ix].title === attachment.title) {
+                    $scope.attachments.splice(ix, 1);
+                    break;
+                }
+            }
+            for (var i = 0; i < $scope.activity.attachedMedia.length; i++) {
+                if ($scope.activity.attachedMedia[i].url == attachment.url && $scope.activity.attachedMedia[i].type == attachment.type) {
+                    $scope.activity.attachedMedia.splice(i, 1);
+                    activityService.update($routeParams.id, $scope.activity).then(function (res) {
+                        if (res.success) {
+                            Notification.success({message: 'Successfully removed attachment', delay: 5000});
+                        } else {
+                            $scope.errored = true;
+                        }
+                    }, function (res) {
+                        $scope.errored = true;
+
+                    });
+                    break;
+                }
+            }
+        }
+        ;
         $scope.attachMedia = function () {
             if (!$scope.activity) {
                 return;
             }
-            if (!$scope.activity.attachedMedia && !$scope.activity.attachedMedia instanceof Array) {
+            if (!$scope.activity.attachedMedia || !$scope.activity.attachedMedia instanceof Array) {
                 $scope.activity.attachedMedia = [];
             }
             $scope.activity.attachedMedia.push({url: $scope.attachmentUrl, type: $scope.attachmentType});
             activityService.update($routeParams.id, $scope.activity).then(function (res) {
+                $scope.attachmentUrl = "";
                 if (res.success) {
-                    Notification.success({message: 'Successfully attached media to the activity', delay: 5000});
-
+                    Notification.success({message: 'Successfully attached media', delay: 5000});
                 } else {
                     $scope.errored = true;
                 }
@@ -42064,7 +42141,8 @@ return 'ngMap';
                 });
             }
         };
-    }]);
+    }
+    ]);
 
 })();
 
@@ -42614,6 +42692,7 @@ var ngMap = require('ngmap');
     require('../controllers/dashboard');
     require('../services/activity.service');
     require('../services/user.service');
+    require('../services/youtube.service');
     app.filter('numberText', function () {
         return function (number, precision) {
             if (isNaN(number)) {
@@ -42747,7 +42826,7 @@ var ngMap = require('ngmap');
 })();
 
 
-},{"../controllers/dashboard":18,"../services/activity.service":22,"../services/user.service":23,"angular":7,"angular-moment-picker":1,"angular-route":3,"angular-ui-notification":5,"ng-file-upload":9,"ngmap":10}],22:[function(require,module,exports){
+},{"../controllers/dashboard":18,"../services/activity.service":22,"../services/user.service":23,"../services/youtube.service":24,"angular":7,"angular-moment-picker":1,"angular-route":3,"angular-ui-notification":5,"ng-file-upload":9,"ngmap":10}],22:[function(require,module,exports){
 'use strict';
 (function () {
     var app = angular.module("app");
@@ -42947,6 +43026,32 @@ var ngMap = require('ngmap');
                         return response.data;
                     }
                     return {"success": false, "errors": ["Something went wrong, try again!"]};
+                });
+        };
+        return service;
+    }]);
+})();
+},{}],24:[function(require,module,exports){
+'use strict';
+(function () {
+    var app = angular.module("app");
+    app.factory("youtubeService", ['$http', function ($http) {
+        var service = {};
+        var key = "AIzaSyB-ceaTERvEw6THbFYT8wqXXPv-sM1Llww";
+        service.getIdFromURL = function (url) {
+            var youtubeRegex = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            var match = url.match(youtubeRegex);
+            if (match && match[2].length == 11) {
+                return match[2];
+            }
+            return null;
+        };
+        service.get = function (id) {
+            return $http.get('https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + id + '&key=' + key)
+                .then(function success(response) {
+                    return response.data;
+                }, function error(response) {
+                    return null;
                 });
         };
         return service;

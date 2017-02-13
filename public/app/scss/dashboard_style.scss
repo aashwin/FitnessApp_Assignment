@@ -310,12 +310,12 @@ Source: http://stackoverflow.com/questions/22153080/how-do-i-change-the-select-b
 a.user_card {
   text-decoration: none;
   text-align: center;
-  display:block;
+  display: block;
 }
 
 .user_card img {
   width: 35%;
-  margin-left:-calc(75%);
+  margin-left: -calc(75%);
   margin-bottom: 3px;
   border-radius: 10px;
 }
@@ -451,6 +451,29 @@ h2 {
   text-transform: uppercase
 }
 
+.form-background a{
+  display: block;
+  color: #000;
+  text-decoration: none;
+
+}
+
+.form-background .over {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  padding: 3px 5px;
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  color: #fff;
+  text-shadow:1px 1px #000;
+  border:none;
+  outline:none;
+  cursor:pointer;
+}
+.form-background .over .fa{
+  color:#f00;
+}
 a.home_card:hover .form-background {
   background: #fdfdfd;
   transition: all .5s ease-in-out;

@@ -35,6 +35,7 @@ var ngMap = require('ngmap');
     require('../controllers/dashboard');
     require('../services/activity.service');
     require('../services/user.service');
+    require('../services/youtube.service');
     app.filter('numberText', function () {
         return function (number, precision) {
             if (isNaN(number)) {

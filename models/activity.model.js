@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
 const ActivitySchema = new Schema({
     name: {type: String, required: true},
     createdBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
@@ -13,7 +12,7 @@ const ActivitySchema = new Schema({
     visibility: {type: Number, enum: [0, 1, 2], select: true}, //0 for public, 1 for Selected 2 for me
     shared_with: [{type: mongoose.Schema.Types.ObjectId, ref: 'User', select: true}],
     kCalBurnt: {type: Number},
-    attachedMedia: [{url: 'string', type: 'Number'}]
+    attachedMedia: [{url: {type: String}, type: {type: Number, enum: [0, 1, 2]}}]
 }, {
     timestamps: true
 });

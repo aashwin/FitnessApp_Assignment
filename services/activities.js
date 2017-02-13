@@ -95,7 +95,7 @@ exports.validateAndClean = function (data, user) {
                 if (!data.shared_with || !data.shared_with instanceof Array) {
                     data.shared_with = []
                 }
-                for (var xi = 0; xi < data.attachedMedia; xi++) {
+                for (var xi = 0; xi < data.attachedMedia.length; xi++) {
                     if (data.attachedMedia[xi] instanceof Object) {
                         var obj = data.attachedMedia[xi];
                         obj.type = parseInt(obj.type || 0);

@@ -45,9 +45,9 @@
                 <div class="form-group col xs-6" ng-show="showAttach">
 
                     <label>URL: </label>
-                    <input id="attachmentUrl" ng-model="attachmentUrl" class="form-input validation" placeholder="" />
+                    <input id="attachmentUrl" ng-model="attachmentUrl" class="form-input validation" placeholder=""/>
                 </div>
-                <div class="form-group col xs-3"  ng-show="showAttach">
+                <div class="form-group col xs-3" ng-show="showAttach">
                     <label>.</label>
                     <button type="button" ng-click="attachMedia();"
                             class="button red col xs-12">
@@ -96,6 +96,26 @@
             </div>
         </div>
     </div>
+    <div class="clear"></div>
+    <div class="col xs-6 md-3 bottom-margin" ng-repeat="attachment in attachments">
+
+        <div class="form-background" align="center">
+            <div class="form-group">
+                <button ng-click="deleteAttachment(attachment);" ng-show="activity.createdBy._id == currentUser._id" class="over">
+                    <i class="fa fa-times"></i>
+                    Delete
+                </button>
+                <a href="{{attachment.url}}"><img ng-src="{{attachment.thumb }}"
+                                                  style="width:100%" height="200"><br/>
+                    <i class="fa"
+                       ng-class="{'fa-youtube-play':attachment.type==2, 'fa-picture-o':attachment.type==1, 'fa-external-link-square':attachment.type==0}"
+                       aria-hidden="true"></i>
+                    <small>{{attachment.title || attachment.url}}</small>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <div class="clear"></div>
     <div class="col xs-12 bottom-margin" ng-if="mapPathData.length>1">
         <div class="form-background ">
