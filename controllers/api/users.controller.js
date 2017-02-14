@@ -12,10 +12,12 @@ exports.getUser = function (req, res, next) {
     res.status(401).json({"success": false, errors: ["You are not authorized to request this information."]});
 };
 exports.getAll = function (req, res, next) {
+    var internal = false;
     if (req.query && req.query._id === 'me') {
         req.query._id = req.currentUser._id;
+        internal = true;
     }
-    UserSystem.getAll(req.query, req.request_info).then(function (obj) {
+    UserSystem.getAll(req.query, req.request_info, internal).then(function (obj) {
         if (!obj) {
             res.status(500).json({"success": false, errors: ["Something went wrong!"], "object": [], "count": 0});
         } else {

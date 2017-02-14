@@ -17,10 +17,10 @@
 </head>
 <body ng-app="app">
 <nav ng-controller="headerController">
-    <div class="container">
-        <a href="" class="menu_button"><i class="fa fa-bars"></i></a>
+    <div class="container" style="padding:0">
+        <a href="" class="menu_button" ng-click="toggleMenu = !toggleMenu"><i class="fa fa-bars"></i></a>
         <a href="/app" class="logo"><img src="images/logo_2_xs.png" alt="FitnessApp" width="200" height="50"/> </a>
-        <ul>
+        <ul ng-class="{'hide-xs-only':toggleMenu}" ng-click=""toggleMne>
             <li><a href="/app"><i class="fa fa-bar-chart"></i> My Activities</a></li>
             <li><a href="/app/activities"><i class="fa fa-search"></i> Search</a></li>
             <li><a href="/app/create-activity"><i class="fa fa-plus-circle"></i> Create Activity</a></li>

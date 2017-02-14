@@ -20,7 +20,7 @@ exports.getOne = function (id) {
         });
     });
 };
-exports.getAll = function (query, request_info) {
+exports.getAll = function (query, request_info, internal) {
     var queryNew = [];
     if (query) {
         for (var q in query) {
@@ -38,7 +38,7 @@ exports.getAll = function (query, request_info) {
         }
     }
     return new Promise(function (resolve, reject) {
-        UserDAO.findAll(queryNew, request_info, function (usersList, count) {
+        UserDAO.findAll(queryNew, request_info, internal, function (usersList, count) {
             if (!usersList || !(usersList instanceof Array)) {
                 reject();
                 return;

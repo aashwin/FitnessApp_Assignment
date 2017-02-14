@@ -3,6 +3,7 @@
     var app = angular.module("app");
     app.controller("headerController", ['userService', '$scope', function (userService, $scope) {
         $scope.user = {};
+        $scope.toggleMenu = false;
         userService.getLoggedInUser().then(function (res) {
             if (res.success) {
                 $scope.user = res.user;

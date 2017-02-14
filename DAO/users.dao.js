@@ -54,7 +54,7 @@ UserDAO.deleteById = function (id, callback) {
     });
 
 };
-UserDAO.findAll = function (query, req_info, callback) {
+UserDAO.findAll = function (query, req_info, internal, callback) {
     var $queryObject = null;
     if (query) {
         $queryObject = {$and: query};
@@ -62,7 +62,7 @@ UserDAO.findAll = function (query, req_info, callback) {
     if ($queryObject.$and.length == 0) {
         $queryObject = {};
     }
-    query = User.find($queryObject);
+    query = User.find($queryObject, !internal ? 'name username' : 'createdAt name username dob weightInKg email profile_pic gender');
     if (req_info.offset) {
         query.skip(req_info.offset);
     }
