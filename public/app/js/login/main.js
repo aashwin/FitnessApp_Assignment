@@ -6,8 +6,9 @@
     var angular = require('angular');
     var ngRoute = require('angular-route');
     var ngFileUpload = require('ng-file-upload');
+    var ui_notification = require('angular-ui-notification');
 
-    var loginApp = angular.module("app", [ngRoute, ngFileUpload]);
+    var loginApp = angular.module("app", [ui_notification, ngRoute, ngFileUpload]);
 
     require('../controllers/login');
     require('../services/user.service');

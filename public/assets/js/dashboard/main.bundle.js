@@ -42664,7 +42664,6 @@ var ngFileUpload = require('ng-file-upload');
 var ngMap = require('ngmap');
 
 
-
 (function () {
     var app = angular.module("app", [ui_notification, ngRoute, ngFileUpload, ngMap, 'moment-picker']);
     app.constant('defaultProfilePic', "images/default_avatar.png");
@@ -42755,8 +42754,8 @@ var ngMap = require('ngmap');
                     } else {
                         scope.displayVal = !scope.value || scope.value === 0 || scope.value === '0' || scope.value === '0.00' ? "--" : scope.value;
                     }
-                    if(scope.highlighter){
-                        
+                    if (scope.highlighter) {
+
                     }
                     scope.displayUnits = scope.units;
                     if (!scope.value || scope.value === 0 || scope.value === '0' || scope.value === '0.00') {
@@ -42768,7 +42767,7 @@ var ngMap = require('ngmap');
 
         };
     });
-    app.config(['$routeProvider', '$locationProvider', '$httpProvider','momentPickerProvider', function ($routeProvider, $locationProvider, $httpProvider,momentPickerProvider) {
+    app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'momentPickerProvider', function ($routeProvider, $locationProvider, $httpProvider, momentPickerProvider) {
         momentPickerProvider.options({
             startView: 'month',
             today: true
@@ -42807,6 +42806,9 @@ var ngMap = require('ngmap');
             templateUrl: 'static_views/dashboard/edit_profile.view.html',
             controller: 'editProfileController'
 
+        }).when("/app/logout", {
+            template: 'Logging you out...',
+            controller: 'LogoutController'
         }).when('/app/404', {
             templateUrl: 'static_views/dashboard/404.view.html',
             controller: 'ErrorController'
@@ -42820,10 +42822,16 @@ var ngMap = require('ngmap');
             enabled: true,
             requireBase: false
         });
+    }
+    ]).controller("LogoutController", ['$scope', function ($scope) {
+        localStorage.removeItem("AUTH_TOKEN");
+        location.href = "/";
+
     }]);
 
 
-})();
+})
+();
 
 
 },{"../controllers/dashboard":18,"../services/activity.service":22,"../services/user.service":23,"../services/youtube.service":24,"angular":7,"angular-moment-picker":1,"angular-route":3,"angular-ui-notification":5,"ng-file-upload":9,"ngmap":10}],22:[function(require,module,exports){

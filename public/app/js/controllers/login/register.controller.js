@@ -1,7 +1,7 @@
 'use strict';
 (function () {
     var loginApp = angular.module("app");
-    loginApp.controller("registerController", ['userService', '$scope', '$location', function (userService, $scope, $location) {
+    loginApp.controller("registerController", ['userService','Notification', '$scope', '$location', function (userService, Notification, $scope, $location) {
         $scope.username = "";
         $scope.password = "";
         $scope.confirmPassword = "";
@@ -27,6 +27,7 @@
 
             userService.register(user).then(function (res) {
                 if (res.success) {
+                    Notification.success({message: 'Successfully Registered', delay: 5000});
                     $location.path('/');
                 } else {
                     $scope.errors = res.errors;

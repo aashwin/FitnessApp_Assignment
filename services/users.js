@@ -198,6 +198,7 @@ exports.authenticateUser = function (username, password) {
                         return;
                     }
                     if (res) {
+                        delete usr.hashed_password;
                         resolve(usr);
                     } else {
                         reject(null);
