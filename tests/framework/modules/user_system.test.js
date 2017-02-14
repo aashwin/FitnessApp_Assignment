@@ -1,4 +1,4 @@
-var appBootstrap = require('../../../bootstrap').init(null);
+var appBootstrap = require('../../../framework/modules/bootstrap').startup(null);
 var chai = require('chai');
 var mongoose = require('mongoose');
 var expect = chai.expect;

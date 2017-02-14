@@ -1,5 +1,4 @@
 //Load all needed modules
-var appBootstrap = require('./bootstrap');
 var express = require('express');
 var path = require('path');
 var ejs = require('ejs');
@@ -8,6 +7,7 @@ const config = require('./config');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 const debug = require('debug')(config.application.namespace);
+var framework = require("./framework");
 
 var app = express();
 
@@ -21,7 +21,9 @@ app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-appBootstrap.init(app);
+framework.Bootstrap.loadModels();
+framework.Authenticator.init(config.authentication, require("./services/users").getOnePrivate);
+framework.Bootstrap.startup(app, config.application.data_handling);
 
 debug('Booting up %s', config.application.name);
 
