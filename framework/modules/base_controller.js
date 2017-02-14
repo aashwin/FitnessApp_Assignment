@@ -37,5 +37,5 @@ module.exports = function (config) {
         }
         debug("%s %s by %s", req.method, req.originalUrl, req.ip);
         next();
-    }
+    };
 };

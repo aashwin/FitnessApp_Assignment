@@ -3,8 +3,6 @@ const path = require('path');
 const modelsDirectory = path.join(__dirname, '../../models/');
 const routersDirectory = path.join(__dirname, '../../routes/');
 const debug = require('debug')("fitness.app.framework");
-var Authenticator = require("./fp-authentication/Authenticator");
-var BaseController = require("./base_controller");
 var loadedModels = false, loadedRouters = false;
 
 var loadModels = function () {
@@ -42,36 +40,16 @@ var init = function (app, options) {
         loadModels();
     }
     if (app) {
+        app.use(require("./fp-authentication/Authenticator").authenticatorMW(), require("./base_controller")(options));
         if (!loadedRouters) {
             loadRouters(app);
         }
 
-        app.use(Authenticator.authenticatorMW());
-        app.use(BaseController(options || {}));
 
         app.use(function (req, res, next) {
             var err = new Error('Not Found');
             err.status = 404;
             next(err);
-        });
-
-        app.use(function (err, req, res, next) {
-            res.locals.message = err.message;
-            res.locals.error = req.app.get('env') === 'development' ? err : {};
-            res.status(err.status || 500);
-            if (req.originalUrl.startsWith("/api")) {
-                if (err.status == 401) {
-                    res.json({
-                        "success": false,
-                        "object": null,
-                        "errors": ["You are not authorized to request this information."]
-                    });
-                } else {
-                    res.json({"success": false, "object": null, "errors": ["Resource not found."]});
-                }
-            } else {
-                res.render('error');
-            }
         });
     }
 };
