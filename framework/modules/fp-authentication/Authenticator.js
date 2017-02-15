@@ -66,8 +66,6 @@ var authenticatorMW = function () {
                                 req.currentUser = user;
                                 next();
                             }, function () {
-                                var err = new Error("Not Authorised");
-                                err.status = 401;
                                 next(err);
                             });
                         } else {
