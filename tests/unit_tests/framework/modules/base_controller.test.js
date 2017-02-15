@@ -1,7 +1,7 @@
 var chai = require('chai');
 var mongoose = require('mongoose');
 var expect = chai.expect;
-var baseController = require("../../../framework/modules/base_controller");
+var baseController = require("../../../../framework/modules/base_controller");
 
 describe('Framework -> Base Controller Tests', function () {
 

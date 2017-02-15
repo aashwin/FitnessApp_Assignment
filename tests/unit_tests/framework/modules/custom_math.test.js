@@ -1,7 +1,7 @@
 var chai = require('chai');
 var mongoose = require('mongoose');
 var expect = chai.expect;
-var CustomMath = require('../../../framework/modules/custom_math');
+var CustomMath = require('../../../../framework/modules/custom_math');
 
 describe('Framework -> Custom Math Tests', function () {
 

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "DEBUG=fitness.app.aashwin node ./app.js",
-    "test": "nyc --reporter=html --report-dir=\"./tests/coverage\" mocha \"./tests/**/*.test.js\""
+    "test": "nyc --reporter=html --report-dir=\"./tests/coverage\" mocha \"./tests/unit_tests/**/*.test.js\""
   },
   "repository": {
     "type": "git",
