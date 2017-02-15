@@ -17,4 +17,20 @@ describe('Framework -> Parse GPX', function () {
             done();
         });
     });
+    it('parseGpx should return error if file does not exist', function (done) {
+        gpxParser.parseGpx(path.join(__dirname, '../../../../resources/SOME_NON_EXISTENT.gpx'), function (err, obj) {
+            expect(err).to.not.be.null;
+            expect(err).to.be.a('error');
+            expect(err.message).to.contain("no such file");
+            done();
+        });
+    });
+    it('parseGpx should return error if file is not an xml file', function (done) {
+        gpxParser.parseGpx(path.join(__dirname, '../../../../resources/random.json'), function (err, obj) {
+            expect(err).to.not.be.null;
+            expect(err).to.be.a('error');
+            expect(err.message).to.contain("Could not parse XML file");
+            done();
+        });
+    });
 });
