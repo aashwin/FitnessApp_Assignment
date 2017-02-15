@@ -187,7 +187,7 @@ exports.validateAndProcessGPXFile = function (file) {
     var errors = [];
     return new Promise(function (resolve, reject) {
             if (file) {
-                if (file.size > 2097152) {
+                if (file.size > 4194304) {
                     errors.push("GPX file is too big, try a smaller one!");
                 }
             }
