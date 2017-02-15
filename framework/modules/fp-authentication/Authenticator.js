@@ -99,5 +99,7 @@ var tokenGenerator = function (user) {
     var token = {"user": user, "expiry": expiry};
     return jwt.encode(token, options.jwt_token_secret);
 };
-
-module.exports = {'init': init, 'authenticatorMW': authenticatorMW, 'tokenGenerator': tokenGenerator};
+var isAuthenticatorReady = function(){
+    return isReady;
+};
+module.exports = {'init': init, 'authenticatorMW': authenticatorMW, 'tokenGenerator': tokenGenerator, 'isReady': isAuthenticatorReady};

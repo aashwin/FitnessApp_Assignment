@@ -40,7 +40,11 @@ var init = function (app, options) {
         loadModels();
     }
     if (app) {
-        app.use(require("./fp-authentication/Authenticator").authenticatorMW(), require("./base_controller")(options));
+        var Authenticator = require("./fp-authentication/Authenticator");
+        if(Authenticator.isReady()){
+            app.use(Authenticator.authenticatorMW());
+        }
+        app.use(require("./base_controller")(options));
         if (!loadedRouters) {
             loadRouters(app);
         }
