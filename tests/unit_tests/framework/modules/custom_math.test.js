@@ -48,5 +48,8 @@ describe('Framework -> Custom Math Tests', function () {
         it('calculateCalories() should return 0 when distance is zero', function () {
             return expect(CustomMath.calculateCalories(110, 0, 10)).to.be.equal(0);
         });
+        it('calculateCalories() should return more than 0 when all params are present', function () {
+            return expect(CustomMath.calculateCalories(70, 1000, 100)).to.be.above(0);
+        });
     });
 });
