@@ -1,11 +1,11 @@
-var appBootstrap = require('../../../framework/modules/bootstrap').startup(null);
+var appBootstrap = require('../../framework/modules/bootstrap').startup(null);
 var chai = require('chai');
 var mongoose = require('mongoose');
 var expect = chai.expect;
 var sinon = require('sinon');
 var chaiAsPromised = require('chai-as-promised');
-var UserSystem = require('../../../services/users');
-var UserDAO = require('../../../DAO/users.dao');
+var UserSystem = require('../../services/users');
+var UserDAO = require('../../DAO/users.dao.js');
 var User = mongoose.model("User"); //we are only including it to mock it with sinon
 var bcrypt = require('bcrypt');
 chai.use(chaiAsPromised);
@@ -18,7 +18,7 @@ const SHORT_USERNAME = "aa";
 const SHORT_PASSWORD = "pass1";
 
 
-describe('Framework -> User System Tests', function () {
+describe('Services -> Users Tests', function () {
     var sandbox;
     beforeEach(function () {
         sandbox = sinon.sandbox.create();

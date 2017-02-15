@@ -30,6 +30,8 @@ module.exports = function (config) {
                 if (req.request_info.sort_by !== "asc" && req.request_info.sort_by !== "desc") {
                     req.request_info.sort_by = "asc";
                 }
+            } else {
+                req.request_info.sort_by = null;
             }
             delete req.query.sort_field;
             delete req.query.sort_by;
