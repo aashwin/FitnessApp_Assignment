@@ -3,7 +3,7 @@ var options = {};
 var isReady = false;
 var func = null;
 var init = function (opts, usrObjFunction) {
-    options = opts;
+    options = opts || {};
     options.token_field = options.token_field || "X_AUTH_TOKEN";
     options.whitelist = options.whitelist || [];
     options.expiry = options.expiry || 86000;
@@ -99,7 +99,12 @@ var tokenGenerator = function (user) {
     var token = {"user": user, "expiry": expiry};
     return jwt.encode(token, options.jwt_token_secret);
 };
-var isAuthenticatorReady = function(){
+var isAuthenticatorReady = function () {
     return isReady;
 };
-module.exports = {'init': init, 'authenticatorMW': authenticatorMW, 'tokenGenerator': tokenGenerator, 'isReady': isAuthenticatorReady};
+module.exports = {
+    'init': init,
+    'authenticatorMW': authenticatorMW,
+    'tokenGenerator': tokenGenerator,
+    'isReady': isAuthenticatorReady
+};
