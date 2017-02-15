@@ -20,6 +20,9 @@ exports.distanceBetween = function (lat1, long1, lat2, long2) {
 };
 //Source: http://www.runnersworld.com/peak-performance/running-v-walking-how-many-calories-will-you-burn
 exports.calculateCalories = function (weightInKg, distanceInMeters, durationInSeconds) {
+    if (weightInKg <= 0 || distanceInMeters <= 0 || durationInSeconds <= 0) {
+        return 0;
+    }
     var weightInLbs = weightInKg * 2.20462;
     distanceInMeters *= 0.000621371;
     var mph = (distanceInMeters / durationInSeconds) * 2.23694;
