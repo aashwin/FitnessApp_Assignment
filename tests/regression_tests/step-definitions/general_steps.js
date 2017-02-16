@@ -3,6 +3,7 @@ var data = require("../modules/data");
 module.exports = function () {
 
     this.Given(/^The application is loaded$/, function (done) {
+        driver.manage().timeouts().implicitlyWait(250000);
         driver.wait(until.elementLocated(by.css('body')), 500000).then(function () {
             helpers.loadPage(config.url).then(function () {
                 driver.wait(until.titleIs("Fitness Tracker"), 500000).then(function () {
@@ -101,14 +102,16 @@ module.exports = function () {
         }
     });
     this.Then(/^The page heading says "([^"]*)"$/, function (heading) {
-        return driver.wait(until.elementLocated(by.tagName("h1")), 10000).then(function (elm) {
-            return elm.getText().then(function (text) {
-                return expect(text.toLowerCase()).to.equal(heading.toLowerCase());
+        return driver.sleep(1000).then(function () {
+            return driver.wait(until.elementLocated(by.tagName("h1")), 10000).then(function (elm) {
+                return elm.getText().then(function (text) {
+                    return expect(text.toLowerCase()).to.equal(heading.toLowerCase());
+                });
             });
         });
     });
     this.Then(/^I verify that there is a comment "([^"]*)"$/, function (value) {
-        return driver.sleep(1000).then(function () {
+        return driver.sleep(1500).then(function () {
             return driver.wait(until.elementLocated(by.xpath('//div[contains(@class, "comment")]//p')), 10000).then(function (elm) {
                 return elm.getText().then(function (text) {
                     return expect(text.toLowerCase()).to.equal(value.toLowerCase());
@@ -117,7 +120,7 @@ module.exports = function () {
         });
     });
     this.Then(/^I verify the text field with ID "([^"]*)" contains "([^"]*)"$/, function (id, value) {
-        return driver.sleep(1000).then(function () {
+        return driver.sleep(2000).then(function () {
             return driver.wait(until.elementLocated(by.id(value)), 10000).then(function (elm) {
                 return elm.getText().then(function (text) {
                     return expect(text.toLowerCase()).to.equal(value.toLowerCase());

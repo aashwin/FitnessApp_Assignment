@@ -7,6 +7,8 @@ First the Unit Tests that run using "npm test" run tests on the methods in the a
 Second there is a set of regression test that test the application via the browser. The tests are not dependant on the application code and run in the browser. It makes sure CucumberJs, Selnenium web driver and ChromeDriver.
 
 
+This project is also source controlled using Git (and GitHub) and the tests and build is run continously on Travis CI.
+
 ##File Structure
 
 - ./framework/
