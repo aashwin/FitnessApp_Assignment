@@ -1,0 +1,1169 @@
+[
+  {
+    "description": "  Activities",
+    "elements": [
+      {
+        "id": ";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "As a user, I can login to the application and create an activity using manual entry mode",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "The application is loaded",
+            "result": {
+              "status": "passed",
+              "duration": 8311932085
+            },
+            "line": 5,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:5"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I enter \"{{TEST_USERNAME}}\" in the \"username\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1123227704
+            },
+            "line": 6,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:30"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"{{TEST_PASSWORD}}\" in the \"password\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1121775545
+            },
+            "line": 7,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:30"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Login\"",
+            "result": {
+              "status": "passed",
+              "duration": 105278673
+            },
+            "line": 8,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:70"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the application page is loaded",
+            "result": {
+              "status": "passed",
+              "duration": 22428034
+            },
+            "line": 9,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:86"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I click on the link that contains text \"Create Activity\"",
+            "result": {
+              "status": "passed",
+              "duration": 8155776078
+            },
+            "line": 10,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:63"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the link that contains text \"Manual Entry\"",
+            "result": {
+              "status": "passed",
+              "duration": 2163427374
+            },
+            "line": 11,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:63"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"Evening Run\" in the text field with the ID \"name\"",
+            "result": {
+              "status": "passed",
+              "duration": 1171946606
+            },
+            "line": 12,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I tick the radio with name \"visibility\" and value \"2\"",
+            "result": {
+              "status": "passed",
+              "duration": 1093477056
+            },
+            "line": 13,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:48"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"19\" in the text field with the ID \"distance\"",
+            "result": {
+              "status": "passed",
+              "duration": 1104076470
+            },
+            "line": 14,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"133\" in the text field with the ID \"elevationInMeters\"",
+            "result": {
+              "status": "passed",
+              "duration": 1113894990
+            },
+            "line": 15,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"1\" in the text field with the ID \"durationH\"",
+            "result": {
+              "status": "passed",
+              "duration": 1103398520
+            },
+            "line": 16,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"11\" in the text field with the ID \"durationM\"",
+            "result": {
+              "status": "passed",
+              "duration": 1145086798
+            },
+            "line": 17,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"34\" in the text field with the ID \"durationS\"",
+            "result": {
+              "status": "passed",
+              "duration": 1104980340
+            },
+            "line": 18,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"This was a great run with @Friend\" in the text field with the ID \"notes\"",
+            "result": {
+              "status": "passed",
+              "duration": 1172805180
+            },
+            "line": 19,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Add Activity >>\"",
+            "result": {
+              "status": "passed",
+              "duration": 95997519
+            },
+            "line": 20,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:70"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "The success notification says \"Successfully created activity\"",
+            "result": {
+              "status": "passed",
+              "duration": 1653160659
+            },
+            "line": 21,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:75"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "The page heading says \"Evening Run\"",
+            "result": {
+              "status": "passed",
+              "duration": 1052190409
+            },
+            "line": 22,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:105"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "The \"Distance\" dashcard has the value of \"30.58\"",
+            "result": {
+              "status": "passed",
+              "duration": 32157645
+            },
+            "line": 23,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:90"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "The \"Elevation\" dashcard has the value of \"133\"",
+            "result": {
+              "status": "passed",
+              "duration": 33877104
+            },
+            "line": 24,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:90"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "The \"Duration\" dashcard has the text of \"01:11:34\"",
+            "result": {
+              "status": "passed",
+              "duration": 52015731
+            },
+            "line": 25,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:90"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I delete all activities of this user via the REST API",
+            "result": {
+              "status": "passed",
+              "duration": 571227853
+            },
+            "line": 26,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/data_steps.js:33"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 60943816
+            },
+            "hidden": true,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/node_modules/selenium-cucumber-js/runtime/world.js:185"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "id": ";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment",
+        "keyword": "Scenario",
+        "line": 28,
+        "name": "As a user, I can login to the application and create an activity and add a comment",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "The application is loaded",
+            "result": {
+              "status": "failed",
+              "duration": 35033824810,
+              "error_message": "function timed out after 35000 milliseconds"
+            },
+            "line": 29,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:5"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I enter \"{{TEST_USERNAME}}\" in the \"username\" text field",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 30,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:30"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"{{TEST_PASSWORD}}\" in the \"password\" text field",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 31,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:30"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Login\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 32,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:70"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the application page is loaded",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 33,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:86"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I click on the link that contains text \"Create Activity\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 34,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:63"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the link that contains text \"Manual Entry\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 35,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:63"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"Evening Run\" in the text field with the ID \"name\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 36,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I tick the radio with name \"visibility\" and value \"2\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 37,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:48"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Add Activity >>\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 38,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:70"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "The success notification says \"Successfully created activity\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 39,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:75"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "The page heading says \"Evening Run\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 40,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:105"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I enter \"This is a good run mate, keep it going!\" in the text field with the ID \"comment\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 41,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Add Comment >>\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 42,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:70"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I verify that there is a comment \"This is a good run mate, keep it going!\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 43,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:114"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I delete all activities of this user via the REST API",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 44,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/data_steps.js:33"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "failed",
+              "duration": 35009643467,
+              "error_message": "function timed out after 35000 milliseconds"
+            },
+            "hidden": true,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/node_modules/selenium-cucumber-js/runtime/world.js:185"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "id": ";as-a-user,-i-can-login-to-the-application-and-search-for-activities",
+        "keyword": "Scenario",
+        "line": 46,
+        "name": "As a user, I can login to the application and search for activities",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "The application is loaded",
+            "result": {
+              "status": "passed",
+              "duration": 6540118563
+            },
+            "line": 47,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:5"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I enter \"{{TEST_USERNAME}}\" in the \"username\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1102284784
+            },
+            "line": 48,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:30"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"{{TEST_PASSWORD}}\" in the \"password\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1104133259
+            },
+            "line": 49,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:30"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Login\"",
+            "result": {
+              "status": "passed",
+              "duration": 85637109
+            },
+            "line": 50,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:70"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the application page is loaded",
+            "result": {
+              "status": "passed",
+              "duration": 18889982
+            },
+            "line": 51,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:86"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I click on the link that contains text \"Create Activity\"",
+            "result": {
+              "status": "passed",
+              "duration": 9044544498
+            },
+            "line": 52,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:63"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the link that contains text \"Manual Entry\"",
+            "result": {
+              "status": "passed",
+              "duration": 2149674771
+            },
+            "line": 53,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:63"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"Very Random Name 123\" in the text field with the ID \"name\"",
+            "result": {
+              "status": "passed",
+              "duration": 1145706306
+            },
+            "line": 54,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Add Activity >>\"",
+            "result": {
+              "status": "passed",
+              "duration": 91939069
+            },
+            "line": 55,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:70"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "The success notification says \"Successfully created activity\"",
+            "result": {
+              "status": "passed",
+              "duration": 1650974808
+            },
+            "line": 56,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:75"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "The page heading says \"Very Random Name 123\"",
+            "result": {
+              "status": "passed",
+              "duration": 1046610663
+            },
+            "line": 57,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:105"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I click on the link that contains text \"Search\"",
+            "result": {
+              "status": "passed",
+              "duration": 2098557866
+            },
+            "line": 58,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:63"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"Very Random Name 123\" in the text field with the ID \"search_query\"",
+            "result": {
+              "status": "passed",
+              "duration": 1146156963
+            },
+            "line": 59,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I verify that there is atleast 1 search result",
+            "result": {
+              "status": "passed",
+              "duration": 2026068161
+            },
+            "line": 60,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:134"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I delete all activities of this user via the REST API",
+            "result": {
+              "status": "passed",
+              "duration": 839176807
+            },
+            "line": 61,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/data_steps.js:33"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 69773890
+            },
+            "hidden": true,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/node_modules/selenium-cucumber-js/runtime/world.js:185"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "",
+    "tags": [],
+    "uri": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/features/activity.feature"
+  },
+  {
+    "description": "  Login and Registeration",
+    "elements": [
+      {
+        "id": ";as-a-user,-i-can-login-to-the-application",
+        "keyword": "Scenario",
+        "line": 16,
+        "name": "As a user, I can login to the application",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "The application is loaded",
+            "result": {
+              "status": "failed",
+              "duration": 35019259973,
+              "error_message": "function timed out after 35000 milliseconds"
+            },
+            "line": 17,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:5"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I enter \"{{TEST_USERNAME}}\" in the \"username\" text field",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 18,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:30"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"{{TEST_PASSWORD}}\" in the \"password\" text field",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 19,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:30"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Login\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 20,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:70"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the application page is loaded",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 21,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:86"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "The page heading says \"My Activities\"",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 22,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:105"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "failed",
+              "duration": 35034129244,
+              "error_message": "function timed out after 35000 milliseconds"
+            },
+            "hidden": true,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/node_modules/selenium-cucumber-js/runtime/world.js:185"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "",
+    "tags": [],
+    "uri": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/features/login_register.feature"
+  },
+  {
+    "description": "  Profile",
+    "elements": [
+      {
+        "id": ";as-a-user,-i-try-to-edit-my-profile",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "As a user, I try to edit my profile",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "The application is loaded",
+            "result": {
+              "status": "passed",
+              "duration": 9286418623
+            },
+            "line": 5,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:5"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I enter \"{{TEST_USERNAME}}\" in the \"username\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1097939380
+            },
+            "line": 6,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:30"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"{{TEST_PASSWORD}}\" in the \"password\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1098340447
+            },
+            "line": 7,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:30"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Login\"",
+            "result": {
+              "status": "passed",
+              "duration": 88639004
+            },
+            "line": 8,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:70"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the application page is loaded",
+            "result": {
+              "status": "passed",
+              "duration": 13239853
+            },
+            "line": 9,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:86"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I click on the link that contains text \"Hey \"",
+            "result": {
+              "status": "passed",
+              "duration": 9087705637
+            },
+            "line": 10,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:63"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"Bruce Wayne\" in the text field with the ID \"name\"",
+            "result": {
+              "status": "passed",
+              "duration": 1127199081
+            },
+            "line": 11,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"bruce@gotham.com\" in the text field with the ID \"email\"",
+            "result": {
+              "status": "passed",
+              "duration": 1141914004
+            },
+            "line": 12,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"76.2\" in the text field with the ID \"weightInKg\"",
+            "result": {
+              "status": "passed",
+              "duration": 1122514745
+            },
+            "line": 13,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Update Profile >>\"",
+            "result": {
+              "status": "passed",
+              "duration": 86539706
+            },
+            "line": 14,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:70"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "The success notification says \"Successfully updated your profile\"",
+            "result": {
+              "status": "passed",
+              "duration": 1650726073
+            },
+            "line": 15,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:75"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I reload application",
+            "result": {
+              "status": "passed",
+              "duration": 1036318022
+            },
+            "line": 16,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:17"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the link that contains text \"Hey Bruce\"",
+            "result": {
+              "status": "passed",
+              "duration": 2099593376
+            },
+            "line": 17,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:63"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I verify the text field with ID \"email\" contains \"bruce@gotham.com\"",
+            "result": {
+              "status": "passed",
+              "duration": 3019349279
+            },
+            "line": 18,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:123"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I verify the text field with ID \"weightInKg\" contains \"76.2\"",
+            "result": {
+              "status": "passed",
+              "duration": 3021378707
+            },
+            "line": 19,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:123"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I verify the text field with ID \"name\" contains \"Bruce Wayne\"",
+            "result": {
+              "status": "passed",
+              "duration": 3032628402
+            },
+            "line": 20,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:123"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"\" in the text field with the ID \"name\"",
+            "result": {
+              "status": "passed",
+              "duration": 1084893106
+            },
+            "line": 21,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"\" in the text field with the ID \"email\"",
+            "result": {
+              "status": "passed",
+              "duration": 1110487770
+            },
+            "line": 22,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"\" in the text field with the ID \"weightInKg\"",
+            "result": {
+              "status": "passed",
+              "duration": 1106536094
+            },
+            "line": 23,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Update Profile >>\"",
+            "result": {
+              "status": "passed",
+              "duration": 86296455
+            },
+            "line": 24,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:70"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "The success notification says \"Successfully updated your profile\"",
+            "result": {
+              "status": "passed",
+              "duration": 1650294703
+            },
+            "line": 25,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:75"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 58947262
+            },
+            "hidden": true,
+            "match": {
+              "location": "/home/travis/build/aashwin/FitnessApp_Assignment/node_modules/selenium-cucumber-js/runtime/world.js:185"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "",
+    "tags": [],
+    "uri": "/home/travis/build/aashwin/FitnessApp_Assignment/tests/regression_tests/features/profile.feature"
+  }
+]
