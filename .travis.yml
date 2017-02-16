@@ -18,4 +18,4 @@ before_install:
 script:
 - npm test
 after_script:
-- sudo ./update-gh-pages.sh
+- sh ./update-gh-pages.sh
