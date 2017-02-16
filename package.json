@@ -6,7 +6,7 @@
   "scripts": {
     "start": "DEBUG=fitness.app.aashwin node ./app.js",
     "test": "nyc --reporter=html --report-dir=\"./tests/coverage\" mocha \"./tests/unit_tests/**/*.test.js\"",
-    "regression": "cd ./tests/regression_tests/ && node ./run.js -s -s ../../tests/regression_tests/step-definitions"
+    "regression": "cd ./tests/regression_tests/ && node ./run.js -s ../../tests/regression_tests/step-definitions"
   },
   "repository": {
     "type": "git",
