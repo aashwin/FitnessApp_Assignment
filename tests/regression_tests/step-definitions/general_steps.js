@@ -74,13 +74,13 @@ module.exports = function () {
     });
 
     this.Then(/^The "([^"]*)" dashcard has the (text|value) of "([^"]*)"$/, function (title, type, value) {
-        if(type=='text') {
-            return driver.wait(until.elementLocated(by.xpath('//dash-card[@title="'+title+'"]//div[contains(@class, "value")]')), 10000).then(function (elm) {
+        if (type == 'text') {
+            return driver.wait(until.elementLocated(by.xpath('//dash-card[@title="' + title + '"]//div[contains(@class, "value")]')), 10000).then(function (elm) {
                 return elm.getText().then(function (text) {
                     return expect(text.toLowerCase()).to.equal(value.toLowerCase());
                 });
             });
-        }else{
+        } else {
             return driver.wait(until.elementLocated(by.xpath("//dash-card[@title='" + title + "']")), 10000).then(function (elm) {
                 return elm.getAttribute("value").then(function (text) {
                     return expect(text.toLowerCase()).to.equal(value.toLowerCase());
@@ -95,10 +95,12 @@ module.exports = function () {
             });
         });
     });
-    this.Then(/^I verify that there is a comment "([^"]*)"$/, function(){
-        return driver.wait(until.elementLocated(by.xpath('//div[contains(@class, "comment")]//p')), 10000).then(function (elm) {
-            return elm.getText().then(function (text) {
-                return expect(text.toLowerCase()).to.equal(heading.toLowerCase());
+    this.Then(/^I verify that there is a comment "([^"]*)"$/, function (value) {
+        return driver.sleep(1000).then(function () {
+            driver.wait(until.elementLocated(by.xpath('//div[contains(@class, "comment")]//p')), 10000).then(function (elm) {
+                return elm.getText().then(function (text) {
+                    return expect(text.toLowerCase()).to.contain(value.toLowerCase());
+                });
             });
         });
     });

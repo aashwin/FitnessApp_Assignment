@@ -5,108 +5,117 @@
             <property name="URI" value="/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/features/activity.feature">
             </property>
         </properties>
-        <testcase name="Given The application is loaded" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="4.793832514">
+        <testcase name="Given The application is loaded" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="4.665448861">
         </testcase>
-        <testcase name="When I enter &quot;{{TEST_USERNAME}}&quot; in the &quot;username&quot; text field" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.131629188">
+        <testcase name="When I enter &quot;{{TEST_USERNAME}}&quot; in the &quot;username&quot; text field" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.119948605">
         </testcase>
-        <testcase name="And I enter &quot;{{TEST_PASSWORD}}&quot; in the &quot;password&quot; text field" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.205045565">
+        <testcase name="And I enter &quot;{{TEST_PASSWORD}}&quot; in the &quot;password&quot; text field" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.136174723">
         </testcase>
-        <testcase name="And I click on the button that has a value of &quot;Login&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.106811447">
+        <testcase name="And I click on the button that has a value of &quot;Login&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.10837929">
         </testcase>
-        <testcase name="Then the application page is loaded" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.013380172">
+        <testcase name="Then the application page is loaded" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.016912504">
         </testcase>
-        <testcase name="When I click on the link that contains text &quot;Create Activity&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="5.67604475">
+        <testcase name="When I click on the link that contains text &quot;Create Activity&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="5.157063922">
         </testcase>
-        <testcase name="And I click on the link that contains text &quot;Manual Entry&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="2.233747296">
+        <testcase name="And I click on the link that contains text &quot;Manual Entry&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="2.178634584">
         </testcase>
-        <testcase name="And I enter &quot;Evening Run&quot; in the text field with the ID &quot;name&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.161402736">
+        <testcase name="And I enter &quot;Evening Run&quot; in the text field with the ID &quot;name&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.150259918">
         </testcase>
-        <testcase name="And I tick the radio with name &quot;visibility&quot; and value &quot;2&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.112490949">
+        <testcase name="And I tick the radio with name &quot;visibility&quot; and value &quot;2&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.108375862">
         </testcase>
-        <testcase name="And I enter &quot;19&quot; in the text field with the ID &quot;distance&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.147420965">
+        <testcase name="And I enter &quot;19&quot; in the text field with the ID &quot;distance&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.123248801">
         </testcase>
-        <testcase name="And I enter &quot;133&quot; in the text field with the ID &quot;elevationInMeters&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.129128696">
+        <testcase name="And I enter &quot;133&quot; in the text field with the ID &quot;elevationInMeters&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.125969807">
         </testcase>
-        <testcase name="And I enter &quot;1&quot; in the text field with the ID &quot;durationH&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.152538271">
+        <testcase name="And I enter &quot;1&quot; in the text field with the ID &quot;durationH&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.126891783">
         </testcase>
-        <testcase name="And I enter &quot;11&quot; in the text field with the ID &quot;durationM&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.13042056">
+        <testcase name="And I enter &quot;11&quot; in the text field with the ID &quot;durationM&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.163870626">
         </testcase>
-        <testcase name="And I enter &quot;34&quot; in the text field with the ID &quot;durationS&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.121484962">
+        <testcase name="And I enter &quot;34&quot; in the text field with the ID &quot;durationS&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.129440353">
         </testcase>
-        <testcase name="And I enter &quot;This was a great run with @Friend&quot; in the text field with the ID &quot;notes&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.181216178">
+        <testcase name="And I enter &quot;This was a great run with @Friend&quot; in the text field with the ID &quot;notes&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.184789963">
         </testcase>
-        <testcase name="And I click on the button that has a value of &quot;Add Activity &gt;&gt;&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.117983794">
+        <testcase name="And I click on the button that has a value of &quot;Add Activity &gt;&gt;&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.103383923">
         </testcase>
-        <testcase name="Then The success notification says &quot;Successfully created activity&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.754873376">
+        <testcase name="Then The success notification says &quot;Successfully created activity&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="1.027695671">
         </testcase>
-        <testcase name="And The page heading says &quot;Evening Run&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.053345625">
+        <testcase name="And The page heading says &quot;Evening Run&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.055854628">
         </testcase>
-        <testcase name="And The &quot;Distance&quot; dashcard has the value of &quot;30.58&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.041499331">
+        <testcase name="And The &quot;Distance&quot; dashcard has the value of &quot;30.58&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.037637465">
         </testcase>
-        <testcase name="And The &quot;Elevation&quot; dashcard has the value of &quot;133&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.037359052">
+        <testcase name="And The &quot;Elevation&quot; dashcard has the value of &quot;133&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.035608315">
         </testcase>
-        <testcase name="And The &quot;Duration&quot; dashcard has the text of &quot;01:11:34&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.062179052">
+        <testcase name="And The &quot;Duration&quot; dashcard has the text of &quot;01:11:34&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.059404113">
         </testcase>
-        <testcase name="And I delete all activities of this user via the REST API" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.084103714">
+        <testcase name="And I delete all activities of this user via the REST API" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-using-manual-entry-mode" time="0.133467628">
         </testcase>
     </testsuite>
-    <testsuite name=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" tests="13" failures="1" skipped="4">
+    <testsuite name=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" tests="15" failures="1" skipped="1">
         <properties>
             <property name="URI" value="/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/features/activity.feature">
             </property>
         </properties>
-        <testcase name="Given The application is loaded" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="7.557054916">
+        <testcase name="Given The application is loaded" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="4.95217092">
         </testcase>
-        <testcase name="When I enter &quot;{{TEST_USERNAME}}&quot; in the &quot;username&quot; text field" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="1.125450568">
+        <testcase name="When I enter &quot;{{TEST_USERNAME}}&quot; in the &quot;username&quot; text field" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="1.116188676">
         </testcase>
-        <testcase name="And I enter &quot;{{TEST_PASSWORD}}&quot; in the &quot;password&quot; text field" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="1.118331772">
+        <testcase name="And I enter &quot;{{TEST_PASSWORD}}&quot; in the &quot;password&quot; text field" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="1.11338287">
         </testcase>
-        <testcase name="And I click on the button that has a value of &quot;Login&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="0.113197751">
+        <testcase name="And I click on the button that has a value of &quot;Login&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="0.109923528">
         </testcase>
-        <testcase name="Then the application page is loaded" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="0.011899362">
+        <testcase name="Then the application page is loaded" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="0.011111593">
         </testcase>
-        <testcase name="When I click on the link that contains text &quot;Create Activity&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="5.538837843">
+        <testcase name="When I click on the link that contains text &quot;Create Activity&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="5.594225853">
         </testcase>
-        <testcase name="And I click on the link that contains text &quot;Manual Entry&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="2.198107186">
+        <testcase name="And I click on the link that contains text &quot;Manual Entry&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="2.202500073">
         </testcase>
-        <testcase name="And I enter &quot;Evening Run&quot; in the text field with the ID &quot;name&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="1.189388573">
+        <testcase name="And I enter &quot;Evening Run&quot; in the text field with the ID &quot;name&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="1.150143468">
         </testcase>
-        <testcase name="Then The success notification says &quot;Successfully created activity&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="10.000857906">
-            <failure message="function timed out after 10000 milliseconds">function timed out after 10000 milliseconds</failure>
+        <testcase name="And I tick the radio with name &quot;visibility&quot; and value &quot;2&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="1.102572229">
         </testcase>
-        <testcase name="And The page heading says &quot;Evening Run&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment">
-            <skipped message="">
-            </skipped>
+        <testcase name="And I click on the button that has a value of &quot;Add Activity &gt;&gt;&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="0.100339144">
         </testcase>
-        <testcase name="When I enter &quot;This is a good run mate, keep it going!&quot; in the text field with the ID &quot;comment&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment">
-            <skipped message="">
-            </skipped>
+        <testcase name="Then The success notification says &quot;Successfully created activity&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="0.752701829">
         </testcase>
-        <testcase name="Then I verify that there is a comment &quot;This is a good run mate, keep it going!&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment">
-            <skipped message="">
-            </skipped>
+        <testcase name="And The page heading says &quot;Evening Run&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="0.051358568">
+        </testcase>
+        <testcase name="When I enter &quot;This is a good run mate, keep it going!&quot; in the text field with the ID &quot;comment&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="1.188707853">
+        </testcase>
+        <testcase name="Then I verify that there is a comment &quot;This is a good run mate, keep it going!&quot;" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment" time="0.000196167">
+            <failure message="function has 0 arguments, should have 1 (if synchronous or returning a promise) or 2 (if accepting a callback)">function has 0 arguments, should have 1 (if synchronous or returning a promise) or 2 (if accepting a callback)</failure>
         </testcase>
         <testcase name="And I delete all activities of this user via the REST API" classname=";as-a-user,-i-can-login-to-the-application-and-create-an-activity-and-add-a-comment">
             <skipped message="">
             </skipped>
         </testcase>
     </testsuite>
-    <testsuite name=";as-a-user,-i-can-login-to-the-application" tests="6" failures="0" skipped="0">
+    <testsuite name=";as-a-user,-i-can-login-to-the-application" tests="6" failures="1" skipped="5">
         <properties>
             <property name="URI" value="/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/features/login_register.feature">
             </property>
         </properties>
-        <testcase name="Given The application is loaded" classname=";as-a-user,-i-can-login-to-the-application" time="4.367330458">
+        <testcase name="Given The application is loaded" classname=";as-a-user,-i-can-login-to-the-application" time="10.004232623">
+            <failure message="function timed out after 10000 milliseconds">function timed out after 10000 milliseconds</failure>
         </testcase>
-        <testcase name="When I enter &quot;{{TEST_USERNAME}}&quot; in the &quot;username&quot; text field" classname=";as-a-user,-i-can-login-to-the-application" time="1.098116598">
+        <testcase name="When I enter &quot;{{TEST_USERNAME}}&quot; in the &quot;username&quot; text field" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And I enter &quot;{{TEST_PASSWORD}}&quot; in the &quot;password&quot; text field" classname=";as-a-user,-i-can-login-to-the-application" time="1.124062436">
+        <testcase name="And I enter &quot;{{TEST_PASSWORD}}&quot; in the &quot;password&quot; text field" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And I click on the button that has a value of &quot;Login&quot;" classname=";as-a-user,-i-can-login-to-the-application" time="0.102137723">
+        <testcase name="And I click on the button that has a value of &quot;Login&quot;" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="Then the application page is loaded" classname=";as-a-user,-i-can-login-to-the-application" time="0.010569001">
+        <testcase name="Then the application page is loaded" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And The page heading says &quot;My Activities&quot;" classname=";as-a-user,-i-can-login-to-the-application" time="3.055942901">
+        <testcase name="And The page heading says &quot;My Activities&quot;" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
     </testsuite>
 </testsuites>
