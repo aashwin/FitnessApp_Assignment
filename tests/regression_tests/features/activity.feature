@@ -42,3 +42,20 @@ Feature:
     And I click on the button that has a value of "Add Comment >>"
     Then I verify that there is a comment "This is a good run mate, keep it going!"
     And I delete all activities of this user via the REST API
+
+  Scenario: As a user, I can login to the application and search for activities
+    Given The application is loaded
+    When I enter "{{TEST_USERNAME}}" in the "username" text field
+    And I enter "{{TEST_PASSWORD}}" in the "password" text field
+    And I click on the button that has a value of "Login"
+    Then the application page is loaded
+    When I click on the link that contains text "Create Activity"
+    And I click on the link that contains text "Manual Entry"
+    And I enter "Very Random Name 123" in the text field with the ID "name"
+    And I click on the button that has a value of "Add Activity >>"
+    Then The success notification says "Successfully created activity"
+    And The page heading says "Very Random Name 123"
+    When I click on the link that contains text "Search"
+    And I enter "Very Random Name 123" in the text field with the ID "search_query"
+    And I verify that there is atleast 1 search result
+    And I delete all activities of this user via the REST API
