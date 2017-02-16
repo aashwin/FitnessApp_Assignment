@@ -1,3 +1,5 @@
 {
-  "url": "http://82.0.166.166:8080/"
+  "url": "http://82.0.166.166:8080/",
+  "test_user": "batman",
+  "test_password": "password1"
 }
