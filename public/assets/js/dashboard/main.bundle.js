@@ -42505,8 +42505,10 @@ return 'ngMap';
 'use strict';
 (function () {
     var app = angular.module("app");
-    app.controller("homeController", ['activityService', 'userService', '$scope', '$routeParams', function (activityService, userService, $scope, $routeParams) {
+    app.controller("homeController", ['activityService','defaultProfilePic', 'userService', '$scope', '$routeParams', function (activityService,defaultProfilePic, userService, $scope, $routeParams) {
         $scope.myActivityList = [];
+        $scope.default_profile_pic = defaultProfilePic;
+
         $scope.totalPages = [];
         $scope.count = 0;
         $scope.query = {
@@ -42554,6 +42556,7 @@ require('./profile.controller');
 (function () {
     var app = angular.module("app");
     app.controller("listActivitiesController", ['activityService', 'userService', 'Notification', 'defaultProfilePic', '$location', '$scope', '$routeParams', function (activityService, userService, Notification, defaultProfilePic, $location, $scope, $routeParams) {
+        $scope.default_profile_pic = defaultProfilePic;
         $scope.myActivityList = [];
         $scope.totalPages = [];
         $scope.count = 0;
@@ -42566,7 +42569,6 @@ require('./profile.controller');
             "page": 1,
             "activityType": "ALL"
         };
-
         $scope.switchPage = function (p) {
             $scope.query.page = p;
             $scope.reload();

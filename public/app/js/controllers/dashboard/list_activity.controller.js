@@ -2,6 +2,7 @@
 (function () {
     var app = angular.module("app");
     app.controller("listActivitiesController", ['activityService', 'userService', 'Notification', 'defaultProfilePic', '$location', '$scope', '$routeParams', function (activityService, userService, Notification, defaultProfilePic, $location, $scope, $routeParams) {
+        $scope.default_profile_pic = defaultProfilePic;
         $scope.myActivityList = [];
         $scope.totalPages = [];
         $scope.count = 0;
@@ -14,7 +15,6 @@
             "page": 1,
             "activityType": "ALL"
         };
-
         $scope.switchPage = function (p) {
             $scope.query.page = p;
             $scope.reload();

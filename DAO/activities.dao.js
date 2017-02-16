@@ -30,16 +30,18 @@ ActivityDAO.findAll = function (user_id, query, req_info, callback) {
         $queryObject = $restricterQuery;
     }
     query = Activity.find($queryObject);
-    if (req_info.offset) {
-        query.skip(req_info.offset);
-    }
-    if (req_info.limit) {
-        query.limit(req_info.limit);
-    }
-    if (req_info.sort_field) {
-        var sortObj = {};
-        sortObj[req_info.sort_field] = req_info.sort_by;
-        query.sort(sortObj);
+    if (req_info) {
+        if (req_info.offset) {
+            query.skip(req_info.offset);
+        }
+        if (req_info.limit) {
+            query.limit(req_info.limit);
+        }
+        if (req_info.sort_field) {
+            var sortObj = {};
+            sortObj[req_info.sort_field] = req_info.sort_by;
+            query.sort(sortObj);
+        }
     }
     query.exec(function (err, data) {
             if (err) {

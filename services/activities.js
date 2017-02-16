@@ -260,13 +260,13 @@ exports.validateAndProcessGPXFile = function (file) {
 exports.deleteByUserId = function (user_id) {
     return new Promise(function (resolve, reject) {
         exports.getAll(user_id).then(function (listOfActivities) {
-                if (!listOfActivities || !(listOfActivities instanceof Array)) {
+                if (!listOfActivities || !listOfActivities.list || !(listOfActivities.list instanceof Array)) {
                     reject();
                     return;
                 }
                 var activityIdList = [];
-                for (var i = 0; i < listOfActivities.length; i++) {
-                    activityIdList.push(listOfActivities[i]._id);
+                for (var i = 0; i < listOfActivities.list.length; i++) {
+                    activityIdList.push(listOfActivities.list[i]._id);
                 }
                 exports.delete(activityIdList).then(function () {
                     resolve(1);

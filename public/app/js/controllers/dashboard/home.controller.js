@@ -1,8 +1,10 @@
 'use strict';
 (function () {
     var app = angular.module("app");
-    app.controller("homeController", ['activityService', 'userService', '$scope', '$routeParams', function (activityService, userService, $scope, $routeParams) {
+    app.controller("homeController", ['activityService', 'defaultProfilePic', 'userService', '$scope', '$routeParams', function (activityService, defaultProfilePic, userService, $scope, $routeParams) {
         $scope.myActivityList = [];
+        $scope.default_profile_pic = defaultProfilePic;
+
         $scope.totalPages = [];
         $scope.count = 0;
         $scope.query = {
