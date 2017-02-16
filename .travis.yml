@@ -14,8 +14,16 @@ addons:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
-before_install: 
+before_install:
+ - export CHROME_BIN=/usr/bin/google-chrome
+ - export DISPLAY=:99.0
+ - sh -e /etc/init.d/xvfb start
+ - sudo apt-get update
+ - sudo apt-get install -y libappindicator1 fonts-liberation
+ - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+ - sudo dpkg -i google-chrome*.deb
 script:
-- npm test
+ - npm test
+ - npm run regression -- --browser=chrome
 after_script:
 - sh ./update-gh-pages.sh
