@@ -19,5 +19,5 @@ exports.authentication = {
     "whitelist": ['/', '/index', '/register', '/app.*', '/api/authenticate', {path: '/api/users', method: 'POST'}]
 };
 exports.database = {
-    'url': 'mongodb://82.0.166.166:27017/fitness'
+    'url': 'mongodb://localhost:27017/fitness'
 };
