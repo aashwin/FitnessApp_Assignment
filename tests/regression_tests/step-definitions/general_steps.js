@@ -3,7 +3,6 @@ var data = require("../modules/data");
 module.exports = function () {
 
     this.Given(/^The application is loaded$/, function (done) {
-        driver.manage().timeouts().implicitlyWait(250000);
         driver.wait(until.elementLocated(by.css('body')), 500000).then(function () {
             helpers.loadPage(config.url).then(function () {
                 driver.wait(until.titleIs("Fitness Tracker"), 500000).then(function () {
@@ -123,7 +122,7 @@ module.exports = function () {
         return driver.sleep(2000).then(function () {
             return driver.wait(until.elementLocated(by.id(id)), 10000).then(function (elm) {
                 return driver.sleep(1000).then(function () {
-                    return elm.getAttribute("textContent").then(function(text){
+                    return driver.executeScript('return document.getElementById("' + id + '").value;').then(function (text) {
                         return expect(text.toLowerCase()).to.equal(value.toLowerCase());
                     });
                 });
