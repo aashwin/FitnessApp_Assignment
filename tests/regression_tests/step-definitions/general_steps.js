@@ -14,6 +14,18 @@ module.exports = function () {
             });
         });
     });
+    this.Given(/^I reload application$/, function (done) {
+        driver.wait(until.elementLocated(by.css('body')), 500000).then(function () {
+            helpers.loadPage(config.url).then(function () {
+                driver.wait(until.titleIs("Dashboard"), 500000).then(function () {
+                    driver.wait(until.elementLocated(by.css('body')), 500000).then(function () {
+                        "use strict";
+                        done();
+                    });
+                });
+            });
+        });
+    });
 
     this.When(/^I enter "([^"]*)" in the "([^"]*)" text field$/, function (text, name) {
         text = data.convertVariables(text);
@@ -99,7 +111,7 @@ module.exports = function () {
         return driver.sleep(1000).then(function () {
             return driver.wait(until.elementLocated(by.xpath('//div[contains(@class, "comment")]//p')), 10000).then(function (elm) {
                 return elm.getText().then(function (text) {
-                    return expect(text.toLowerCase()).to.contain(value.toLowerCase());
+                    return expect(text.toLowerCase()).to.equal(value.toLowerCase());
                 });
             });
         });
@@ -107,7 +119,7 @@ module.exports = function () {
     this.Then(/^I verify the text field with ID "([^"]*)" contains "([^"]*)"$/, function (id, value) {
         return driver.wait(until.elementLocated(by.id(value)), 10000).then(function (elm) {
             return elm.getText().then(function (text) {
-                return expect(text.toLowerCase()).to.contain(value.toLowerCase());
+                return expect(text.toLowerCase()).to.equal(value.toLowerCase());
             });
         });
     });

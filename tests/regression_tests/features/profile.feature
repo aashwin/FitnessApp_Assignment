@@ -13,7 +13,7 @@ Feature:
     And I enter "76.2" in the text field with the ID "weightInKg"
     And I click on the button that has a value of "Update Profile >>"
     Then The success notification says "Successfully updated your profile"
-    When The application is loaded
+    When I reload application
     And I click on the link that contains text "Hey Bruce"
     Then I verify the text field with ID "name" contains "Bruce Wayne"
     And I verify the text field with ID "email" contains "bruce@gotham.com"
