@@ -15,9 +15,9 @@ Feature:
     Then The success notification says "Successfully updated your profile"
     When I reload application
     And I click on the link that contains text "Hey Bruce"
-    Then I verify the text field with ID "name" contains "Bruce Wayne"
     And I verify the text field with ID "email" contains "bruce@gotham.com"
     And I verify the text field with ID "weightInKg" contains "76.2"
+    Then I verify the text field with ID "name" contains "Bruce Wayne"
     And I enter "" in the text field with the ID "name"
     And I enter "" in the text field with the ID "email"
     And I enter "" in the text field with the ID "weightInKg"
