@@ -17,7 +17,6 @@ Feature:
     Given  The application is loaded
     When I enter "{{TEST_USERNAME}}" in the "username" text field
     And I enter "{{TEST_PASSWORD}}" in the "password" text field
-    And I enter "password*123" in the "confirmPassword" text field
     And I click on the button that has a value of "Login"
     Then the application page is loaded
     And The page heading says "My Activities"

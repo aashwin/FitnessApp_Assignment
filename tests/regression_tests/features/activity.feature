@@ -1,5 +1,5 @@
 Feature:
-  Login and Registeration
+  Activities
 
   Scenario: As a user, I can login to the application and create an activity using manual entry mode
     Given  The application is loaded
@@ -34,6 +34,7 @@ Feature:
     When I click on the link that contains text "Create Activity"
     And I click on the link that contains text "Manual Entry"
     And I enter "Evening Run" in the text field with the ID "name"
+    And I click on the button that has a value of "Add Activity >>"
     Then The success notification says "Successfully created activity"
     And The page heading says "Evening Run"
     When I enter "This is a good run mate, keep it going!" in the text field with the ID "comment"
