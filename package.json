@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "DEBUG=fitness.app.aashwin node ./app.js",
-    "test": "nyc --reporter=html --report-dir=\"./tests/coverage\" mocha \"./tests/unit_tests/**/*.test.js\""
+    "test": "nyc --reporter=html --report-dir=\"./tests/coverage\" mocha \"./tests/unit_tests/**/*.test.js\"",
+    "regression": "cd ./tests/regression_tests/ && node ./run.js -s -s ../../tests/regression_tests/step-definitions"
   },
   "repository": {
     "type": "git",
@@ -57,6 +58,7 @@
     "mocha": "^3.2.0",
     "nyc": "^10.1.2",
     "run-sequence": "^1.2.2",
+    "selenium-cucumber-js": "^1.3.4",
     "sinon": "^1.17.7",
     "vinyl-source-stream": "^1.1.0"
   }

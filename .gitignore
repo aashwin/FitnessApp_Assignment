@@ -188,4 +188,5 @@ npm-debug.log
 .nyc_output/
 coverage/
 tmp/
+tests/regression_tests/reports/
 # End of https://www.gitignore.io/api/macos,windows,intellij,intellij+iml,node
