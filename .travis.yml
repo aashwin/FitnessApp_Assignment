@@ -2,27 +2,27 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-  - 7.0
+- 7.0
 env:
+  matrix:
   - CXX=g++-4.8
+  global:
+    secure: nN/tjQv8QxnOkpIAzVAIOGpb9uIkzR3Y3ZVF2B+83jVtjDvI/sjgqQ0+bX5c8QtzYNFppCwnj0RQu53Pgya+slS9mAx9xqSABhBnYcI1dTdiUA6ruUiMXdIlJkZM+3SZKM1kQ4coNV2bm3sLqJ67NhFQ0v+rhWFCGyGMFOTSkmCV5mqhvMBoCrMgdPKGT0jBgRs6JA/nxNl7gvzLpLa1DoT2sxIoAve4+X0MHimyVtjYRkKR/2ADPhXk14Puarrac8FLNXg+GgHGHI/w15C+YVFDUfoFxz0rGeuayKdy/ljjcqZRjxfrW9QkuyaVsIE+JE9h+CsII3eVvlKHPS4/H0hCpZDJiOBNUk/bgt9HxIH8f39zdx8MvqcdWCbSeNvbbx7Kk0ZO1gIlPIQAHDUR8fsiTi/zO3jiZWFaRfqwZQK3D7tI3fpl4PJqntXL6opoyB3MM/4jUhBpI8Ui1JLiN2sHL3q87kwTl6JkOIbFF/A4RBHWKVLaWYiCb+C9ZP/GULyRGJfwh5DI8HotioGpwcAqmqJCKHmoaTU/drY94yyJmPKGCnR59Dnu/a1zel+sCsCd2vPmYPQmmvY69VKZSrjOdSDQ6jXeCFqgpxdsMbGRYCCeFM1+7nfHiSzwYEilRteeK2LBdHFrRnpHhNalXZ+pIct6X7nycR1Q6S+JBhA=
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
-#before_script:
-#  - "export DISPLAY=:99.0"
-#  - "sh -e /etc/init.d/xvfb start"
-#  - sleep 3 # give xvfb some time to start
+    - g++-4.8
 before_install:
- - export CHROME_BIN=/usr/bin/google-chrome
- - export DISPLAY=:99.0
- - sh -e /etc/init.d/xvfb start
- - sudo apt-get update
- - sudo apt-get install -y libappindicator1 fonts-liberation
- - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
- - sudo dpkg -i google-chrome*.deb
+- export CHROME_BIN=/usr/bin/google-chrome
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sudo apt-get update
+- sudo apt-get install -y libappindicator1 fonts-liberation
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
 script:
- - npm test
- - npm run regression -- --browser=chrome
+- npm test
+- npm run regression -- --browser=chrome
+after_script: ./update-gh-pages.sh

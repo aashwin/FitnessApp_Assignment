@@ -121,9 +121,15 @@ module.exports = function () {
     });
     this.Then(/^I verify the text field with ID "([^"]*)" contains "([^"]*)"$/, function (id, value) {
         return driver.sleep(2000).then(function () {
-            return driver.wait(until.elementLocated(by.id(value)), 10000).then(function (elm) {
-                return elm.getText().then(function (text) {
-                    return expect(text.toLowerCase()).to.equal(value.toLowerCase());
+            console.log("Sleep done");
+            return driver.wait(until.elementLocated(by.id(id)), 10000).then(function (elm) {
+                console.log("Element found with ID " + id);
+                return driver.sleep(1000).then(function () {
+                    console.log("Sleep 2 done");
+                    return elm.getText().then(function(text){
+                        console.log("got : " + text.toLowerCase());
+                        return expect(text.toLowerCase()).to.equal(value.toLowerCase());
+                    });
                 });
             });
         });
