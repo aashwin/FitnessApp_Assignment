@@ -73,10 +73,12 @@ module.exports = function () {
         });
     });
     this.Then(/^The success notification says "([^"]*)"$/, function (value) {
-        return driver.wait(until.elementLocated(by.css(".ui-notification.success .message")), 10000).then(function (elm) {
-            return driver.sleep(600).then(function () {
-                return elm.getText().then(function (text) {
-                    return expect(text).to.equal(value);
+        return driver.sleep(1000).then(function () {
+            return driver.wait(until.elementLocated(by.css(".ui-notification.success .message")), 10000).then(function (elm) {
+                return driver.sleep(600).then(function () {
+                    return elm.getText().then(function (text) {
+                        return expect(text).to.equal(value);
+                    });
                 });
             });
         });
@@ -129,6 +131,13 @@ module.exports = function () {
             });
         });
     });
+    this.When(/^I verify that there is atleast (\d+) search result$/, function (num) {
+        return driver.sleep(2000).then(function () {
+            return driver.findElements(by.className('home_card')).then(function (elms) {
+                return expect(elms.length).to.have.above(num);
 
+            });
+        });
+    });
 
 };
