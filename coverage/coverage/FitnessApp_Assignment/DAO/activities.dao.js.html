@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for FitnessApp_Assignment/DAO/activities.dao.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">FitnessApp_Assignment/DAO</a> activities.dao.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">15.52% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/58</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">15.52% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/58</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const mongoose = require('mongoose');
+const Activity = mongoose.model('Activity');
+var ActivityDAO = {};
+ActivityDAO.findById = <span class="fstat-no" title="function not covered" >fu</span>nction (id, callback) {
+<span class="cstat-no" title="statement not covered" >    Activity.findById(id, <span class="fstat-no" title="function not covered" >fu</span>nction (err, data) {</span>
+<span class="cstat-no" title="statement not covered" >        if (err) {</span>
+<span class="cstat-no" title="statement not covered" >            return callback(null);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        Activity.populate(data, {"path": "createdBy"}, <span class="fstat-no" title="function not covered" >fu</span>nction (err, popData) {</span>
+<span class="cstat-no" title="statement not covered" >            if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                return callback(null);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            callback(popData);</span>
+        });
+    });
+};
+ActivityDAO.findAll = <span class="fstat-no" title="function not covered" >fu</span>nction (user_id, query, req_info, callback) {
+    var $queryObject = <span class="cstat-no" title="statement not covered" >null;</span>
+<span class="cstat-no" title="statement not covered" >    if (query) {</span>
+<span class="cstat-no" title="statement not covered" >        $queryObject = {$and: query};</span>
+    }
+    var $restricterQuery = <span class="cstat-no" title="statement not covered" >{$or: [{visibility: 0}]};</span>
+<span class="cstat-no" title="statement not covered" >    if (user_id) {</span>
+<span class="cstat-no" title="statement not covered" >        $restricterQuery.$or.push({$and: [{visibility: 2}, {createdBy: user_id}]});</span>
+<span class="cstat-no" title="statement not covered" >        $restricterQuery.$or.push({$and: [{visibility: 1}, {$or: [{createdBy: user_id}, {shared_with: user_id}]}]});</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if ($queryObject) {</span>
+<span class="cstat-no" title="statement not covered" >        $queryObject.$and.push($restricterQuery);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >        $queryObject = $restricterQuery;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    query = Activity.find($queryObject);</span>
+<span class="cstat-no" title="statement not covered" >    if (req_info.offset) {</span>
+<span class="cstat-no" title="statement not covered" >        query.skip(req_info.offset);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (req_info.limit) {</span>
+<span class="cstat-no" title="statement not covered" >        query.limit(req_info.limit);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (req_info.sort_field) {</span>
+        var sortObj = <span class="cstat-no" title="statement not covered" >{};</span>
+<span class="cstat-no" title="statement not covered" >        sortObj[req_info.sort_field] = req_info.sort_by;</span>
+<span class="cstat-no" title="statement not covered" >        query.sort(sortObj);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    query.exec(<span class="fstat-no" title="function not covered" >fu</span>nction (err, data) {</span>
+<span class="cstat-no" title="statement not covered" >            if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                return callback(null);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            Activity.populate(data, {"path": "createdBy"}, <span class="fstat-no" title="function not covered" >fu</span>nction (err, popData) {</span>
+<span class="cstat-no" title="statement not covered" >                if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    return callback(null);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                Activity.count($queryObject, <span class="fstat-no" title="function not covered" >fu</span>nction (err, count) {</span>
+<span class="cstat-no" title="statement not covered" >                    callback(popData, count || 0);</span>
+                });
+            });
+        }
+    );
+};
+ActivityDAO.findByUserId = <span class="fstat-no" title="function not covered" >fu</span>nction (user_id, callback) {
+<span class="cstat-no" title="statement not covered" >    Activity.find({"createdBy": user_id}, <span class="fstat-no" title="function not covered" >fu</span>nction (err, data) {</span>
+<span class="cstat-no" title="statement not covered" >        if (err) {</span>
+<span class="cstat-no" title="statement not covered" >            return callback(null);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        callback(data);</span>
+    });
+};
+ActivityDAO.delete = <span class="fstat-no" title="function not covered" >fu</span>nction (activity_id, callback) {
+    var deleteArray = <span class="cstat-no" title="statement not covered" >activity_id;</span>
+<span class="cstat-no" title="statement not covered" >    if (!(activity_id instanceof Array)) {</span>
+<span class="cstat-no" title="statement not covered" >        deleteArray = [activity_id];</span>
+    }
+<span class="cstat-no" title="statement not covered" >    Activity.remove({_id: {$in: deleteArray}}, <span class="fstat-no" title="function not covered" >fu</span>nction (err) {</span>
+<span class="cstat-no" title="statement not covered" >        if (err) {</span>
+<span class="cstat-no" title="statement not covered" >            return callback(err);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        callback();</span>
+    });
+};
+ActivityDAO.updateById = <span class="fstat-no" title="function not covered" >fu</span>nction (id, data, callback) {
+<span class="cstat-no" title="statement not covered" >    Activity.findOneAndUpdate({_id: id}, data, {upsert: false}, <span class="fstat-no" title="function not covered" >fu</span>nction (err, doc) {</span>
+<span class="cstat-no" title="statement not covered" >        if (err) {</span>
+<span class="cstat-no" title="statement not covered" >            callback(err);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        callback(null, doc);</span>
+    });
+&nbsp;
+};
+module.exports = ActivityDAO;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Feb 16 2017 19:17:13 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
