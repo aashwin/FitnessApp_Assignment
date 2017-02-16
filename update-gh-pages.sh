@@ -1,6 +1,9 @@
   echo -e "Starting to update gh-pages\n"
 
   #copy data we're interested in to other place
+  mkdir $HOME/tests
+  mkdir $HOME/tests/coverage
+  mkdir $HOME/tests/reports
   cp -R tests/coverage $HOME/tests/coverage
   cp -R tests/regression_tests/reports $HOME/tests/reports
 
