@@ -39,5 +39,6 @@ Feature:
     Then The success notification says "Successfully created activity"
     And The page heading says "Evening Run"
     When I enter "This is a good run mate, keep it going!" in the text field with the ID "comment"
+    And I click on the button that has a value of "Add Comment >>"
     Then I verify that there is a comment "This is a good run mate, keep it going!"
     And I delete all activities of this user via the REST API

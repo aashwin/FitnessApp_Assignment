@@ -117,9 +117,11 @@ module.exports = function () {
         });
     });
     this.Then(/^I verify the text field with ID "([^"]*)" contains "([^"]*)"$/, function (id, value) {
-        return driver.wait(until.elementLocated(by.id(value)), 10000).then(function (elm) {
-            return elm.getText().then(function (text) {
-                return expect(text.toLowerCase()).to.equal(value.toLowerCase());
+        return driver.sleep(1000).then(function () {
+            return driver.wait(until.elementLocated(by.id(value)), 10000).then(function (elm) {
+                return elm.getText().then(function (text) {
+                    return expect(text.toLowerCase()).to.equal(value.toLowerCase());
+                });
             });
         });
     });
