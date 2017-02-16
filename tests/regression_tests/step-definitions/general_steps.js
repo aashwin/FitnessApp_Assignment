@@ -134,7 +134,7 @@ module.exports = function () {
     this.When(/^I verify that there is atleast (\d+) search result$/, function (num) {
         return driver.sleep(2000).then(function () {
             return driver.findElements(by.className('home_card')).then(function (elms) {
-                return expect(elms.length).to.have.above(num);
+                return expect(elms.length).to.have.above(num - 1);
 
             });
         });
