@@ -1,59 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-    <testsuite name=";as-a-user,-i-register-an-user-through-the-application" tests="9" failures="0" skipped="0">
+    <testsuite name=";as-a-user,-i-register-an-user-through-the-application" tests="9" failures="1" skipped="6">
         <properties>
             <property name="URI" value="/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/features/login_register.feature">
             </property>
         </properties>
-        <testcase name="Given The application is loaded" classname=";as-a-user,-i-register-an-user-through-the-application" time="7.89464419">
+        <testcase name="Given The application is loaded" classname=";as-a-user,-i-register-an-user-through-the-application" time="3.076853253">
         </testcase>
-        <testcase name="And That I ensure that no test users exists in the database" classname=";as-a-user,-i-register-an-user-through-the-application" time="0.007784251">
+        <testcase name="And That I ensure that no test users exists in the database" classname=";as-a-user,-i-register-an-user-through-the-application" time="0.010010953">
         </testcase>
-        <testcase name="When I click on the link that contains text &quot;Signup&quot;" classname=";as-a-user,-i-register-an-user-through-the-application" time="2.128869501">
+        <testcase name="When I click on the link that contains text &quot;Signup&quot;" classname=";as-a-user,-i-register-an-user-through-the-application" time="10.002144301">
+            <failure message="function timed out after 10000 milliseconds">function timed out after 10000 milliseconds</failure>
         </testcase>
-        <testcase name="And I enter &quot;user_test_123&quot; in the &quot;username&quot; text field" classname=";as-a-user,-i-register-an-user-through-the-application" time="1.194692123">
+        <testcase name="And I enter &quot;user_test_123&quot; in the &quot;username&quot; text field" classname=";as-a-user,-i-register-an-user-through-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And I enter &quot;password*123&quot; in the &quot;password&quot; text field" classname=";as-a-user,-i-register-an-user-through-the-application" time="1.124814294">
+        <testcase name="And I enter &quot;password*123&quot; in the &quot;password&quot; text field" classname=";as-a-user,-i-register-an-user-through-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And I enter &quot;password*123&quot; in the &quot;confirmPassword&quot; text field" classname=";as-a-user,-i-register-an-user-through-the-application" time="1.123535799">
+        <testcase name="And I enter &quot;password*123&quot; in the &quot;confirmPassword&quot; text field" classname=";as-a-user,-i-register-an-user-through-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And I click on the button that has a value of &quot;Signup&quot;" classname=";as-a-user,-i-register-an-user-through-the-application" time="0.111710297">
+        <testcase name="And I click on the button that has a value of &quot;Signup&quot;" classname=";as-a-user,-i-register-an-user-through-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="Then The success notification says &quot;Successfully Registered&quot;" classname=";as-a-user,-i-register-an-user-through-the-application" time="0.782569942">
+        <testcase name="Then The success notification says &quot;Successfully Registered&quot;" classname=";as-a-user,-i-register-an-user-through-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And I ensure that user with username &quot;user_test_123&quot; exists in the database" classname=";as-a-user,-i-register-an-user-through-the-application" time="0.004499349">
+        <testcase name="And I ensure that user with username &quot;user_test_123&quot; exists in the database" classname=";as-a-user,-i-register-an-user-through-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
     </testsuite>
-    <testsuite name=";as-a-user,-i-can-login-to-the-application" tests="13" failures="0" skipped="0">
+    <testsuite name=";as-a-user,-i-can-login-to-the-application" tests="13" failures="1" skipped="10">
         <properties>
             <property name="URI" value="/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/features/login_register.feature">
             </property>
         </properties>
-        <testcase name="Given The application is loaded" classname=";as-a-user,-i-can-login-to-the-application" time="2.539177831">
+        <testcase name="Given The application is loaded" classname=";as-a-user,-i-can-login-to-the-application" time="2.597031379">
         </testcase>
-        <testcase name="And That I ensure that no test users exists in the database" classname=";as-a-user,-i-can-login-to-the-application" time="0.001930326">
+        <testcase name="And That I ensure that no test users exists in the database" classname=";as-a-user,-i-can-login-to-the-application" time="0.002173126">
         </testcase>
-        <testcase name="When I click on the link that contains text &quot;Signup&quot;" classname=";as-a-user,-i-can-login-to-the-application" time="2.133578296">
+        <testcase name="When I click on the link that contains text &quot;Signup&quot;" classname=";as-a-user,-i-can-login-to-the-application" time="10.004404452">
+            <failure message="function timed out after 10000 milliseconds">function timed out after 10000 milliseconds</failure>
         </testcase>
-        <testcase name="And I enter &quot;user_test_123&quot; in the &quot;username&quot; text field" classname=";as-a-user,-i-can-login-to-the-application" time="1.126780392">
+        <testcase name="And I enter &quot;user_test_123&quot; in the &quot;username&quot; text field" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And I enter &quot;password*123&quot; in the &quot;password&quot; text field" classname=";as-a-user,-i-can-login-to-the-application" time="1.120018317">
+        <testcase name="And I enter &quot;password*123&quot; in the &quot;password&quot; text field" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And I enter &quot;password*123&quot; in the &quot;confirmPassword&quot; text field" classname=";as-a-user,-i-can-login-to-the-application" time="1.122475965">
+        <testcase name="And I enter &quot;password*123&quot; in the &quot;confirmPassword&quot; text field" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And I click on the button that has a value of &quot;Signup&quot;" classname=";as-a-user,-i-can-login-to-the-application" time="0.133389475">
+        <testcase name="And I click on the button that has a value of &quot;Signup&quot;" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="Then The success notification says &quot;Successfully Registered&quot;" classname=";as-a-user,-i-can-login-to-the-application" time="0.746245037">
+        <testcase name="Then The success notification says &quot;Successfully Registered&quot;" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And I ensure that user with username &quot;user_test_123&quot; exists in the database" classname=";as-a-user,-i-can-login-to-the-application" time="0.00178578">
+        <testcase name="And I ensure that user with username &quot;user_test_123&quot; exists in the database" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="When I enter &quot;user_test_123&quot; in the &quot;username&quot; text field" classname=";as-a-user,-i-can-login-to-the-application" time="1.096591708">
+        <testcase name="When I enter &quot;user_test_123&quot; in the &quot;username&quot; text field" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And I enter &quot;password*123&quot; in the &quot;password&quot; text field" classname=";as-a-user,-i-can-login-to-the-application" time="1.09864618">
+        <testcase name="And I enter &quot;password*123&quot; in the &quot;password&quot; text field" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="And I click on the button that has a value of &quot;Login&quot;" classname=";as-a-user,-i-can-login-to-the-application" time="0.112647797">
+        <testcase name="And I click on the button that has a value of &quot;Login&quot;" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
-        <testcase name="Then the application page is loaded" classname=";as-a-user,-i-can-login-to-the-application" time="0.012336071">
+        <testcase name="Then the application page is loaded" classname=";as-a-user,-i-can-login-to-the-application">
+            <skipped message="">
+            </skipped>
         </testcase>
     </testsuite>
 </testsuites>

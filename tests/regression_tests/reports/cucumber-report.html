@@ -194,8 +194,8 @@ th {
           <a class="navbar-brand">Cucumberjs Report</a>
           <div class="project-name visible-md visible-lg">Tests</div>
           <div class="label-container">
-            <span class="label label-success" title=scenarios>Passed: 2</span>
-            <span class="label label-danger" title=scenarios>Failed: 0</span>
+            <span class="label label-success" title=scenarios>Passed: 0</span>
+            <span class="label label-danger" title=scenarios>Failed: 2</span>
           </div>
         </div>
       </div>
@@ -203,7 +203,7 @@ th {
 
     <div class="container">
 
-      <div class="generated-on">Thu Feb 16 2017 00:03:10 GMT+0000 (GMT)</div>
+      <div class="generated-on">Thu Feb 16 2017 00:16:36 GMT+0000 (GMT)</div>
 
       <div class="row">
         <div class="chart col-lg-6 col-md-6" id="piechart_features"></div>
@@ -224,8 +224,8 @@ th {
             <i class="glyphicon glyphicon-chevron-down"></i>
             <b>Feature:</b>
             <span class="label-container">
-              <span class="label label-success">2</span>
               
+              <span class="label label-danger">2</span>
               
               
               
@@ -246,11 +246,11 @@ th {
                     <i class="glyphicon glyphicon-chevron-down"></i>
                     <b>Scenario:</b>As a user, I register an user through the application
                     <span class="label-container">
-                      <span class="label label-success" title="Passed">10</span>
+                      <span class="label label-success" title="Passed">3</span>
                       
                       
-                      
-                      
+                      <span class="label label-warning" title="Skipped">6</span>
+                      <span class="label label-danger" title="Failed">1</span>
                     </span>
                   </a>
                 </h4>
@@ -271,7 +271,7 @@ th {
                         The application is loaded
                           
                               <span class="step-duration">
-                               8s
+                               3s
                               </span>
                             
                          
@@ -327,7 +327,7 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-danger" title="Failed"><i class="glyphicon glyphicon-remove"></i></span>
                       
                     
                       <span class="text">
@@ -335,7 +335,7 @@ th {
                         I click on the link that contains text "Signup"
                           
                               <span class="step-duration">
-                               2s
+                               10s
                               </span>
                             
                          
@@ -345,6 +345,11 @@ th {
                     
                       
 
+                      
+                        <a href="#error0_02" data-toggle="collapse">+ Show Error</a>
+                        <div id="error0_02" class="collapse">
+                          <pre class=info>function timed out after 10000 milliseconds</pre>
+                        </div>
                       
 
                       
@@ -359,17 +364,13 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
                       
                     
                       <span class="text">
                         <span class="keyword highlight">And </span>
                         I enter "user_test_123" in the "username" text field
                           
-                              <span class="step-duration">
-                               1s
-                              </span>
-                            
                          
                             
                           
@@ -391,17 +392,13 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
                       
                     
                       <span class="text">
                         <span class="keyword highlight">And </span>
                         I enter "password*123" in the "password" text field
                           
-                              <span class="step-duration">
-                               1s
-                              </span>
-                            
                          
                             
                           
@@ -423,17 +420,13 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
                       
                     
                       <span class="text">
                         <span class="keyword highlight">And </span>
                         I enter "password*123" in the "confirmPassword" text field
                           
-                              <span class="step-duration">
-                               1s
-                              </span>
-                            
                          
                             
                           
@@ -455,17 +448,69 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
                       
                     
                       <span class="text">
                         <span class="keyword highlight">And </span>
                         I click on the button that has a value of "Signup"
                           
-                              <span class="step-duration">
-                               0s
-                              </span>
+                         
                             
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">Then </span>
+                        The success notification says "Successfully Registered"
+                          
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">And </span>
+                        I ensure that user with username "user_test_123" exists in the database
+                          
                          
                             
                           
@@ -491,8 +536,8 @@ th {
                       
                     
                       <span class="text">
-                        <span class="keyword highlight">Then </span>
-                        The success notification says "Successfully Registered"
+                        <span class="keyword highlight">After </span>
+                        
                           
                               <span class="step-duration">
                                1s
@@ -510,43 +555,14 @@ th {
                       
 
                        
-
-                    
-                    </p>
-                    
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">And </span>
-                        I ensure that user with username "user_test_123" exists in the database
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-
+                                                <a class="toggle" href="#">Screenshot -</a>
+                                                <a class="screenshot" href="screenshot/After_4400.png">
+                                                 <img class="screenshot" style="height:100%;width:100%" id="my_images" src="screenshot/After_4400.png"/>
+                                                 </a>
                        
 
                     
                     </p>
-                    
-                  
                     
                   
                 </div>
@@ -562,11 +578,11 @@ th {
                     <i class="glyphicon glyphicon-chevron-down"></i>
                     <b>Scenario:</b>As a user, I can login to the application
                     <span class="label-container">
-                      <span class="label label-success" title="Passed">14</span>
+                      <span class="label label-success" title="Passed">3</span>
                       
                       
-                      
-                      
+                      <span class="label label-warning" title="Skipped">10</span>
+                      <span class="label label-danger" title="Failed">1</span>
                     </span>
                   </a>
                 </h4>
@@ -643,7 +659,7 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-danger" title="Failed"><i class="glyphicon glyphicon-remove"></i></span>
                       
                     
                       <span class="text">
@@ -651,7 +667,7 @@ th {
                         I click on the link that contains text "Signup"
                           
                               <span class="step-duration">
-                               2s
+                               10s
                               </span>
                             
                          
@@ -661,6 +677,11 @@ th {
                     
                       
 
+                      
+                        <a href="#error0_12" data-toggle="collapse">+ Show Error</a>
+                        <div id="error0_12" class="collapse">
+                          <pre class=info>function timed out after 10000 milliseconds</pre>
+                        </div>
                       
 
                       
@@ -675,17 +696,13 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
                       
                     
                       <span class="text">
                         <span class="keyword highlight">And </span>
                         I enter "user_test_123" in the "username" text field
                           
-                              <span class="step-duration">
-                               1s
-                              </span>
-                            
                          
                             
                           
@@ -707,17 +724,13 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
                       
                     
                       <span class="text">
                         <span class="keyword highlight">And </span>
                         I enter "password*123" in the "password" text field
                           
-                              <span class="step-duration">
-                               1s
-                              </span>
-                            
                          
                             
                           
@@ -739,17 +752,13 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
                       
                     
                       <span class="text">
                         <span class="keyword highlight">And </span>
                         I enter "password*123" in the "confirmPassword" text field
                           
-                              <span class="step-duration">
-                               1s
-                              </span>
-                            
                          
                             
                           
@@ -771,17 +780,13 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
                       
                     
                       <span class="text">
                         <span class="keyword highlight">And </span>
                         I click on the button that has a value of "Signup"
                           
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
                          
                             
                           
@@ -803,17 +808,13 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
                       
                     
                       <span class="text">
                         <span class="keyword highlight">Then </span>
                         The success notification says "Successfully Registered"
                           
-                              <span class="step-duration">
-                               1s
-                              </span>
-                            
                          
                             
                           
@@ -835,17 +836,13 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
                       
                     
                       <span class="text">
                         <span class="keyword highlight">And </span>
                         I ensure that user with username "user_test_123" exists in the database
                           
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
                          
                             
                           
@@ -867,17 +864,13 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
                       
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
                         I enter "user_test_123" in the "username" text field
                           
-                              <span class="step-duration">
-                               1s
-                              </span>
-                            
                          
                             
                           
@@ -899,13 +892,97 @@ th {
                     <p class="scenario-container">
                     
                       
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
                       
                     
                       <span class="text">
                         <span class="keyword highlight">And </span>
                         I enter "password*123" in the "password" text field
                           
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">And </span>
+                        I click on the button that has a value of "Login"
+                          
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">Then </span>
+                        the application page is loaded
+                          
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">After </span>
+                        
+                          
                               <span class="step-duration">
                                1s
                               </span>
@@ -922,75 +999,14 @@ th {
                       
 
                        
-
-                    
-                    </p>
-                    
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">And </span>
-                        I click on the button that has a value of "Login"
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-
+                                                <a class="toggle" href="#">Screenshot -</a>
+                                                <a class="screenshot" href="screenshot/After_503.png">
+                                                 <img class="screenshot" style="height:100%;width:100%" id="my_images" src="screenshot/After_503.png"/>
+                                                 </a>
                        
 
                     
                     </p>
-                    
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">Then </span>
-                        the application page is loaded
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
                     
                   
                 </div>
@@ -1035,14 +1051,14 @@ th {
         google.load("visualization", "1", {packages: ["corechart"]});
         google.setOnLoadCallback(function() {drawChart({
                                                             "title" : "Features",
-                                                            "failed" : 0,
-                                                            "passed" : 1
+                                                            "failed" : 1,
+                                                            "passed" : 0
                                                         })
                                             });
         google.setOnLoadCallback(function() {drawChart({
                                                             "title" : "Scenarios",
-                                                            "failed" : 0,
-                                                            "passed" : 2,
+                                                            "failed" : 2,
+                                                            "passed" : 0,
                                                             "notdefined" : 0,
                                                             "skipped" : 0
                                                         })
