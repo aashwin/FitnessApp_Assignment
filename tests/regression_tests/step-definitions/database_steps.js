@@ -15,7 +15,7 @@ module.exports = function () {
             }
         );
     });
-    this.Then(/^I ensure that user with username "([^"]*)" exists in the database$/, function (username) {
+    this.Then(/^I verify that user with username "([^"]*)" exists in the database$/, function (username) {
         return new Promise(function (resolve, reject) {
                 {
                     User.count({"username": username}, function (err, count) {

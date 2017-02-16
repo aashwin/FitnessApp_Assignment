@@ -10,7 +10,7 @@ Feature:
     And I enter "password*123" in the "confirmPassword" text field
     And I click on the button that has a value of "Signup"
     Then The success notification says "Successfully Registered"
-    And I ensure that user with username "user_test_123" exists in the database
+    And I verify that user with username "user_test_123" exists in the database
 
 
   Scenario: As a user, I can login to the application
@@ -22,7 +22,7 @@ Feature:
     And I enter "password*123" in the "confirmPassword" text field
     And I click on the button that has a value of "Signup"
     Then The success notification says "Successfully Registered"
-    And I ensure that user with username "user_test_123" exists in the database
+    And I verify that user with username "user_test_123" exists in the database
     When I enter "user_test_123" in the "username" text field
     And I enter "password*123" in the "password" text field
     And I click on the button that has a value of "Login"
