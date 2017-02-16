@@ -1,0 +1,343 @@
+[
+  {
+    "description": "  Login and Registeration",
+    "elements": [
+      {
+        "id": ";as-a-user,-i-register-an-user-through-the-application",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "As a user, I register an user through the application",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "The application is loaded",
+            "result": {
+              "status": "passed",
+              "duration": 7894644190
+            },
+            "line": 5,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:4"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "That I ensure that no test users exists in the database",
+            "result": {
+              "status": "passed",
+              "duration": 7784251
+            },
+            "line": 6,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/database_steps.js:5"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I click on the link that contains text \"Signup\"",
+            "result": {
+              "status": "passed",
+              "duration": 2128869501
+            },
+            "line": 7,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:20"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"user_test_123\" in the \"username\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1194692123
+            },
+            "line": 8,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"password*123\" in the \"password\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1124814294
+            },
+            "line": 9,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"password*123\" in the \"confirmPassword\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1123535799
+            },
+            "line": 10,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Signup\"",
+            "result": {
+              "status": "passed",
+              "duration": 111710297
+            },
+            "line": 11,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:27"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "The success notification says \"Successfully Registered\"",
+            "result": {
+              "status": "passed",
+              "duration": 782569942
+            },
+            "line": 12,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:32"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I ensure that user with username \"user_test_123\" exists in the database",
+            "result": {
+              "status": "passed",
+              "duration": 4499349
+            },
+            "line": 13,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/database_steps.js:18"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 214312006
+            },
+            "hidden": true,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/node_modules/selenium-cucumber-js/runtime/world.js:187"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "id": ";as-a-user,-i-can-login-to-the-application",
+        "keyword": "Scenario",
+        "line": 16,
+        "name": "As a user, I can login to the application",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "The application is loaded",
+            "result": {
+              "status": "passed",
+              "duration": 2539177831
+            },
+            "line": 17,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:4"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "That I ensure that no test users exists in the database",
+            "result": {
+              "status": "passed",
+              "duration": 1930326
+            },
+            "line": 18,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/database_steps.js:5"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I click on the link that contains text \"Signup\"",
+            "result": {
+              "status": "passed",
+              "duration": 2133578296
+            },
+            "line": 19,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:20"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"user_test_123\" in the \"username\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1126780392
+            },
+            "line": 20,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"password*123\" in the \"password\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1120018317
+            },
+            "line": 21,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"password*123\" in the \"confirmPassword\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1122475965
+            },
+            "line": 22,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Signup\"",
+            "result": {
+              "status": "passed",
+              "duration": 133389475
+            },
+            "line": 23,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:27"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "The success notification says \"Successfully Registered\"",
+            "result": {
+              "status": "passed",
+              "duration": 746245037
+            },
+            "line": 24,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:32"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I ensure that user with username \"user_test_123\" exists in the database",
+            "result": {
+              "status": "passed",
+              "duration": 1785780
+            },
+            "line": 25,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/database_steps.js:18"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I enter \"user_test_123\" in the \"username\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1096591708
+            },
+            "line": 26,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I enter \"password*123\" in the \"password\" text field",
+            "result": {
+              "status": "passed",
+              "duration": 1098646180
+            },
+            "line": 27,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I click on the button that has a value of \"Login\"",
+            "result": {
+              "status": "passed",
+              "duration": 112647797
+            },
+            "line": 28,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:27"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the application page is loaded",
+            "result": {
+              "status": "passed",
+              "duration": 12336071
+            },
+            "line": 29,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/step-definitions/general_steps.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 523115243
+            },
+            "hidden": true,
+            "match": {
+              "location": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/node_modules/selenium-cucumber-js/runtime/world.js:187"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "",
+    "tags": [],
+    "uri": "/Users/aashwin/UniversityWork/Year_4/AAF/FitnessApp_Assignment/tests/regression_tests/features/login_register.feature"
+  }
+]
