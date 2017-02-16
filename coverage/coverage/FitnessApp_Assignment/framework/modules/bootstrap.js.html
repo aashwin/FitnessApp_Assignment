@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for FitnessApp_Assignment/framework/modules/bootstrap.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">FitnessApp_Assignment/framework/modules</a> bootstrap.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">48.84% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>21/43</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">18.75% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>3/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">47.62% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>20/42</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const fs = require('fs');
+const path = require('path');
+const modelsDirectory = path.join(__dirname, '../../models/');
+const routersDirectory = path.join(__dirname, '../../routes/');
+const debug = require('debug')("fitness.app.framework");
+var loadedModels = false, loadedRouters = false;
+&nbsp;
+var loadModels = function () {
+    var files = fs.readdirSync(modelsDirectory);
+    for (var i = 0; i &lt; files.length; i++) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (files[i].endsWith(".js")) {
+            require(path.join(modelsDirectory, files[i]));
+            debug("Loaded Model: %s", path.join(modelsDirectory, files[i]));
+        }
+    }
+    loadedModels = true;
+};
+var loadRouters = <span class="fstat-no" title="function not covered" >fu</span>nction (app) {
+<span class="cstat-no" title="statement not covered" >    if (!app) {</span>
+<span class="cstat-no" title="statement not covered" >        throw new Error("App is required");</span>
+    }
+    var files = <span class="cstat-no" title="statement not covered" >fs.readdirSync(routersDirectory);</span>
+<span class="cstat-no" title="statement not covered" >    for (var i = 0; i &lt; files.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        if (files[i].endsWith(".js")) {</span>
+            var req = <span class="cstat-no" title="statement not covered" >require(path.join(routersDirectory, files[i]));</span>
+            var route = <span class="cstat-no" title="statement not covered" >"/" + files[i].substring(0, files[i].length - 3);</span>
+<span class="cstat-no" title="statement not covered" >            if (route == '/index') {</span>
+<span class="cstat-no" title="statement not covered" >                route = ["/index", "/"];</span>
+            }
+<span class="cstat-no" title="statement not covered" >            app.use(route, req);</span>
+<span class="cstat-no" title="statement not covered" >            debug("Loaded Router: %s and linked to %s", path.join(routersDirectory, files[i]), route);</span>
+        }
+    }
+<span class="cstat-no" title="statement not covered" >    loadedRouters = true;</span>
+};
+var init = function (app, options) {
+    debug("Framework Bootstrapping has begun...");
+    //Source: http://expressjs.com/en/api.html#req.query
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!loadedModels) {
+        loadModels();
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (app) {
+        var Authenticator = <span class="cstat-no" title="statement not covered" >require("./fp-authentication/Authenticator");</span>
+<span class="cstat-no" title="statement not covered" >        if(Authenticator.isReady()){</span>
+<span class="cstat-no" title="statement not covered" >            app.use(Authenticator.authenticatorMW());</span>
+        }
+<span class="cstat-no" title="statement not covered" >        app.use(require("./base_controller")(options));</span>
+<span class="cstat-no" title="statement not covered" >        if (!loadedRouters) {</span>
+<span class="cstat-no" title="statement not covered" >            loadRouters(app);</span>
+        }
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        app.use(<span class="fstat-no" title="function not covered" >fu</span>nction (req, res, next) {</span>
+            var err = <span class="cstat-no" title="statement not covered" >new Error('Not Found');</span>
+<span class="cstat-no" title="statement not covered" >            err.status = 404;</span>
+<span class="cstat-no" title="statement not covered" >            next(err);</span>
+        });
+    }
+};
+module.exports = {'loadModels': loadModels, 'loadRouters': loadedRouters, 'startup': init};</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Feb 16 2017 19:17:13 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
