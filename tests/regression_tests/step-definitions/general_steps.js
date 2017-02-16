@@ -97,12 +97,20 @@ module.exports = function () {
     });
     this.Then(/^I verify that there is a comment "([^"]*)"$/, function (value) {
         return driver.sleep(1000).then(function () {
-            driver.wait(until.elementLocated(by.xpath('//div[contains(@class, "comment")]//p')), 10000).then(function (elm) {
+            return driver.wait(until.elementLocated(by.xpath('//div[contains(@class, "comment")]//p')), 10000).then(function (elm) {
                 return elm.getText().then(function (text) {
                     return expect(text.toLowerCase()).to.contain(value.toLowerCase());
                 });
             });
         });
     });
+    this.Then(/^I verify the text field with ID "([^"]*)" contains "([^"]*)"$/, function (id, value) {
+        return driver.wait(until.elementLocated(by.id(value)), 10000).then(function (elm) {
+            return elm.getText().then(function (text) {
+                return expect(text.toLowerCase()).to.contain(value.toLowerCase());
+            });
+        });
+    });
+
 
 };

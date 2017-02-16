@@ -7,9 +7,8 @@ module.exports = function () {
             .headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
             .send({"username": test_config.test_user, "password": test_config.test_password})
             .end(function (response) {
-                console.log(response.body);
-                console.log(this.shared);
                 data.token = response.body.token;
+                data.user_id = response.body._id;
                 done();
             });
     });
