@@ -14,7 +14,7 @@
             "name": "The application is loaded",
             "result": {
               "status": "passed",
-              "duration": 8311932085
+              "duration": 6915477464
             },
             "line": 5,
             "match": {
@@ -27,7 +27,7 @@
             "name": "I enter \"{{TEST_USERNAME}}\" in the \"username\" text field",
             "result": {
               "status": "passed",
-              "duration": 1123227704
+              "duration": 1108815254
             },
             "line": 6,
             "match": {
@@ -40,7 +40,7 @@
             "name": "I enter \"{{TEST_PASSWORD}}\" in the \"password\" text field",
             "result": {
               "status": "passed",
-              "duration": 1121775545
+              "duration": 1125680217
             },
             "line": 7,
             "match": {
@@ -53,7 +53,7 @@
             "name": "I click on the button that has a value of \"Login\"",
             "result": {
               "status": "passed",
-              "duration": 105278673
+              "duration": 107893008
             },
             "line": 8,
             "match": {
@@ -66,7 +66,7 @@
             "name": "the application page is loaded",
             "result": {
               "status": "passed",
-              "duration": 22428034
+              "duration": 17629365
             },
             "line": 9,
             "match": {
@@ -79,7 +79,7 @@
             "name": "I click on the link that contains text \"Create Activity\"",
             "result": {
               "status": "passed",
-              "duration": 8155776078
+              "duration": 7960481432
             },
             "line": 10,
             "match": {
@@ -92,7 +92,7 @@
             "name": "I click on the link that contains text \"Manual Entry\"",
             "result": {
               "status": "passed",
-              "duration": 2163427374
+              "duration": 2166268082
             },
             "line": 11,
             "match": {
@@ -105,7 +105,7 @@
             "name": "I enter \"Evening Run\" in the text field with the ID \"name\"",
             "result": {
               "status": "passed",
-              "duration": 1171946606
+              "duration": 1157354529
             },
             "line": 12,
             "match": {
@@ -118,7 +118,7 @@
             "name": "I tick the radio with name \"visibility\" and value \"2\"",
             "result": {
               "status": "passed",
-              "duration": 1093477056
+              "duration": 1089491943
             },
             "line": 13,
             "match": {
@@ -131,7 +131,7 @@
             "name": "I enter \"19\" in the text field with the ID \"distance\"",
             "result": {
               "status": "passed",
-              "duration": 1104076470
+              "duration": 1110174444
             },
             "line": 14,
             "match": {
@@ -144,7 +144,7 @@
             "name": "I enter \"133\" in the text field with the ID \"elevationInMeters\"",
             "result": {
               "status": "passed",
-              "duration": 1113894990
+              "duration": 1117790450
             },
             "line": 15,
             "match": {
@@ -157,7 +157,7 @@
             "name": "I enter \"1\" in the text field with the ID \"durationH\"",
             "result": {
               "status": "passed",
-              "duration": 1103398520
+              "duration": 1111186717
             },
             "line": 16,
             "match": {
@@ -170,7 +170,7 @@
             "name": "I enter \"11\" in the text field with the ID \"durationM\"",
             "result": {
               "status": "passed",
-              "duration": 1145086798
+              "duration": 1147019810
             },
             "line": 17,
             "match": {
@@ -183,7 +183,7 @@
             "name": "I enter \"34\" in the text field with the ID \"durationS\"",
             "result": {
               "status": "passed",
-              "duration": 1104980340
+              "duration": 1108060149
             },
             "line": 18,
             "match": {
@@ -196,7 +196,7 @@
             "name": "I enter \"This was a great run with @Friend\" in the text field with the ID \"notes\"",
             "result": {
               "status": "passed",
-              "duration": 1172805180
+              "duration": 1175039132
             },
             "line": 19,
             "match": {
@@ -209,7 +209,7 @@
             "name": "I click on the button that has a value of \"Add Activity >>\"",
             "result": {
               "status": "passed",
-              "duration": 95997519
+              "duration": 115104738
             },
             "line": 20,
             "match": {
@@ -222,7 +222,7 @@
             "name": "The success notification says \"Successfully created activity\"",
             "result": {
               "status": "passed",
-              "duration": 1653160659
+              "duration": 1661804470
             },
             "line": 21,
             "match": {
@@ -235,7 +235,7 @@
             "name": "The page heading says \"Evening Run\"",
             "result": {
               "status": "passed",
-              "duration": 1052190409
+              "duration": 1072825033
             },
             "line": 22,
             "match": {
@@ -248,7 +248,7 @@
             "name": "The \"Distance\" dashcard has the value of \"30.58\"",
             "result": {
               "status": "passed",
-              "duration": 32157645
+              "duration": 30104381
             },
             "line": 23,
             "match": {
@@ -261,7 +261,7 @@
             "name": "The \"Elevation\" dashcard has the value of \"133\"",
             "result": {
               "status": "passed",
-              "duration": 33877104
+              "duration": 31539574
             },
             "line": 24,
             "match": {
@@ -274,7 +274,7 @@
             "name": "The \"Duration\" dashcard has the text of \"01:11:34\"",
             "result": {
               "status": "passed",
-              "duration": 52015731
+              "duration": 50111953
             },
             "line": 25,
             "match": {
@@ -287,7 +287,7 @@
             "name": "I delete all activities of this user via the REST API",
             "result": {
               "status": "passed",
-              "duration": 571227853
+              "duration": 553372669
             },
             "line": 26,
             "match": {
@@ -299,7 +299,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 60943816
+              "duration": 60437852
             },
             "hidden": true,
             "match": {
@@ -321,9 +321,8 @@
             "keyword": "Given ",
             "name": "The application is loaded",
             "result": {
-              "status": "failed",
-              "duration": 35033824810,
-              "error_message": "function timed out after 35000 milliseconds"
+              "status": "passed",
+              "duration": 6839713685
             },
             "line": 29,
             "match": {
@@ -335,7 +334,8 @@
             "keyword": "When ",
             "name": "I enter \"{{TEST_USERNAME}}\" in the \"username\" text field",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1099525696
             },
             "line": 30,
             "match": {
@@ -347,7 +347,8 @@
             "keyword": "And ",
             "name": "I enter \"{{TEST_PASSWORD}}\" in the \"password\" text field",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1099324309
             },
             "line": 31,
             "match": {
@@ -359,7 +360,8 @@
             "keyword": "And ",
             "name": "I click on the button that has a value of \"Login\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 86157012
             },
             "line": 32,
             "match": {
@@ -371,7 +373,8 @@
             "keyword": "Then ",
             "name": "the application page is loaded",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 17388603
             },
             "line": 33,
             "match": {
@@ -383,7 +386,8 @@
             "keyword": "When ",
             "name": "I click on the link that contains text \"Create Activity\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 8439407687
             },
             "line": 34,
             "match": {
@@ -395,7 +399,8 @@
             "keyword": "And ",
             "name": "I click on the link that contains text \"Manual Entry\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 2168850177
             },
             "line": 35,
             "match": {
@@ -407,7 +412,8 @@
             "keyword": "And ",
             "name": "I enter \"Evening Run\" in the text field with the ID \"name\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1140473624
             },
             "line": 36,
             "match": {
@@ -419,7 +425,8 @@
             "keyword": "And ",
             "name": "I tick the radio with name \"visibility\" and value \"2\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1087710856
             },
             "line": 37,
             "match": {
@@ -431,7 +438,8 @@
             "keyword": "And ",
             "name": "I click on the button that has a value of \"Add Activity >>\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 82524035
             },
             "line": 38,
             "match": {
@@ -443,7 +451,8 @@
             "keyword": "Then ",
             "name": "The success notification says \"Successfully created activity\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1650965711
             },
             "line": 39,
             "match": {
@@ -455,7 +464,8 @@
             "keyword": "And ",
             "name": "The page heading says \"Evening Run\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1053057723
             },
             "line": 40,
             "match": {
@@ -467,7 +477,8 @@
             "keyword": "When ",
             "name": "I enter \"This is a good run mate, keep it going!\" in the text field with the ID \"comment\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1178608757
             },
             "line": 41,
             "match": {
@@ -479,7 +490,8 @@
             "keyword": "And ",
             "name": "I click on the button that has a value of \"Add Comment >>\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 94129190
             },
             "line": 42,
             "match": {
@@ -491,7 +503,8 @@
             "keyword": "Then ",
             "name": "I verify that there is a comment \"This is a good run mate, keep it going!\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1557355430
             },
             "line": 43,
             "match": {
@@ -503,7 +516,8 @@
             "keyword": "And ",
             "name": "I delete all activities of this user via the REST API",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 554032973
             },
             "line": 44,
             "match": {
@@ -514,9 +528,8 @@
             "arguments": [],
             "keyword": "After ",
             "result": {
-              "status": "failed",
-              "duration": 35009643467,
-              "error_message": "function timed out after 35000 milliseconds"
+              "status": "passed",
+              "duration": 71559976
             },
             "hidden": true,
             "match": {
@@ -539,7 +552,7 @@
             "name": "The application is loaded",
             "result": {
               "status": "passed",
-              "duration": 6540118563
+              "duration": 6645799705
             },
             "line": 47,
             "match": {
@@ -552,7 +565,7 @@
             "name": "I enter \"{{TEST_USERNAME}}\" in the \"username\" text field",
             "result": {
               "status": "passed",
-              "duration": 1102284784
+              "duration": 1095858426
             },
             "line": 48,
             "match": {
@@ -565,7 +578,7 @@
             "name": "I enter \"{{TEST_PASSWORD}}\" in the \"password\" text field",
             "result": {
               "status": "passed",
-              "duration": 1104133259
+              "duration": 1110126911
             },
             "line": 49,
             "match": {
@@ -578,7 +591,7 @@
             "name": "I click on the button that has a value of \"Login\"",
             "result": {
               "status": "passed",
-              "duration": 85637109
+              "duration": 95023274
             },
             "line": 50,
             "match": {
@@ -591,7 +604,7 @@
             "name": "the application page is loaded",
             "result": {
               "status": "passed",
-              "duration": 18889982
+              "duration": 14281651
             },
             "line": 51,
             "match": {
@@ -604,7 +617,7 @@
             "name": "I click on the link that contains text \"Create Activity\"",
             "result": {
               "status": "passed",
-              "duration": 9044544498
+              "duration": 8557637030
             },
             "line": 52,
             "match": {
@@ -617,7 +630,7 @@
             "name": "I click on the link that contains text \"Manual Entry\"",
             "result": {
               "status": "passed",
-              "duration": 2149674771
+              "duration": 2160098957
             },
             "line": 53,
             "match": {
@@ -630,7 +643,7 @@
             "name": "I enter \"Very Random Name 123\" in the text field with the ID \"name\"",
             "result": {
               "status": "passed",
-              "duration": 1145706306
+              "duration": 1143439069
             },
             "line": 54,
             "match": {
@@ -643,7 +656,7 @@
             "name": "I click on the button that has a value of \"Add Activity >>\"",
             "result": {
               "status": "passed",
-              "duration": 91939069
+              "duration": 94911365
             },
             "line": 55,
             "match": {
@@ -656,7 +669,7 @@
             "name": "The success notification says \"Successfully created activity\"",
             "result": {
               "status": "passed",
-              "duration": 1650974808
+              "duration": 1654430725
             },
             "line": 56,
             "match": {
@@ -669,7 +682,7 @@
             "name": "The page heading says \"Very Random Name 123\"",
             "result": {
               "status": "passed",
-              "duration": 1046610663
+              "duration": 1048388564
             },
             "line": 57,
             "match": {
@@ -682,7 +695,7 @@
             "name": "I click on the link that contains text \"Search\"",
             "result": {
               "status": "passed",
-              "duration": 2098557866
+              "duration": 2093244190
             },
             "line": 58,
             "match": {
@@ -695,7 +708,7 @@
             "name": "I enter \"Very Random Name 123\" in the text field with the ID \"search_query\"",
             "result": {
               "status": "passed",
-              "duration": 1146156963
+              "duration": 1148767332
             },
             "line": 59,
             "match": {
@@ -708,7 +721,7 @@
             "name": "I verify that there is atleast 1 search result",
             "result": {
               "status": "passed",
-              "duration": 2026068161
+              "duration": 2026477023
             },
             "line": 60,
             "match": {
@@ -721,7 +734,7 @@
             "name": "I delete all activities of this user via the REST API",
             "result": {
               "status": "passed",
-              "duration": 839176807
+              "duration": 521839555
             },
             "line": 61,
             "match": {
@@ -733,7 +746,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 69773890
+              "duration": 59961389
             },
             "hidden": true,
             "match": {
@@ -766,9 +779,8 @@
             "keyword": "Given ",
             "name": "The application is loaded",
             "result": {
-              "status": "failed",
-              "duration": 35019259973,
-              "error_message": "function timed out after 35000 milliseconds"
+              "status": "passed",
+              "duration": 6474713568
             },
             "line": 17,
             "match": {
@@ -780,7 +792,8 @@
             "keyword": "When ",
             "name": "I enter \"{{TEST_USERNAME}}\" in the \"username\" text field",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1097141106
             },
             "line": 18,
             "match": {
@@ -792,7 +805,8 @@
             "keyword": "And ",
             "name": "I enter \"{{TEST_PASSWORD}}\" in the \"password\" text field",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1109672097
             },
             "line": 19,
             "match": {
@@ -804,7 +818,8 @@
             "keyword": "And ",
             "name": "I click on the button that has a value of \"Login\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 93862547
             },
             "line": 20,
             "match": {
@@ -816,7 +831,8 @@
             "keyword": "Then ",
             "name": "the application page is loaded",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 15937508
             },
             "line": 21,
             "match": {
@@ -828,7 +844,8 @@
             "keyword": "And ",
             "name": "The page heading says \"My Activities\"",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 6051106008
             },
             "line": 22,
             "match": {
@@ -839,9 +856,8 @@
             "arguments": [],
             "keyword": "After ",
             "result": {
-              "status": "failed",
-              "duration": 35034129244,
-              "error_message": "function timed out after 35000 milliseconds"
+              "status": "passed",
+              "duration": 59003925
             },
             "hidden": true,
             "match": {
@@ -875,7 +891,7 @@
             "name": "The application is loaded",
             "result": {
               "status": "passed",
-              "duration": 9286418623
+              "duration": 6327406522
             },
             "line": 5,
             "match": {
@@ -888,7 +904,7 @@
             "name": "I enter \"{{TEST_USERNAME}}\" in the \"username\" text field",
             "result": {
               "status": "passed",
-              "duration": 1097939380
+              "duration": 1099953456
             },
             "line": 6,
             "match": {
@@ -901,7 +917,7 @@
             "name": "I enter \"{{TEST_PASSWORD}}\" in the \"password\" text field",
             "result": {
               "status": "passed",
-              "duration": 1098340447
+              "duration": 1104515282
             },
             "line": 7,
             "match": {
@@ -914,7 +930,7 @@
             "name": "I click on the button that has a value of \"Login\"",
             "result": {
               "status": "passed",
-              "duration": 88639004
+              "duration": 99498064
             },
             "line": 8,
             "match": {
@@ -927,7 +943,7 @@
             "name": "the application page is loaded",
             "result": {
               "status": "passed",
-              "duration": 13239853
+              "duration": 17472862
             },
             "line": 9,
             "match": {
@@ -940,7 +956,7 @@
             "name": "I click on the link that contains text \"Hey \"",
             "result": {
               "status": "passed",
-              "duration": 9087705637
+              "duration": 8303457424
             },
             "line": 10,
             "match": {
@@ -953,7 +969,7 @@
             "name": "I enter \"Bruce Wayne\" in the text field with the ID \"name\"",
             "result": {
               "status": "passed",
-              "duration": 1127199081
+              "duration": 1140384211
             },
             "line": 11,
             "match": {
@@ -966,7 +982,7 @@
             "name": "I enter \"bruce@gotham.com\" in the text field with the ID \"email\"",
             "result": {
               "status": "passed",
-              "duration": 1141914004
+              "duration": 1153093009
             },
             "line": 12,
             "match": {
@@ -979,7 +995,7 @@
             "name": "I enter \"76.2\" in the text field with the ID \"weightInKg\"",
             "result": {
               "status": "passed",
-              "duration": 1122514745
+              "duration": 1111496134
             },
             "line": 13,
             "match": {
@@ -992,7 +1008,7 @@
             "name": "I click on the button that has a value of \"Update Profile >>\"",
             "result": {
               "status": "passed",
-              "duration": 86539706
+              "duration": 94816140
             },
             "line": 14,
             "match": {
@@ -1005,7 +1021,7 @@
             "name": "The success notification says \"Successfully updated your profile\"",
             "result": {
               "status": "passed",
-              "duration": 1650726073
+              "duration": 1649763675
             },
             "line": 15,
             "match": {
@@ -1018,7 +1034,7 @@
             "name": "I reload application",
             "result": {
               "status": "passed",
-              "duration": 1036318022
+              "duration": 980317329
             },
             "line": 16,
             "match": {
@@ -1031,7 +1047,7 @@
             "name": "I click on the link that contains text \"Hey Bruce\"",
             "result": {
               "status": "passed",
-              "duration": 2099593376
+              "duration": 2088926566
             },
             "line": 17,
             "match": {
@@ -1044,7 +1060,7 @@
             "name": "I verify the text field with ID \"email\" contains \"bruce@gotham.com\"",
             "result": {
               "status": "passed",
-              "duration": 3019349279
+              "duration": 3019718338
             },
             "line": 18,
             "match": {
@@ -1057,7 +1073,7 @@
             "name": "I verify the text field with ID \"weightInKg\" contains \"76.2\"",
             "result": {
               "status": "passed",
-              "duration": 3021378707
+              "duration": 3060306272
             },
             "line": 19,
             "match": {
@@ -1070,7 +1086,7 @@
             "name": "I verify the text field with ID \"name\" contains \"Bruce Wayne\"",
             "result": {
               "status": "passed",
-              "duration": 3032628402
+              "duration": 3031607086
             },
             "line": 20,
             "match": {
@@ -1083,7 +1099,7 @@
             "name": "I enter \"\" in the text field with the ID \"name\"",
             "result": {
               "status": "passed",
-              "duration": 1084893106
+              "duration": 1104525342
             },
             "line": 21,
             "match": {
@@ -1096,7 +1112,7 @@
             "name": "I enter \"\" in the text field with the ID \"email\"",
             "result": {
               "status": "passed",
-              "duration": 1110487770
+              "duration": 1081940189
             },
             "line": 22,
             "match": {
@@ -1109,7 +1125,7 @@
             "name": "I enter \"\" in the text field with the ID \"weightInKg\"",
             "result": {
               "status": "passed",
-              "duration": 1106536094
+              "duration": 1085689049
             },
             "line": 23,
             "match": {
@@ -1122,7 +1138,7 @@
             "name": "I click on the button that has a value of \"Update Profile >>\"",
             "result": {
               "status": "passed",
-              "duration": 86296455
+              "duration": 82105816
             },
             "line": 24,
             "match": {
@@ -1135,7 +1151,7 @@
             "name": "The success notification says \"Successfully updated your profile\"",
             "result": {
               "status": "passed",
-              "duration": 1650294703
+              "duration": 1648388975
             },
             "line": 25,
             "match": {
@@ -1147,7 +1163,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 58947262
+              "duration": 59678037
             },
             "hidden": true,
             "match": {
